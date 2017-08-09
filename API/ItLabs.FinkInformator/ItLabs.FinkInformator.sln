@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ItLabs.FinkInformator.Api", "ItLabs.FinkInformator.Api\ItLabs.FinkInformator.Api.csproj", "{B97A4C46-03F7-424D-92BF-C81BDA4203DD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ItLabs.FinkInformator.UnitTests", "ItLabs.FinkInformator.UnitTests\ItLabs.FinkInformator.UnitTests.csproj", "{14735E9A-D2E0-43C2-A906-83330F9EB2C0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B97A4C46-03F7-424D-92BF-C81BDA4203DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B97A4C46-03F7-424D-92BF-C81BDA4203DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B97A4C46-03F7-424D-92BF-C81BDA4203DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B97A4C46-03F7-424D-92BF-C81BDA4203DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{14735E9A-D2E0-43C2-A906-83330F9EB2C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{14735E9A-D2E0-43C2-A906-83330F9EB2C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{14735E9A-D2E0-43C2-A906-83330F9EB2C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{14735E9A-D2E0-43C2-A906-83330F9EB2C0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
