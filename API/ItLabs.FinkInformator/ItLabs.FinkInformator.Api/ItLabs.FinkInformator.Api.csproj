@@ -183,11 +183,24 @@
     <Compile Include="Migrations\201708100905545_Structured Programming.Designer.cs">
       <DependentUpon>201708100905545_Structured Programming.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201708101122020_FullChanged.cs" />
+    <Compile Include="Migrations\201708101122020_FullChanged.Designer.cs">
+      <DependentUpon>201708101122020_FullChanged.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708101128025_FinalProbably.cs" />
+    <Compile Include="Migrations\201708101128025_FinalProbably.Designer.cs">
+      <DependentUpon>201708101128025_FinalProbably.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708101131142_FinalIGuess.cs" />
+    <Compile Include="Migrations\201708101131142_FinalIGuess.Designer.cs">
+      <DependentUpon>201708101131142_FinalIGuess.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Course.cs" />
+    <Compile Include="Models\CoursesPrerequisites.cs" />
     <Compile Include="Models\Program.cs" />
-    <Compile Include="Models\ProgramStudent.cs" />
-    <Compile Include="Models\SchoolContext.cs" />
+    <Compile Include="Models\ProgramsCourses.cs" />
+    <Compile Include="SchoolContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -245,6 +258,15 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201708100905545_Structured Programming.resx">
       <DependentUpon>201708100905545_Structured Programming.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708101122020_FullChanged.resx">
+      <DependentUpon>201708101122020_FullChanged.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708101128025_FinalProbably.resx">
+      <DependentUpon>201708101128025_FinalProbably.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708101131142_FinalIGuess.resx">
+      <DependentUpon>201708101131142_FinalIGuess.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -11,8 +11,8 @@ namespace ItLabs.FinkInformator.Api.Models
         [Required]
         public int ProgramId { get; set; }
         [Required]
-        [MaxLength(100)]
+        [MaxLength(5)]
         public string ProgramName { get; set; }
-       
+        public IEnumerable<ProgramsCourses> ProgramsCourses { get; set; }
     }
 }

@@ -19,5 +19,8 @@ namespace ItLabs.FinkInformator.Api.Models
         [Range(1,8)]
         [Required]
         public int Semester { get; set; }
+        public IEnumerable<ProgramsCourses> ProgramsCourses { get; set; }
+
+
     }
 }

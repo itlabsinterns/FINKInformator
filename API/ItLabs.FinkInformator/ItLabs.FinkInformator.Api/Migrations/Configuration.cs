@@ -14,7 +14,14 @@ namespace ItLabs.FinkInformator.Api.Migrations
 
         protected override void Seed(ItLabs.FinkInformator.Api.Models.SchoolContext context)
         {
-            
+            context.Programs.Add(new Models.Program() { ProgramName = "KNI"});
+
+            context.Programs.Add(new Models.Program() { ProgramName = "PET" });
+
+            context.Programs.Add(new Models.Program() { ProgramName = "IKI" });
+
+            context.Programs.Add(new Models.Program() { ProgramName = "MT" });
+
         }
     }
 }

@@ -13,5 +13,8 @@ namespace ItLabs.FinkInformator.Api.Models
 
         }
         public DbSet<Course> Courses { get; set; }
+        public DbSet<Program> Programs { get; set; }
+        public DbSet<ProgramsCourses> ProgramsCourses { get; set; }
+        public DbSet<CoursesPrerequisites> CoursesPrerequisites { get; set; }
     }
 }
