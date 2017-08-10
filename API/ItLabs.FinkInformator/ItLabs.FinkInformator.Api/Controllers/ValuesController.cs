@@ -5,14 +5,17 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 
+using ItLabs.FinkInformator.Api.Models;
+
 namespace ItLabs.FinkInformator.Api.Controllers
 {
     public class ValuesController : ApiController
     {
         // GET api/values
-        public IEnumerable<string> Get()
+        public IEnumerable<Course> Get()
         {
-            return new string[] { "value1", "value2" };
+            SchoolContext context = new SchoolContext();
+            return context.Courses.AsEnumerable();
         }
 
         // GET api/values/5

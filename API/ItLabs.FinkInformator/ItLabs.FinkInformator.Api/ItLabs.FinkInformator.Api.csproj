@@ -195,6 +195,10 @@
     <Compile Include="Migrations\201708101131142_FinalIGuess.Designer.cs">
       <DependentUpon>201708101131142_FinalIGuess.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201708101343068_Seed updated.cs" />
+    <Compile Include="Migrations\201708101343068_Seed updated.Designer.cs">
+      <DependentUpon>201708101343068_Seed updated.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Course.cs" />
     <Compile Include="Models\CoursesPrerequisites.cs" />
@@ -267,6 +271,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201708101131142_FinalIGuess.resx">
       <DependentUpon>201708101131142_FinalIGuess.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708101343068_Seed updated.resx">
+      <DependentUpon>201708101343068_Seed updated.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

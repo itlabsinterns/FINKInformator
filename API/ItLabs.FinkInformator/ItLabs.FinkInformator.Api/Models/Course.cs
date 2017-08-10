@@ -11,7 +11,7 @@ namespace ItLabs.FinkInformator.Api.Models
     {
         [Required]
         public int CourseId { get; set; }
-        [MaxLength(30)]
+        [MaxLength(50)]
         [Required]
         public string CourseName { get; set; }
         [MaxLength(2000)]
