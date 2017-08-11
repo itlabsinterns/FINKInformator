@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Data.Entity;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace ItLabs.FinkInformator.Api.Models
@@ -11,14 +7,18 @@ namespace ItLabs.FinkInformator.Api.Models
     {
         [Required]
         public int CourseId { get; set; }
+
         [MaxLength(50)]
         [Required]
         public string CourseName { get; set; }
+
         [MaxLength(2000)]
         public string CourseDescription { get; set; }
+
         [Range(1,8)]
         [Required]
         public int Semester { get; set; }
+
         public IEnumerable<ProgramsCourses> ProgramsCourses { get; set; }
 
 
