@@ -213,7 +213,7 @@
     <Compile Include="Requests\GetProgramCoursesRequest.cs" />
     <Compile Include="Responses\ProgramsResponse.cs" />
     <Compile Include="Responses\ResponseBase.cs" />
-    <Compile Include="Models\SchoolContext.cs" />
+    <Compile Include="SchoolContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
