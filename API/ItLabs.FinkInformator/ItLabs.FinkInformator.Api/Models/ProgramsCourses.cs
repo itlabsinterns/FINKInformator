@@ -12,7 +12,7 @@ namespace ItLabs.FinkInformator.Api.Models
 
         [Required]
         public int ProgramId { get; set; }
-
+        
         public Course Course { get; set; }
 
         [Required]
