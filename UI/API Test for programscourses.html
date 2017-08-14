@@ -1,0 +1,115 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <title>TestTest123</title>
+    <style>
+       .predmetItem{
+           list-style: none;
+           background-color: bisque;
+           margin:2px;
+           margin-right:60%;
+           padding: 7px 7px 7px 7px;
+       }
+        #description{
+            margin-left:150px;
+            margin-right:150px;
+            background-color: bisque;
+            padding: 7px 7px 7px 7px;
+        }
+
+    </style>
+</head>
+<body>
+    <table>
+        <tr>
+            <td>
+                Year:
+            </td>
+            <td>
+                <input type="text" id="year">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Semester:
+            </td>
+            <td>
+                <input type="text" id="semester">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                SMER:
+            </td>
+            <td>
+                <input type="radio" id="KNI" name="smer" class="smer">KNI</input>
+                <input type="radio" id="PET" name="smer" class="smer">PET</button>
+                <input type="radio" id="MT" name="smer" class="smer">MT</button>
+                <input type="radio" id="IKI" name="smer" class="smer">IKI</button>
+            </td>
+        </tr>
+        <tr><td><button id="final" type="submit">GO</button></td></tr>
+    </table>
+    <ul id="list"> </ul>
+    <div>
+        <p id="description" style="align-content: center"></p>
+    </div>
+<script>
+    $(document).ready(function () {
+        $('#description').hide();
+        $('#final').click(function () {
+            $('#description').hide();
+            $("#list").empty();
+            if ($('.smer').is(':checked')) {
+                var year = parseInt($('#year').val(), 10);
+                var semester = parseInt($('#semester').val(), 10);
+
+                var forRequest = year * 2 + semester - 2;
+                var smer;
+                if ($('#KNI').is(':checked')) {
+                    smer = 25;
+                }
+                if ($('#PET').is(':checked')) {
+                    smer = 26;
+                }
+                if ($('#MT').is(':checked')) {
+                    smer = 28;
+                }
+                if ($('#IKI').is(':checked')) {
+                    smer = 27;
+                }
+                var returned;
+                $.ajax({
+                    type: 'GET',
+                    url: "http://localhost:4329/programs/" + smer + "/" + forRequest,
+                    dataType: 'json',
+                    success: function (data) {
+                        var i = 0;
+                        $.each(data, function (i, item) {
+                            $("#list").append('<li class="predmetItem">' + item.CourseName + ' <button class="buttonz" id="' + item.CourseId + '">View More</button></li>')
+                        })
+                    }
+                })
+            } else {
+                alert("odberi smer");
+            }
+        })
+
+            $("#list").on('click','.buttonz', function(){
+                $('#description').show();
+                $.ajax({
+                    type: 'GET',
+                    url: "http://localhost:4329/courses/"+this.id,
+                    dataType: 'json',
+                    success: function (data) {
+                        $("#description").html(data[0].CourseDescription);
+                    }
+                })
+            });
+
+    })
+</script>
+
+</body>
+</html>

@@ -2,9 +2,11 @@
 using ItLabs.FinkInformator.Api.Responses;
 using System.Web.Http;
 using System.Linq;
+using System.Web.Http.Cors;
 
 namespace ItLabs.FinkInformator.Api.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class CoursesController: ApiController
     {
         [HttpGet]
