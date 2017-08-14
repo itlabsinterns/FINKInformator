@@ -16,16 +16,30 @@ namespace ItLabs.FinkInformator.Api.Migrations
         protected override void Seed(SchoolContext context)
         {
             //Try this
-           //context.Programs.RemoveRange(context.Programs);
-           //context.Programs.AddRange(FillPrograms(context));
+            //context.Programs.RemoveRange(context.Programs);
+            //context.Programs.AddRange(FillPrograms(context));
 
-           //context.Courses.RemoveRange(context.Courses);
-           //context.Courses.AddRange(FillCourses(context));
+            //context.Courses.RemoveRange(context.Courses);
+            //context.Courses.AddRange(FillCourses(context));
 
-           // context.ProgramsCourses.RemoveRange(context.ProgramsCourses);
-           // FillProgramsCourses(context);
+            // context.ProgramsCourses.RemoveRange(context.ProgramsCourses);
+            // FillProgramsCourses(context);
 
+            //AddCoursePrerequisite(context, 167, 162);
+            //context.SaveChanges();
         }
+
+        private void AddCoursePrerequisite(SchoolContext context, int courseId, int prerequisiteId)
+        {
+            Course course = context.Courses.Find(courseId);
+            Course prerequisite = context.Courses.Find(prerequisiteId);
+            context.CoursesPrerequisites.Add(new CoursesPrerequisites()
+            {
+                Course=course,
+                Prerequisite=prerequisite
+            });
+        }
+
         private List<Program> FillPrograms(SchoolContext context)
         {
             var programs = new List<Program>();
