@@ -175,10 +175,11 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProgramsController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
-    <Compile Include="Migrations\201708111336324_SeedAttempt.cs" />
-    <Compile Include="Migrations\201708111336324_SeedAttempt.Designer.cs">
-      <DependentUpon>201708111336324_SeedAttempt.cs</DependentUpon>
+    <Compile Include="Migrations\201708111205419_Required Migration.cs" />
+    <Compile Include="Migrations\201708111205419_Required Migration.Designer.cs">
+      <DependentUpon>201708111205419_Required Migration.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Enums.cs" />
     <Compile Include="Global.asax.cs">
@@ -210,8 +211,9 @@
     <Compile Include="Models\Program.cs" />
     <Compile Include="Models\ProgramsCourses.cs" />
     <Compile Include="Requests\GetProgramCoursesRequest.cs" />
+    <Compile Include="Responses\ProgramsResponse.cs" />
     <Compile Include="Responses\ResponseBase.cs" />
-    <Compile Include="SchoolContext.cs" />
+    <Compile Include="Models\SchoolContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -282,8 +284,8 @@
     <EmbeddedResource Include="Migrations\201708101343068_Seed updated.resx">
       <DependentUpon>201708101343068_Seed updated.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201708111336324_SeedAttempt.resx">
-      <DependentUpon>201708111336324_SeedAttempt.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201708111205419_Required Migration.resx">
+      <DependentUpon>201708111205419_Required Migration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
