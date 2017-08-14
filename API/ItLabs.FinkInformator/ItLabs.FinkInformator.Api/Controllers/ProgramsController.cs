@@ -9,7 +9,6 @@ namespace ItLabs.FinkInformator.Api.Controllers
     public class ProgramsController : ApiController
     {
         [HttpGet]
-        [Route("programs")]
         public IHttpActionResult Get()
         {
 
@@ -26,7 +25,6 @@ namespace ItLabs.FinkInformator.Api.Controllers
         }
 
         [HttpGet]
-        [Route("programs/{id}")]
         public IHttpActionResult Get(int id)
         {
 
@@ -42,14 +40,13 @@ namespace ItLabs.FinkInformator.Api.Controllers
             return BadRequest();
         }
 
-
         [HttpGet]
-        public IHttpActionResult Get([FromUri]GetProgramCoursesRequest request)
+        public IHttpActionResult Get(int id, int semester)
         {
 
             SchoolContext context = new SchoolContext();
             var result = from p in context.ProgramsCourses
-                         where p.ProgramId == request.ProgramId && p.Course.Semester == request.Semester
+                         where p.ProgramId == id && p.Course.Semester == semester
                          select p.Course;
 
             if (result != null)
@@ -58,6 +55,22 @@ namespace ItLabs.FinkInformator.Api.Controllers
             }
             return BadRequest();
         }
+
+        //[HttpGet]
+        //public IHttpActionResult Get([FromUri]GetProgramCoursesRequest request)
+        //{
+
+        //    SchoolContext context = new SchoolContext();
+        //    var result = from p in context.ProgramsCourses
+        //                 where p.ProgramId == request.ProgramId && p.Course.Semester == request.Semester
+        //                 select p.Course;
+
+        //    if (result != null)
+        //    {
+        //        return Ok(result);
+        //    }
+        //    return BadRequest();
+        //}
 
     }
 }
