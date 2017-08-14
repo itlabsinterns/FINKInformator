@@ -6,16 +6,15 @@ using System.Web;
 
 namespace ItLabs.FinkInformator.Api.Responses
 {
-    public class ProgramsResponse : ResponseBase
+    public class CoursesResponse: ResponseBase
     {
         //Property containing all Programs
-        public List<Program> Programs;
+        public List<Course> Courses { get; set; }
 
         //Class constructor
-        public ProgramsResponse() : base()
+        public CoursesResponse():base()
         {
-            this.Programs = new List<Program>();
+            Courses = new List<Course>();
         }
-
     }
 }

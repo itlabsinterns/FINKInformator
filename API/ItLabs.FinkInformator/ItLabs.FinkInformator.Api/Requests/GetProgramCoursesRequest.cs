@@ -3,7 +3,7 @@ namespace ItLabs.FinkInformator.Api.Requests
 {
     public class GetProgramCoursesRequest
     {
-        int ProgramId { get; set; }
-        int Semester { get; set; }
+        public int ProgramId { get; set; }
+        public int Semester { get; set; }
     }
 }
