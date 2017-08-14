@@ -8,11 +8,11 @@ namespace ItLabs.FinkInformator.Api.Models
         [Required]
         public int CourseId { get; set; }
 
-        [MaxLength(50)]
+        [MaxLength(100)]
         [Required]
         public string CourseName { get; set; }
 
-        [MaxLength(2000)]
+        [MaxLength(5000)]
         public string CourseDescription { get; set; }
 
         [Range(1,8)]
