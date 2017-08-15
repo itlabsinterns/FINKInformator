@@ -214,7 +214,7 @@
     <Compile Include="Models\CoursesPrerequisites.cs" />
     <Compile Include="Models\Program.cs" />
     <Compile Include="Models\ProgramsCourses.cs" />
-    <Compile Include="Requests\GetCourseRequest.cs" />
+    <Compile Include="Requests\IdRequest.cs" />
     <Compile Include="Requests\GetProgramCoursesRequest.cs" />
     <Compile Include="Requests\GetProgramRequest.cs" />
     <Compile Include="Responses\GetCoursePrerequisitesResponse.cs" />
