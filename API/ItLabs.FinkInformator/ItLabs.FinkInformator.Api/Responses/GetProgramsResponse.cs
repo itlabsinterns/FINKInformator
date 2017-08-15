@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace ItLabs.FinkInformator.Api.Responses
 {
-    public class ProgramsResponse : ResponseBase
+    public class GetProgramsResponse : ResponseBase
     {
-        public ProgramsResponse() : base()
+        public GetProgramsResponse() : base()
         {
             Programs = new List<Program>();
         }

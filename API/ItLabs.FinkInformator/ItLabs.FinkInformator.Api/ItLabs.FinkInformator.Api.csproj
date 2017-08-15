@@ -216,9 +216,11 @@
     <Compile Include="Models\ProgramsCourses.cs" />
     <Compile Include="Requests\IdRequest.cs" />
     <Compile Include="Requests\GetProgramCoursesRequest.cs" />
+    <Compile Include="Requests\GetProgramRequest.cs" />
     <Compile Include="Responses\GetCourseResponse.cs" />
     <Compile Include="Responses\GetCoursesResponse.cs" />
-    <Compile Include="Responses\ProgramsResponse.cs" />
+    <Compile Include="Responses\GetProgramResponse.cs" />
+    <Compile Include="Responses\GetProgramsResponse.cs" />
     <Compile Include="Responses\ResponseBase.cs" />
     <Compile Include="SchoolContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
