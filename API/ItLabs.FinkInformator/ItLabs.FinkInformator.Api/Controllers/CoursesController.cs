@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web.Http.Cors;
 using System;
 using ItLabs.FinkInformator.Api.Requests;
+using NLog;
 
 namespace ItLabs.FinkInformator.Api.Controllers
 {
@@ -12,10 +13,12 @@ namespace ItLabs.FinkInformator.Api.Controllers
     public class CoursesController : ApiController
     {
         private SchoolContext _schoolContext;
+        private Logger _logger;
 
         public CoursesController()
         {
             _schoolContext = new SchoolContext();
+            _logger = LogManager.GetLogger("databaseLogger");
         }
 
         [HttpGet]
@@ -24,11 +27,12 @@ namespace ItLabs.FinkInformator.Api.Controllers
             var response = new GetCoursesResponse();
             try
             {
+                throw new Exception();
                 response.Courses = _schoolContext.Courses.ToList();
             }
             catch (Exception ex)
             {
-                //TODO add logging ex.Message
+                _logger.Error(ex, "An error has occurred!");
 
                 return BadRequest("An error has occurred");
             }
@@ -49,14 +53,13 @@ namespace ItLabs.FinkInformator.Api.Controllers
 
                 return Ok(response);
             }
-
             try
             {
                 response.Course = _schoolContext.Courses.Where(x => x.CourseId == request.Id).SingleOrDefault();
             }
             catch (Exception ex)
             {
-                //TODO add logging ex.Message
+                _logger.Error(ex, "An error has occurred!");
 
                 return BadRequest("An error has occurred");
             }

@@ -5,6 +5,7 @@ using ItLabs.FinkInformator.Api.Models;
 using ItLabs.FinkInformator.Api.Requests;
 using System.Web.Http.Cors;
 using System;
+using NLog;
 
 namespace ItLabs.FinkInformator.Api.Controllers
 {
@@ -12,9 +13,12 @@ namespace ItLabs.FinkInformator.Api.Controllers
     public class ProgramsController : ApiController
     {
         private SchoolContext _schoolContext;
+        private Logger _logger;
+
         public ProgramsController()
         {
             _schoolContext = new SchoolContext();
+            _logger = LogManager.GetLogger("databaseLogger");
         }
         [HttpGet]
         public IHttpActionResult Get()
@@ -24,8 +28,12 @@ namespace ItLabs.FinkInformator.Api.Controllers
             try
             {
                 response.Programs = _schoolContext.Programs.ToList();
-            }catch (Exception ex)
+            }
+            catch (Exception ex)
             {
+                
+                _logger.Error(ex, "An error has occurred!");
+
                 return BadRequest("An error has occurred");
             }
             return Ok(response);
@@ -39,8 +47,11 @@ namespace ItLabs.FinkInformator.Api.Controllers
             try
             {
                 response.Program = _schoolContext.Programs.Where(x => x.ProgramId == request.Id).FirstOrDefault();
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
+                _logger.Error(ex, "An error has occured!");
+
                 return BadRequest("An error has occurred");
             }
             return Ok(response);
