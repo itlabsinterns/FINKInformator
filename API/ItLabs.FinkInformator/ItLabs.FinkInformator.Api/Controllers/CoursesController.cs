@@ -39,6 +39,21 @@ namespace ItLabs.FinkInformator.Api.Controllers
 
             return Ok(response);
         }
+        [HttpGet]
+        [Route("courses/p/{id}")]
+        public IHttpActionResult GetPrerequisites(int id)
+        {
+            var response = new GetCoursePrerequisitesResponse();
+            try
+            {
+                response.Prerequisites = _schoolContext.CoursesPrerequisites.Where(x => x.Course.CourseId == id)
+                                                   .Select(x => x.Prerequisite).ToList();
+            }catch(Exception ex)
+            {
+                return BadRequest("An error has occurred");
+            }
+            return Ok(response);
+        }
 
         [HttpGet]
         public IHttpActionResult GetCourse(int id)
