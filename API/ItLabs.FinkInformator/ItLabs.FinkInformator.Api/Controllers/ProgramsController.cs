@@ -4,59 +4,71 @@ using ItLabs.FinkInformator.Api.Responses;
 using ItLabs.FinkInformator.Api.Models;
 using ItLabs.FinkInformator.Api.Requests;
 using System.Web.Http.Cors;
+using System;
 
 namespace ItLabs.FinkInformator.Api.Controllers
 {
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class ProgramsController : ApiController
     {
+        private SchoolContext _schoolContext;
+        public ProgramsController()
+        {
+            _schoolContext = new SchoolContext();
+        }
         [HttpGet]
         public IHttpActionResult Get()
         {
-
-            SchoolContext context = new SchoolContext();
-            ProgramsResponse response = new ProgramsResponse();
-            response.Programs = (from p in context.Programs
-                                 select p).ToList<Program>();
-
-            if (response.Programs != null)
+            
+            GetProgramsResponse response = new GetProgramsResponse();
+            try
             {
-                return Ok(response.Programs);
+                response.Programs = _schoolContext.Programs.ToList();
+            }catch (Exception ex)
+            {
+                return BadRequest("An error has occurred");
             }
-            return BadRequest();
+            return Ok(response);
         }
 
         [HttpGet]
         public IHttpActionResult Get(int id)
         {
-
-            SchoolContext context = new SchoolContext();
-            var result = from p in context.Programs
-                         where p.ProgramId == id
-                         select p;
-
-            if (result != null)
+            var response = new GetProgramResponse();
+            var request = new GetProgramRequest { Id = id };
+            try
             {
-                return Ok(result);
+                response.Program = _schoolContext.Programs.Where(x => x.ProgramId == request.Id).FirstOrDefault();
+            }catch(Exception ex)
+            {
+                return BadRequest("An error has occurred");
             }
-            return BadRequest();
+            return Ok(response);
         }
 
         [HttpGet]
         [Route("programs/{id}/{semester}")]
         public IHttpActionResult Get(int id, int semester)
         {
-            SchoolContext context = new SchoolContext();
+           // try { 
+                var toReturn = _schoolContext.ProgramsCourses.Where(x => x.ProgramId == id && x.Course.Semester == semester)
+                                                                .Select(x => new
+                                                                {
+                                                                    Course = x.Course,
+                                                                    IsMandatory = x.IsMandatory,
+                                                                    Prerequisites = _schoolContext.CoursesPrerequisites
+                                                                                    .Where(y => y.Course.CourseId == x.Course.CourseId)
+                                                                                    .Select(z => z.Prerequisite)
+                                                                                    .ToList()
+                                                                }).ToList();
+            //}catch(Exception ex)
+            //{
+            //    return BadRequest("An error has occurred");
+            //}
 
-            var result = from p in context.ProgramsCourses
-                         where p.ProgramId == id && p.Course.Semester == semester
-                         select p.Course;
-
-            if (result != null)
-            {
-                return Ok(result);
-            }
-            return BadRequest();
+            return Ok(toReturn);
+           
+            
         }
 
         //[HttpGet]
