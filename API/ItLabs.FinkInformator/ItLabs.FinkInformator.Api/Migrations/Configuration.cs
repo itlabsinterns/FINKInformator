@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Migrations;
-using System.Linq;
 
 namespace ItLabs.FinkInformator.Api.Migrations
 {
@@ -25,8 +24,9 @@ namespace ItLabs.FinkInformator.Api.Migrations
             // context.ProgramsCourses.RemoveRange(context.ProgramsCourses);
             // FillProgramsCourses(context);
 
-            //AddCoursePrerequisite(context, 167, 162);
-            //context.SaveChanges();
+            //TODO remove all prerequisites before adding them again
+            AddCoursePrerequisite(context, 167, 162);
+            context.SaveChanges();
         }
 
         private void AddCoursePrerequisite(SchoolContext context, int courseId, int prerequisiteId)

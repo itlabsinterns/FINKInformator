@@ -46,8 +46,8 @@ namespace ItLabs.FinkInformator.Api.Controllers
         [Route("programs/{id}/{semester}")]
         public IHttpActionResult Get(int id, int semester)
         {
-
             SchoolContext context = new SchoolContext();
+
             var result = from p in context.ProgramsCourses
                          where p.ProgramId == id && p.Course.Semester == semester
                          select p.Course;

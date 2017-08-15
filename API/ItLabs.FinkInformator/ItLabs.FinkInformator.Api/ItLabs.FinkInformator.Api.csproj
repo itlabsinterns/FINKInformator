@@ -185,11 +185,6 @@
     <Compile Include="Controllers\CoursesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProgramsController.cs" />
-    <Compile Include="Controllers\ValuesController.cs" />
-    <Compile Include="Migrations\201708111205419_Required Migration.cs" />
-    <Compile Include="Migrations\201708111205419_Required Migration.Designer.cs">
-      <DependentUpon>201708111205419_Required Migration.cs</DependentUpon>
-    </Compile>
     <Compile Include="Models\Enums.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -219,8 +214,10 @@
     <Compile Include="Models\CoursesPrerequisites.cs" />
     <Compile Include="Models\Program.cs" />
     <Compile Include="Models\ProgramsCourses.cs" />
+    <Compile Include="Requests\GetCourseRequest.cs" />
     <Compile Include="Requests\GetProgramCoursesRequest.cs" />
-    <Compile Include="Responses\CoursesResponse.cs" />
+    <Compile Include="Responses\GetCourseResponse.cs" />
+    <Compile Include="Responses\GetCoursesResponse.cs" />
     <Compile Include="Responses\ProgramsResponse.cs" />
     <Compile Include="Responses\ResponseBase.cs" />
     <Compile Include="SchoolContext.cs" />
@@ -293,9 +290,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201708101343068_Seed updated.resx">
       <DependentUpon>201708101343068_Seed updated.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201708111205419_Required Migration.resx">
-      <DependentUpon>201708111205419_Required Migration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

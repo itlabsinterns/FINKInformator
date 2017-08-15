@@ -3,42 +3,65 @@ using ItLabs.FinkInformator.Api.Responses;
 using System.Web.Http;
 using System.Linq;
 using System.Web.Http.Cors;
+using System;
+using ItLabs.FinkInformator.Api.Requests;
 
 namespace ItLabs.FinkInformator.Api.Controllers
 {
     [EnableCors(origins: "*", headers: "*", methods: "*")]
-    public class CoursesController: ApiController
+    public class CoursesController : ApiController
     {
-        [HttpGet]
-        public IHttpActionResult Get()
+        private SchoolContext _schoolContext;
+
+        public CoursesController()
         {
-
-            SchoolContext context = new SchoolContext();
-            CoursesResponse response = new CoursesResponse();
-            response.Courses = (from c in context.Courses
-                                 select c).ToList<Course>();
-
-            if (response.Courses != null)
-            {
-                return Ok(response.Courses);
-            }
-            return BadRequest();
+            _schoolContext = new SchoolContext();
         }
 
         [HttpGet]
-        public IHttpActionResult Get(int id)
+        public IHttpActionResult Get()
         {
-
-            SchoolContext context = new SchoolContext();
-            var result = from c in context.Courses
-                         where c.CourseId == id
-                         select c;
-
-            if (result != null)
+            var response = new GetCoursesResponse();
+            try
             {
-                return Ok(result);
+                response.Courses = _schoolContext.Courses.ToList();
             }
-            return BadRequest();
+            catch (Exception ex)
+            {
+                //TODO add logging ex.Message
+
+                return BadRequest("An error has occurred");
+            }
+
+            return Ok(response);
+        }
+
+        [HttpGet]
+        public IHttpActionResult GetCourse(int id)
+        {
+            var response = new GetCourseResponse();
+            var request = new IdRequest { Id = id };
+
+            if (request.Id <= 0)
+            {
+                response.IsSuccessful = false;
+                response.Errors.Add("Invalid parameter: id");
+
+                return Ok(response);
+            }
+
+            try
+            {
+                response.Course = _schoolContext.Courses.Where(x => x.CourseId == request.Id).SingleOrDefault();
+            }
+            catch (Exception ex)
+            {
+                //TODO add logging ex.Message
+
+                return BadRequest("An error has occurred");
+            }
+
+            return Ok(response);
         }
     }
 }
