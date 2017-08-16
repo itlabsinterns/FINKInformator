@@ -27,31 +27,14 @@ namespace ItLabs.FinkInformator.Api.Controllers
             var response = new GetCoursesResponse();
             try
             {
-                throw new Exception();
                 response.Courses = _schoolContext.Courses.ToList();
             }
             catch (Exception ex)
             {
-                _logger.Error(ex, "An error has occurred!");
-
+                _logger.Error(ex);
                 return BadRequest("An error has occurred");
             }
 
-            return Ok(response);
-        }
-        [HttpGet]
-        [Route("courses/p/{id}")]
-        public IHttpActionResult GetPrerequisites(int id)
-        {
-            var response = new GetCoursePrerequisitesResponse();
-            try
-            {
-                response.Prerequisites = _schoolContext.CoursesPrerequisites.Where(x => x.Course.CourseId == id)
-                                                   .Select(x => x.Prerequisite).ToList();
-            }catch(Exception ex)
-            {
-                return BadRequest("An error has occurred");
-            }
             return Ok(response);
         }
 
@@ -66,6 +49,9 @@ namespace ItLabs.FinkInformator.Api.Controllers
                 response.IsSuccessful = false;
                 response.Errors.Add("Invalid parameter: id");
 
+                _logger.Error(response);
+
+
                 return Ok(response);
             }
             try
@@ -74,7 +60,28 @@ namespace ItLabs.FinkInformator.Api.Controllers
             }
             catch (Exception ex)
             {
-                _logger.Error(ex, "An error has occurred!");
+                _logger.Error(ex);
+
+                return BadRequest("An error has occurred");
+            }
+
+            return Ok(response);
+        }
+
+        [HttpGet]
+        [Route("courses/{id}/prerequisites")]
+        public IHttpActionResult GetCoursePrerequisites(int id)
+        {
+            var response = new GetCoursePrerequisitesResponse();
+            try
+            {
+                response.Prerequisites = _schoolContext.CoursesPrerequisites
+                                                       .Where(x => x.Course.CourseId == id)
+                                                       .Select(x => x.Prerequisite).ToList();
+            }
+            catch (Exception ex)
+            {
+                _logger.Error(ex);
 
                 return BadRequest("An error has occurred");
             }

@@ -5,7 +5,7 @@ namespace ItLabs.FinkInformator.Api.Responses
 {
     public class GetProgramsResponse : ResponseBase
     {
-        public GetProgramsResponse() : base()
+        public GetProgramsResponse()
         {
             Programs = new List<Program>();
         }
