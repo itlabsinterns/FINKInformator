@@ -54,30 +54,7 @@
         </nav>
     </header>
     <div id="img1" class="bgimg-1 img-responsive">
-        <button id="kni" style="position:absolute; left:20%;right:20%; top:30%; width:60%; " type="button" class="btn btn-lg btn-danger" onclick="scroll_to_div('img2')">Компјутерски Науки и Инженерство</button>
-        <button id="pet" style="position:absolute; left:20%;right:20%; top:40%; width:60%; " type="button" class="btn btn-lg btn-danger" onclick="scroll_to_div('img2')">Примена на е-технологии</button>
-        <button id="mt" style="position:absolute; left:20%;right:20%; top:50%; width:60%; " type="button" class="btn btn-lg btn-danger" onclick="scroll_to_div('img2')">Мрежни Технологии</button>
-        <button id="iki" style="position:absolute; left:20%;right:20%; top:60%; width:60%; " type="button" class="btn btn-lg btn-danger" onclick="scroll_to_div('img2')">Информатика и Компјутерско Инженерство</button>
-    </div>
-    <!--<button type="button"  class="btn btn-lg btn-danger" data-toggle="modal" data-target="#myModal" >Компјутерски науки и инженество</button>
-           <div class="modal fade" id="myModal" role="dialog">
-      <div class="modal-dialog caption">
-
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">КНИ</h4>
-          </div>
-          <div class="modal-body">
-            <p>Some text in the modal.</p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          </div>
-        </div>
-
-      </div>
-    </div> -->
+        
     </div>
 
     <div id="img2" style="color: #777;background-color:white;text-align:center;padding:50px 80px;text-align: justify;">
@@ -86,10 +63,10 @@
     </div>
     <div class="bgimg-2 img-responsive">
         <button style="position:absolute;" type="button" class="btn btn-lg btn-success" onclick="scroll_to_div('img1')"><span class="glyphicon glyphicon-arrow-up"></span></button>
-        <button id="prvaGodina" value="1" style="position:absolute; left:20%;right:20%; top:25%; width:60%; " type="button" class="btn btn-lg btn-danger" onclick="scroll_to_div('img3')">Прва Година</button>
-        <button id="vtoraGodina" value="2" style="position:absolute; left:20%;right:20%; top:40%; width:60%; " type="button" class="btn btn-lg btn-danger" onclick="scroll_to_div('img3')">Втора Година</button>
-        <button id="tretaGodina" value="3" style="position:absolute; left:20%;right:20%; top:55%; width:60%; " type="button" class="btn btn-lg btn-danger" onclick="scroll_to_div('img3')">Трета Година</button>
-        <button id="cetvrtaGodina" value="4" style="position:absolute; left:20%;right:20%; top:70%; width:60%; " type="button" class="btn btn-lg btn-danger" onclick="scroll_to_div('img3')">Четврта Година</button>
+        <button id="prvaGodina" value="1" style="position:absolute; left:20%;right:20%; top:25%; width:60%; " type="button" class="btn btn-lg btn-danger">Прва Година</button>
+        <button id="vtoraGodina" value="2" style="position:absolute; left:20%;right:20%; top:40%; width:60%; " type="button" class="btn btn-lg btn-danger">Втора Година</button>
+        <button id="tretaGodina" value="3" style="position:absolute; left:20%;right:20%; top:55%; width:60%; " type="button" class="btn btn-lg btn-danger">Трета Година</button>
+        <button id="cetvrtaGodina" value="4" style="position:absolute; left:20%;right:20%; top:70%; width:60%; " type="button" class="btn btn-lg btn-danger">Четврта Година</button>
     </div>
     <div id="img3" style="position:relative;">
         <div style="color:#ddd;background-color:#282E34;text-align:center;padding:50px 80px;text-align: justify;">
@@ -98,8 +75,8 @@
     </div>
     <div class="bgimg-3 img-responsive">
         <button style="position:absolute;" type="button" class="btn btn-lg btn-success" onclick="scroll_to_div('img2')"><span class="glyphicon glyphicon-arrow-up"></span></button>
-        <button id="prvSemestar" style="position:absolute; left:20%;right:20%; top:40%; width:60%; " type="button" class="btn btn-lg btn-danger" onclick="scroll_to_div('img4')">Прв Семестар</button>
-        <button id="vtorSemestar" style="position:absolute; left:20%;right:20%; top:60%; width:60%; " type="button" class="btn btn-lg btn-danger" onclick="scroll_to_div('img4')">Втор Семестар</button>
+        <button id="prvSemestar" style="position:absolute; left:20%;right:20%; top:40%; width:60%; " type="button" class="btn btn-lg btn-danger" >Прв Семестар</button>
+        <button id="vtorSemestar" style="position:absolute; left:20%;right:20%; top:60%; width:60%; " type="button" class="btn btn-lg btn-danger">Втор Семестар</button>
     </div>
     <div style="position:relative;">
         <div style="color:#ddd;background-color:#282E34;text-align:center;padding:50px 80px;text-align: justify;">
@@ -107,12 +84,35 @@
         </div>
     </div>
     <div id="img4" class="bgimg-1 img-responsive">
-        <h3 id="chosenIntro"></h3>
-        <div class="custom list-group" id="Zadolzitelni"></div>
-        <br><br><br>
-        <div class="custom list-group" id="Izborni"></div>
-    </div>
+        <div class="col-sm-6 abs"> 
+        <div style="width: 70%;" class="list-group" id="Zadolzitelni"></div>
+        </div>
 
+
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog caption">
+
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 id="modalTitle" class="modal-title"></h4>
+                    </div>
+                    <div class="modal-body">
+                       <p id="modalBody">  </p> 
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <div class="col-sm-6 abs"> 
+        <div style="width: 70%;"  class="list-group" id="Izborni"></div>
+        </div>
+    </div>
     <footer>
         <p style="text-align:center">&copy Copyright 2017</p>
     </footer>
