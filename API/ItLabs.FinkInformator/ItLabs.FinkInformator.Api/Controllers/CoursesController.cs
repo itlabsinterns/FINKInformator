@@ -6,6 +6,7 @@ using System.Web.Http.Cors;
 using System;
 using ItLabs.FinkInformator.Api.Requests;
 using NLog;
+using System.ComponentModel;
 
 namespace ItLabs.FinkInformator.Api.Controllers
 {
@@ -20,7 +21,7 @@ namespace ItLabs.FinkInformator.Api.Controllers
             _schoolContext = new SchoolContext();
             _logger = LogManager.GetLogger("fileLog");
         }
-
+        [Description("Get all Courses")]
         [HttpGet]
         public IHttpActionResult Get()
         {
@@ -37,7 +38,7 @@ namespace ItLabs.FinkInformator.Api.Controllers
 
             return Ok(response);
         }
-
+        [Description("Get Course by Id")]
         [HttpGet]
         public IHttpActionResult GetCourse(int id)
         {
@@ -67,7 +68,7 @@ namespace ItLabs.FinkInformator.Api.Controllers
 
             return Ok(response);
         }
-
+        [Description("Get Courses Prerequisites")]
         [HttpGet]
         [Route("courses/{id}/prerequisites")]
         public IHttpActionResult GetCoursePrerequisites(int id)
