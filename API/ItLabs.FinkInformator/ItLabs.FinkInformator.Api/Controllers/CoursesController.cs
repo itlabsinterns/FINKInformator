@@ -18,7 +18,7 @@ namespace ItLabs.FinkInformator.Api.Controllers
         public CoursesController()
         {
             _schoolContext = new SchoolContext();
-            _logger = LogManager.GetLogger("databaseLogger");
+            _logger = LogManager.GetLogger("fileLog");
         }
 
         [HttpGet]
@@ -27,6 +27,7 @@ namespace ItLabs.FinkInformator.Api.Controllers
             var response = new GetCoursesResponse();
             try
             {
+                throw new Exception();
                 response.Courses = _schoolContext.Courses.ToList();
             }
             catch (Exception ex)

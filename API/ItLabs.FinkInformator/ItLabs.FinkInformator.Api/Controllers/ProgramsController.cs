@@ -18,7 +18,7 @@ namespace ItLabs.FinkInformator.Api.Controllers
         public ProgramsController()
         {
             _schoolContext = new SchoolContext();
-            _logger = LogManager.GetLogger("databaseLogger");
+            _logger = LogManager.GetLogger("fileLog");
         }
 
         [HttpGet]
