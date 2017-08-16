@@ -58,22 +58,7 @@ $(document).ready(function () {
          alert("izberi Programa");
         semester=1;
          forRequest = year * 2 + semester - 2;
-         $.ajax({
-             type: 'GET',
-             url: "http://localhost:4329/programs/" + program + "/" + forRequest,
-             dataType: 'json',
-             success: function (data) {
-                 $.each(data, function (i, item) {
-                     if(item.IsMandatory==true){
-                         $("#Zadolzitelni").append('<a id='+item.Course.CourseId+' class="custom list-group-item">' + item.Course.CourseName +'</a>')
-                     }else{
-                         $("#Izborni").append('<a id='+item.Course.CourseId+' class="custom list-group-item">' + item.Course.CourseName +'</a>')
-
-                     }
-                 })
-             }
-         })
-
+        getInfoAndFillLists(program,forRequest);
     })
     $("#vtorSemestar").click(function () {
         $("#zadolzitelni").show();
@@ -84,7 +69,24 @@ $(document).ready(function () {
             alert("izberi Programa");
         semester=2;
         forRequest = year * 2 + semester - 2;
+        getInfoAndFillLists(program,forRequest);
     })
 
+    function getInfoAndFillLists(program,forRequest){
+        $.ajax({
+            type: 'GET',
+            url: "http://localhost:4329/programs/" + program + "/" + forRequest,
+            dataType: 'json',
+            success: function (data) {
+                $.each(data, function (i, item) {
+                    if(item.IsMandatory==true){
+                        $("#Zadolzitelni").append('<a id='+item.Course.CourseId+' class="custom list-group-item">' + item.Course.CourseName +'</a>')
+                    }else{
+                        $("#Izborni").append('<a id='+item.Course.CourseId+' class="custom list-group-item">' + item.Course.CourseName +'</a>')
 
+                    }
+                })
+            }
+        })
+    }
 })
