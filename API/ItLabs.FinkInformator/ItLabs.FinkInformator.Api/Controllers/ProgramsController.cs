@@ -21,6 +21,11 @@ namespace ItLabs.FinkInformator.Api.Controllers
             _schoolContext = new SchoolContext();
             _logger = LogManager.GetLogger("fileLog");
         }
+
+        /// <summary>
+        /// Get all programs
+        /// </summary>
+        /// <returns></returns>
         [Description("Get all programs")]
         [HttpGet]
         public IHttpActionResult Get()
@@ -39,6 +44,12 @@ namespace ItLabs.FinkInformator.Api.Controllers
 
             return Ok(response);
         }
+
+        /// <summary>
+        /// Get a particular program
+        /// </summary>
+        /// <param name="id">The ID of the requested program</param>
+        /// <returns></returns>
         [Description("Get Program by Id")]
         [HttpGet]
         public IHttpActionResult Get(int id)
@@ -57,6 +68,13 @@ namespace ItLabs.FinkInformator.Api.Controllers
 
             return Ok(response);
         }
+
+        /// <summary>
+        /// Get all courses for a particular program and semester as well as additional information if the courses are mandatory and their prerequisites
+        /// </summary>
+        /// <param name="id">The ID of the program</param>
+        /// <param name="semester">The number of the semester</param>
+        /// <returns></returns>
         [Description("Get Courses based on Semester and Program")]
         [HttpGet]
         [Route("programs/{id}/{semester}")]

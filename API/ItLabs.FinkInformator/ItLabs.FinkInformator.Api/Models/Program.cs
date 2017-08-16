@@ -3,11 +3,20 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ItLabs.FinkInformator.Api.Models
 {
+    /// <summary>
+    /// Program
+    /// </summary>
    public class Program
     {
+        /// <summary>
+        /// ID of the program
+        /// </summary>
         [Required]
         public int ProgramId { get; set; }
 
+        /// <summary>
+        /// Name of the program
+        /// </summary>
         [Required]
         [MaxLength(50)]
         public string ProgramName { get; set; }
