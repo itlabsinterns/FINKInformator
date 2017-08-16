@@ -27,7 +27,6 @@ namespace ItLabs.FinkInformator.Api.Controllers
             var response = new GetCoursesResponse();
             try
             {
-                throw new Exception();
                 response.Courses = _schoolContext.Courses.ToList();
             }
             catch (Exception ex)
