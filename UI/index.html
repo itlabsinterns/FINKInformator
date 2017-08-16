@@ -57,10 +57,10 @@
         </nav>    
     </header>
 <div id="img1" class="bgimg-1 img-responsive">
-    <button style="position:absolute; left:20%;right:20%; top:30%; width:60%; " type="button" class="btn btn-lg btn-danger" onclick="scroll_to_div('img2')">Компјутерски Науки и Инженерство</button>
-    <button style="position:absolute; left:20%;right:20%; top:40%; width:60%; " type="button" class="btn btn-lg btn-danger" onclick="scroll_to_div('img2')">Примена на е-технологии</button>
-    <button style="position:absolute; left:20%;right:20%; top:50%; width:60%; " type="button" class="btn btn-lg btn-danger" onclick="scroll_to_div('img2')">Мрежни Технологии</button>
-    <button style="position:absolute; left:20%;right:20%; top:60%; width:60%; " type="button" class="btn btn-lg btn-danger" onclick="scroll_to_div('img2')">Информатика и Компјутерско Инженерство</button>
+    <button id="kni" style="position:absolute; left:20%;right:20%; top:30%; width:60%; " type="button" class="btn btn-lg btn-danger" onclick="scroll_to_div('img2')">Компјутерски Науки и Инженерство</button>
+    <button id="pet" style="position:absolute; left:20%;right:20%; top:40%; width:60%; " type="button" class="btn btn-lg btn-danger" onclick="scroll_to_div('img2')">Примена на е-технологии</button>
+    <button id="mt" style="position:absolute; left:20%;right:20%; top:50%; width:60%; " type="button" class="btn btn-lg btn-danger" onclick="scroll_to_div('img2')">Мрежни Технологии</button>
+    <button id="iki" style="position:absolute; left:20%;right:20%; top:60%; width:60%; " type="button" class="btn btn-lg btn-danger" onclick="scroll_to_div('img2')">Информатика и Компјутерско Инженерство</button>
 </div>
     <!--<button type="button"  class="btn btn-lg btn-danger" data-toggle="modal" data-target="#myModal" >Компјутерски науки и инженество</button>
          <div class="modal fade" id="myModal" role="dialog">
@@ -90,10 +90,10 @@
 
 <div class="bgimg-2 img-responsive">
     <button style="position:absolute;" type="button" class="btn btn-lg btn-success" onclick="scroll_to_div('img1')"><span class="glyphicon glyphicon-arrow-up"></span></button>
-    <button style="position:absolute; left:20%;right:20%; top:25%; width:60%; " type="button" class="btn btn-lg btn-danger" onclick="scroll_to_div('img3')">Прва Година</button>
-    <button style="position:absolute; left:20%;right:20%; top:40%; width:60%; " type="button" class="btn btn-lg btn-danger" onclick="scroll_to_div('img3')">Втора Година</button>
-    <button style="position:absolute; left:20%;right:20%; top:55%; width:60%; " type="button" class="btn btn-lg btn-danger" onclick="scroll_to_div('img3')">Трета Година</button>
-    <button style="position:absolute; left:20%;right:20%; top:70%; width:60%; " type="button" class="btn btn-lg btn-danger" onclick="scroll_to_div('img3')">Четврта Година</button>
+    <button id="prvaGodina" value="1" style="position:absolute; left:20%;right:20%; top:25%; width:60%; " type="button" class="btn btn-lg btn-danger" onclick="scroll_to_div('img3')">Прва Година</button>
+    <button id="vtoraGodina" value="2" style="position:absolute; left:20%;right:20%; top:40%; width:60%; " type="button" class="btn btn-lg btn-danger" onclick="scroll_to_div('img3')">Втора Година</button>
+    <button id="tretaGodina" value="3" style="position:absolute; left:20%;right:20%; top:55%; width:60%; " type="button" class="btn btn-lg btn-danger" onclick="scroll_to_div('img3')">Трета Година</button>
+    <button id="cetvrtaGodina" value="4" style="position:absolute; left:20%;right:20%; top:70%; width:60%; " type="button" class="btn btn-lg btn-danger" onclick="scroll_to_div('img3')">Четврта Година</button>
 </div>
 
 <div id="img3" style="position:relative;">
@@ -102,10 +102,10 @@
   </div>
 </div>
 
-<div class="bgimg-3 img-responsive" id="img3">
-        <button style="position:absolute;" type="button" class="btn btn-lg btn-success" onclick="scroll_to_div('img2')"><span class="glyphicon glyphicon-arrow-up"></span></button>
-    <button style="position:absolute; left:20%;right:20%; top:40%; width:60%; " type="button" class="btn btn-lg btn-danger" onclick="scroll_to_div('img4')">Прв Семестар</button>
-    <button style="position:absolute; left:20%;right:20%; top:60%; width:60%; " type="button" class="btn btn-lg btn-danger" onclick="scroll_to_div('img4')">Втор Семестар</button>
+<div class="bgimg-3 img-responsive">
+    <button style="position:absolute;" type="button" class="btn btn-lg btn-success" onclick="scroll_to_div('img2')"><span class="glyphicon glyphicon-arrow-up"></span></button>
+    <button id="prvSemestar" style="position:absolute; left:20%;right:20%; top:40%; width:60%; " type="button" class="btn btn-lg btn-danger" onclick="scroll_to_div('img4')">Прв Семестар</button>
+    <button id="vtorSemestar" style="position:absolute; left:20%;right:20%; top:60%; width:60%; " type="button" class="btn btn-lg btn-danger" onclick="scroll_to_div('img4')">Втор Семестар</button>
 </div>
 
 <div style="position:relative;">
@@ -115,11 +115,11 @@
 </div>
 
 <div id="img4" class="bgimg-1 img-responsive">
-  <div class="caption">
-    <span class="border">COOL!</span>
-  </div>
+      <h3 id="chosenIntro"></h3>
+      <div class="custom list-group" id="Zadolzitelni"></div>
+      <br><br><br>
+      <div class="custom list-group" id="Izborni"></div>
 </div>
-
 
 
     <footer>

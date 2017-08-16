@@ -63,3 +63,10 @@ position:absolute;
         background-attachment: scroll;
     }
 }*/
+.custom{
+  position: absolute;
+  top:20%;
+  bottom: 10%;
+  right:25%;
+  left:25%;
+}
