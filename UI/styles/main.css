@@ -7,7 +7,6 @@ body, html {
 
 .bgimg-1, .bgimg-2, .bgimg-3 {
   position: relative;
-  /*opacity: 0.65;*/
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
@@ -15,9 +14,10 @@ body, html {
 
 }
 .bgimg-1 {
-  background-image: url("../images/img_parallax.jpg");
+  background-image: url("../images/img_parallax.jpeg");
   min-height: 100%;
 }
+
 
 .bgimg-2 {
   background-image: url("../images/img_parallax2.jpg");
@@ -25,7 +25,7 @@ body, html {
 }
 
 .bgimg-3 {
-  background-image: url("../images/img_parallax3.jpg");
+  background-image: url("../images/img_parallax3.jpeg");
   min-height: 400px;
 }
 
@@ -56,17 +56,56 @@ h3 {
 .abs{
 position:absolute;
 }
-
+.forli{
+ background-color: rgba(255,255,255, 0.9) !important;
+}
 /* Turn off parallax scrolling for tablets and phones */
 /*@media only screen and (max-device-width: 1024px) {
     .bgimg-1, .bgimg-2, .bgimg-3 {
         background-attachment: scroll;
     }
 }*/
-.custom{
-  position: absolute;
-  top:20%;
-  bottom: 10%;
-  right:25%;
-  left:25%;
+
+
+@media (max-width: 650px) {    
+  #img1 .btn{ font-size:80%; }
+
+}
+
+@media (max-width: 550px) {    
+  #img1 .btn{ font-size:75%; }
+
+
+}
+
+@media (max-width: 420px) {    #img1 .btn{ font-size: 55%; }}  
+
+
+
+
+
+.btn-danger {
+  /*opacity: 0.80 !important;*/
+  color: white !important;
+  background-color: rgba(77, 216, 200, 0.75) !important;
+  border-radius: 15px !important;
+  border: 1 px solid !important;
+  border-color: white !important;
+}
+.btn-danger:focus,
+.btn-danger.focus {
+  color:white!important;
+  background-color: #107050 !important;
+  border-color:white !important;
+}
+.btn-danger:hover {
+  color: white !important;
+  background-color: #107050 !important;
+  border-color: #107050 !important;
+}
+
+.list-group-item:hover{
+  cursor: pointer !important;
+  color: white !important;
+  background-color: dimgray!important;
 }

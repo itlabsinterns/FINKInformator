@@ -57,16 +57,16 @@
         
     </div>
 
-    <div id="img2" style="color: #777;background-color:white;text-align:center;padding:50px 80px;text-align: justify;">
-        <h3 style="text-align:center;">ФинкИнформатор</h3>
-        <p style="text-align:center">ФинкИнформатор е платформа која им помага на студентите за бирање изборни предмети.</p>
+    <div id="img2" style="color: #777;background-color:white;text-align:center;padding:50px 80px;">
+        <p style="text-align:center; font-size:20px;"><b>ФИНКИНФОРМАТОР</b></p>
+        <p>ФинкИнформатор е платформа која им помага на студентите за бирање изборни предмети.</p>
     </div>
     <div class="bgimg-2 img-responsive">
         <button style="position:absolute;" type="button" class="btn btn-lg btn-success" onclick="scroll_to_div('img1')"><span class="glyphicon glyphicon-arrow-up"></span></button>
-        <button id="prvaGodina" value="1" style="position:absolute; left:20%;right:20%; top:25%; width:60%; " type="button" class="btn btn-lg btn-danger">Прва Година</button>
-        <button id="vtoraGodina" value="2" style="position:absolute; left:20%;right:20%; top:40%; width:60%; " type="button" class="btn btn-lg btn-danger">Втора Година</button>
-        <button id="tretaGodina" value="3" style="position:absolute; left:20%;right:20%; top:55%; width:60%; " type="button" class="btn btn-lg btn-danger">Трета Година</button>
-        <button id="cetvrtaGodina" value="4" style="position:absolute; left:20%;right:20%; top:70%; width:60%; " type="button" class="btn btn-lg btn-danger">Четврта Година</button>
+        <button id="prvaGodina" value="1" style="position:absolute; left:20%;right:20%; top:25%; width:60%; " type="button" class="btn btn-lg btn-danger"><b>ПРВА ГОДИНА</b></button>
+        <button id="vtoraGodina" value="2" style="position:absolute; left:20%;right:20%; top:40%; width:60%; " type="button" class="btn btn-lg btn-danger "><b>ВТОРА ГОДИНА</b></button>
+        <button id="tretaGodina" value="3" style="position:absolute; left:20%;right:20%; top:55%; width:60%; " type="button" class="btn btn-lg btn-danger  "><b>ТРЕТА ГОДИНА</b></button>
+        <button id="cetvrtaGodina" value="4" style="position:absolute; left:20%;right:20%; top:70%; width:60%; " type="button" class="btn btn-lg btn-danger "><b>ЧЕТВРТА ГОДИНА</b></button>
     </div>
     <div id="img3" style="position:relative;">
         <div style="color:#ddd;background-color:#282E34;text-align:center;padding:50px 80px;text-align: justify;">
@@ -75,8 +75,8 @@
     </div>
     <div class="bgimg-3 img-responsive">
         <button style="position:absolute;" type="button" class="btn btn-lg btn-success" onclick="scroll_to_div('img2')"><span class="glyphicon glyphicon-arrow-up"></span></button>
-        <button id="prvSemestar" style="position:absolute; left:20%;right:20%; top:40%; width:60%; " type="button" class="btn btn-lg btn-danger" >Прв Семестар</button>
-        <button id="vtorSemestar" style="position:absolute; left:20%;right:20%; top:60%; width:60%; " type="button" class="btn btn-lg btn-danger">Втор Семестар</button>
+        <button id="prvSemestar" style="position:absolute; left:20%;right:20%; top:40%; width:60%; " type="button" class="btn btn-lg btn-danger " ><b>ПРВ СЕМЕСТАР</b></button>
+        <button id="vtorSemestar" style="position:absolute; left:20%;right:20%; top:60%; width:60%; " type="button" class="btn btn-lg btn-danger "><b>ВТОР СЕМЕСТАР</b></button>
     </div>
     <div style="position:relative;">
         <div style="color:#ddd;background-color:#282E34;text-align:center;padding:50px 80px;text-align: justify;">
@@ -84,18 +84,24 @@
         </div>
     </div>
     <div id="img4" class="bgimg-1 img-responsive">
-        <div class="col-sm-6 abs"> 
-        <div style="width: 70%;" class="list-group" id="Zadolzitelni"></div>
+        <div class="col-sm-6 col-sm-push-4 abs">
+            </br>
+            </br>
+            <div style="width: 70%;" class="list-group" id="Zadolzitelni">
+            </div>
+                </br>
+            <div style="width: 70%;"  class="list-group" id="Izborni">
+            </div>
         </div>
 
 
         <div class="modal fade" id="myModal" role="dialog">
-            <div class="modal-dialog caption">
+            <div style="position:relative; top:30%;" class="modal-dialog">
 
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 id="modalTitle" class="modal-title"></h4>
+                        <h4 style="text-align:center;" id="modalTitle" class="modal-title"></h4>
                     </div>
                     <div class="modal-body">
                        <p id="modalBody">  </p> 
@@ -109,9 +115,9 @@
         </div>
 
 
-        <div class="col-sm-6 abs"> 
+        <!--<div class="col-sm-6 abs"> 
         <div style="width: 70%;"  class="list-group" id="Izborni"></div>
-        </div>
+        </div>-->
     </div>
     <footer>
         <p style="text-align:center">&copy Copyright 2017</p>

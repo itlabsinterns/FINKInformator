@@ -1,9 +1,8 @@
 $(document).ready(function () {
 
     getPrograms();
-
-    $("#zadolzitelni").hide();
-    $("#izborni").hide();
+    $("#Zadolzitelni").hide();
+    $("#Izborni").hide();
     var year = 0;
     var program = 0;
     var semester = 0;
@@ -109,14 +108,23 @@ $(document).ready(function () {
             url: "http://localhost:4329/programs/" + program + "/" + forRequest,
             dataType: 'json',
             success: function (data) {
+                $("#Zadolzitelni").append('<a style="text-align:center; color: white !important; background-color: dimgray!important;" id="zad" class="list-group-item forli"><b>ЗАДОЛЖИТЕЛНИ ПРЕДМЕТИ</b></a>')
+                $("#Izborni").append('<a style="text-align:center; color: white !important; background-color: dimgray!important;" id="zad" class="list-group-item forli"><b>ИЗБОРНИ ПРЕДМЕТИ</b></a>')
                 $.each(data, function (i, item) {
                     if (item.IsMandatory == true) {
-                        $("#Zadolzitelni").append('<a id="' + item.Course.CourseId + '" class="list-group-item list-group-item-danger">' + item.Course.CourseName + '</a>')
+                        $("#Zadolzitelni").append('<a id="' + item.Course.CourseId + '" class="list-group-item forli ">' + item.Course.CourseName + '</a>')
                     } else {
-                        $("#Izborni").append('<a id=' + item.Course.CourseId + ' class="list-group-item list-group-item-success">' + item.Course.CourseName + '</a>')
-
-                    }
+                        $("#Izborni").append('<a id=' + item.Course.CourseId + ' class="list-group-item forli ">' + item.Course.CourseName + '</a>')
+                    
+                    }    
                 })
+                $("#Zadolzitelni").show();
+                if($("#Izborni > a").length>1){
+                    $("#Izborni").show();
+                }
+             while($("#Zadolzitelni > a").length<=5){
+                $("#Zadolzitelni").append('<a class="list-group-item forli">-ИЗБОРЕН ПРЕДМЕТ-</a>');
+                }
             }
         })
     }
@@ -128,7 +136,7 @@ $(document).ready(function () {
             dataType: 'json',
             success: function (data) {
                 $.each(data.Programs, function (i, item) {
-                    $("#img1").append('<button id=' + item.ProgramId + ' style="position:absolute; left:20%;right:20%; width:60%; top:' + (3+i)*10 + '%; " type="button" class="btn btn-lg btn-danger" >'+ item.ProgramName +'</button>')
+                    $("#img1").append('<button id=' + item.ProgramId + ' style="position:absolute; left:20%;right:20%; width:60%; top:' + (3+i)*10 + '%; " type="button" class="btn btn-lg btn-danger" ><b>'+ item.ProgramName.toUpperCase() +'</b></button>')
                 })
             }
         })
