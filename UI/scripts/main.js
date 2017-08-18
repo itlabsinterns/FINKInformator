@@ -1,106 +1,16 @@
 $(document).ready(function () {
-
+    init();
     getPrograms();
-    $("#Zadolzitelni").hide();
-    $("#Izborni").hide();
-    var year = 0;
-    var program = 0;
-    var semester = 0;
-    var forRequest;
-    $("#programsButtonContainer").on("click","#25",function(){
-        program = 25;
-        scroll_to_div('yearContainer');
-    })
-    $("#programsButtonContainer").on("click","#26",function(){
-        program = 26;
-        scroll_to_div('yearContainer');
-    })
-    $("#programsButtonContainer").on("click","#27",function(){
-        program = 27;
-        scroll_to_div('yearContainer');
-    })
-        $("#programsButtonContainer").on("click","#28",function(){
-        program = 28;
-        scroll_to_div('yearContainer');
-    })
-    $("#prvaGodina").click(function () {
-        if (program == 0) {
-            scroll_to_div('programsContainer');
-            errorDiv("Не избравте смер");
-        }else{
-        scroll_to_div('semesterContainer');
-        year = 1;
-        }   
-    })
-    $("#vtoraGodina").click(function () {
-        if (program == 0) {
-            scroll_to_div('programsContainer');
-            errorDiv("Не избравте смер");
-        }else{
-        scroll_to_div('semesterContainer');
-        year = 2;
-        }
-    })
-    $("#tretaGodina").click(function () {
-        if (program == 0) {
-            scroll_to_div('programsContainer');
-            errorDiv("Не избравте смер");
-        }else{
-        scroll_to_div('semesterContainer');
-        year = 3;
-        }
-    })
-    $("#cetvrtaGodina").click(function () {
-        if (program == 0) {
-            scroll_to_div('programsContainer');
-            errorDiv("Не избравте смер");
-        }else{
-        scroll_to_div('semesterContainer');
-        year = 4;
-        }
-    })
-    $("#prvSemestar").click(function () {
-        if(year == 0 && program == 0){
-            errorDiv("Не избравте смер и година");
-            scroll_to_div('programsContainer');
-        }
-        else if (year == 0){
-            errorDiv("Не избравте година");
-            scroll_to_div('programsContainer');
-        }
-        else if (program == 0){
-            errorDiv("Не избравте смер");
-            scroll_to_div('programsContainer');
-        }else{
-        semester = 1;
-        forRequest = year * 2 + semester - 2;
-        $("#Zadolzitelni").empty();
-        $("#Izborni").empty();
-        getInfoAndFillLists(program, forRequest);
-        scroll_to_div('coursesContainer');
-        }
-    })
-    $("#vtorSemestar").click(function () {
-        if(year == 0 && program == 0){
-            errorDiv("Не избравте смер и година");
-            scroll_to_div('programsContainer');
-        }
-        else if (year == 0){
-            errorDiv("Не избравте година");
-            scroll_to_div('programsContainer');
-        }
-        else if (program == 0){
-            errorDiv("Не избравте смер");
-            scroll_to_div('programsContainer');
-        }else{
-        semester = 2;
-        forRequest = year * 2 + semester - 2;
-        $("#Zadolzitelni").empty();
-        $("#Izborni").empty();
-        getInfoAndFillLists(program, forRequest);
-        scroll_to_div('coursesContainer');
-        }
-    })
+    attachProgramEvents();
+    attachEvents();
+
+    function init() {
+        $("#Zadolzitelni").hide();
+        $("#Izborni").hide();
+        var year = 0;
+        var program = 0;
+        var semester = 0;
+    }
 
     function getInfoAndFillLists(program, forRequest) {
         $.ajax({
@@ -136,7 +46,7 @@ $(document).ready(function () {
             dataType: 'json',
             success: function (data) {
                 $.each(data.Programs, function (i, item) {
-                    $("#programsButtonContainer").append('<button id=' + item.ProgramId + ' style="margin-bottom:4%;" type="button" class="btn btn-lg btn-block btn-danger" ><b>'+ item.ProgramName.toUpperCase() +'</b></button>')
+                    $("#programsButtonContainer").append('<button programId=' + item.ProgramId + ' style="margin-bottom:4%;" type="button" class="btn btn-lg btn-block btn-danger" ><b>'+ item.ProgramName.toUpperCase() +'</b></button>')
                 })
             }
         })
@@ -156,19 +66,61 @@ $(document).ready(function () {
         + message + '</div>');
     }
 
+    function attachProgramEvents(){
+        $("#programsButtonContainer").on("click",".btn",function(){
+            program = $(this).attr("programId");
+            scroll_to_div('yearContainer');
+        })
 
-    $("#coursesContainer").on("click","a",function(){
-        $.ajax({
-            type: 'GET',
-            url: "http://localhost:4329/courses/" + this.id,
-            dataType: 'json',
-            success: function (data) {
+    }
 
-                $("#modalTitle").text(data.Course.CourseName);
-                $("#modalBody").text(data.Course.CourseDescription);
-                $("#myModal").modal();
+    function attachEvents(){
+        $(".godina").click(function () {
+            if (program == 0) {
+                scroll_to_div('programsContainer');
+                errorDiv("Не избравте смер");
+            }else{
+                scroll_to_div('semesterContainer');
+                year = $(this).attr("year");
             }
         })
-    })
+
+        $("#semesterButtonContainer").on("click",".btn",(function () {
+            if(year == 0 && program == 0){
+                errorDiv("Не избравте смер и година");
+                scroll_to_div('programsContainer');
+            }
+            else if (year == 0){
+                errorDiv("Не избравте година");
+                scroll_to_div('programsContainer');
+            }
+            else if (program == 0){
+                errorDiv("Не избравте смер");
+                scroll_to_div('programsContainer');
+            }else{
+                semester = $(this).attr("semester");
+                console.log(year+" "+semester);
+                var final = (year * 2) + (semester - 2);
+                $("#Zadolzitelni").empty();
+                $("#Izborni").empty();
+                getInfoAndFillLists(program,final );
+                scroll_to_div('coursesContainer');
+            }
+        }))
+
+        $("#coursesContainer").on("click","a",function(){
+            $.ajax({
+                type: 'GET',
+                url: "http://localhost:4329/courses/" + this.id,
+                dataType: 'json',
+                success: function (data) {
+
+                    $("#modalTitle").text(data.Course.CourseName);
+                    $("#modalBody").text(data.Course.CourseDescription);
+                    $("#myModal").modal();
+                }
+            })
+        })
+    }
 
 })
