@@ -26,6 +26,7 @@ body, html {
 
 .bgimg-3 {
   background-image: url("../images/img_parallax3.jpeg");
+  backdrop-filter: blur(5px);
   min-height: 400px;
 }
 
@@ -68,17 +69,17 @@ position:absolute;
 
 
 @media (max-width: 650px) {    
-  #img1 .btn{ font-size:80%; }
+  #programsContainer .btn{ font-size:80%; }
 
 }
 
 @media (max-width: 550px) {    
-  #img1 .btn{ font-size:75%; }
+  #programsContainer .btn{ font-size:75%; }
 
 
 }
 
-@media (max-width: 420px) {    #img1 .btn{ font-size: 55%; }}  
+@media (max-width: 420px) {    #programsContainer .btn{ font-size: 55%; }}  
 
 
 
@@ -108,4 +109,14 @@ position:absolute;
   cursor: pointer !important;
   color: white !important;
   background-color: dimgray!important;
+}
+
+.partner-table {
+	display: table;
+	height: 100%;
+}
+.partner {
+	  display: table-cell;
+  	vertical-align: middle;
+	  float: none;
 }

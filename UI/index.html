@@ -53,46 +53,63 @@
             </div>
         </nav>
     </header>
-    <div id="img1" class="bgimg-1 img-responsive">
-        
+    <div class="bgimg-1 img-responsive">
+
+        <div id="programsContainer" style="position:absolute; width:100%; height:100%;" class="container-fluid">
+                <div id="programsButtonContainer" style="position: absolute; top:35%;"  class="col-xs-8 col-xs-push-2">
+
+                </div>
+        </div>
     </div>
 
-    <div id="img2" style="color: #777;background-color:white;text-align:center;padding:50px 80px;">
+    <div style="color: #777;background-color:white;text-align:center;padding:50px 80px;">
         <p style="text-align:center; font-size:20px;"><b>ФИНКИНФОРМАТОР</b></p>
         <p>ФинкИнформатор е платформа која им помага на студентите за бирање изборни предмети.</p>
     </div>
     <div class="bgimg-2 img-responsive">
-        <button style="position:absolute;" type="button" class="btn btn-lg btn-success" onclick="scroll_to_div('img1')"><span class="glyphicon glyphicon-arrow-up"></span></button>
-        <button id="prvaGodina" value="1" style="position:absolute; left:20%;right:20%; top:25%; width:60%; " type="button" class="btn btn-lg btn-danger"><b>ПРВА ГОДИНА</b></button>
-        <button id="vtoraGodina" value="2" style="position:absolute; left:20%;right:20%; top:40%; width:60%; " type="button" class="btn btn-lg btn-danger "><b>ВТОРА ГОДИНА</b></button>
-        <button id="tretaGodina" value="3" style="position:absolute; left:20%;right:20%; top:55%; width:60%; " type="button" class="btn btn-lg btn-danger  "><b>ТРЕТА ГОДИНА</b></button>
-        <button id="cetvrtaGodina" value="4" style="position:absolute; left:20%;right:20%; top:70%; width:60%; " type="button" class="btn btn-lg btn-danger "><b>ЧЕТВРТА ГОДИНА</b></button>
-    </div>
-    <div id="img3" style="position:relative;">
-        <div style="color:#ddd;background-color:#282E34;text-align:center;padding:50px 80px;text-align: justify;">
-            <p>Scroll up and down to really get the feeling of how Parallax Scrolling works.</p>
+        <button style="position:absolute;" type="button" class="btn btn-lg btn-success" onclick="scroll_to_div('programsContainer')"><span class="glyphicon glyphicon-arrow-up"></span></button>
+        <div id="yearContainer" style="position:absolute; width:100%; height:100%;" class="container-fluid">
+            <div id="yearButtonContainer" style="position: absolute; top:15%;"  class="col-xs-8 col-xs-push-2">
+                <button id="prvaGodina" value="1" style="margin-bottom:4%; " type="button" class="btn btn-lg btn-block btn-danger"><b>ПРВА ГОДИНА</b></button>
+                <button id="vtoraGodina" value="2" style="margin-bottom:4%; " type="button" class="btn btn-lg btn-block btn-danger "><b>ВТОРА ГОДИНА</b></button>
+                <button id="tretaGodina" value="3" style="margin-bottom:4%; " type="button" class="btn btn-lg btn-block btn-danger  "><b>ТРЕТА ГОДИНА</b></button>
+                <button id="cetvrtaGodina" value="4" style="margin-bottom:4%" type="button" class="btn btn-lg btn-block btn-danger "><b>ЧЕТВРТА ГОДИНА</b></button>
+            </div>
         </div>
-    </div>
-    <div class="bgimg-3 img-responsive">
-        <button style="position:absolute;" type="button" class="btn btn-lg btn-success" onclick="scroll_to_div('img2')"><span class="glyphicon glyphicon-arrow-up"></span></button>
-        <button id="prvSemestar" style="position:absolute; left:20%;right:20%; top:40%; width:60%; " type="button" class="btn btn-lg btn-danger " ><b>ПРВ СЕМЕСТАР</b></button>
-        <button id="vtorSemestar" style="position:absolute; left:20%;right:20%; top:60%; width:60%; " type="button" class="btn btn-lg btn-danger "><b>ВТОР СЕМЕСТАР</b></button>
-    </div>
+    </div>   
     <div style="position:relative;">
         <div style="color:#ddd;background-color:#282E34;text-align:center;padding:50px 80px;text-align: justify;">
             <p>Scroll up and down to really get the feeling of how Parallax Scrolling works.</p>
         </div>
     </div>
-    <div id="img4" class="bgimg-1 img-responsive">
-        <div class="col-sm-6 col-sm-push-4 abs">
-            </br>
-            </br>
-            <div style="width: 70%;" class="list-group" id="Zadolzitelni">
-            </div>
-                </br>
-            <div style="width: 70%;"  class="list-group" id="Izborni">
+
+
+        <div class="bgimg-3 img-responsive">
+        <button style="position:absolute;" type="button" class="btn btn-lg btn-success" onclick="scroll_to_div('programsContainer')"><span class="glyphicon glyphicon-arrow-up"></span></button>
+        <div id="semesterContainer" style="position:absolute; width:100%; height:100%;" class="container-fluid">
+            <div id="semesterButtonContainer" style="position: absolute; top:29%;"  class="col-xs-8 col-xs-push-2">
+                <button id="prvSemestar" value="1" style="margin-bottom:4%; " type="button" class="btn btn-lg btn-block btn-danger"><b>ПРВ СЕМЕСТАР</b></button>
+                <button id="vtorSemestar" value="2" style="margin-bottom:4%; " type="button" class="btn btn-lg btn-block btn-danger "><b>ВТОР СЕМЕСТАР</b></button>
             </div>
         </div>
+    </div>
+
+    <div style="position:relative;">
+        <div style="color:#ddd;background-color:#282E34;text-align:center;padding:50px 80px;text-align: justify;">
+            <p>Scroll up and down to really get the feeling of how Parallax Scrolling works.</p>
+        </div>
+    </div>
+    <div id="coursesContainer" class="bgimg-1 img-responsive">
+        <div class="container-fluid">
+                <div class="col-xs-6 col-xs-push-3">
+                    <div style="margin-top:4%;" class="list-group" id="Zadolzitelni">
+                    </div>
+                    <div style="margin-top:4%; height:70% !important; overflow-y:auto !important;"  class="list-group" id="Izborni">
+                    </div>
+                </div>
+        </div>
+    </div>
+
 
 
         <div class="modal fade" id="myModal" role="dialog">
@@ -114,11 +131,6 @@
             </div>
         </div>
 
-
-        <!--<div class="col-sm-6 abs"> 
-        <div style="width: 70%;"  class="list-group" id="Izborni"></div>
-        </div>-->
-    </div>
     <footer>
         <p style="text-align:center">&copy Copyright 2017</p>
     </footer>
