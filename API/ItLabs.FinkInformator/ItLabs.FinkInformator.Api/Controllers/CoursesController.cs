@@ -7,6 +7,7 @@ using System;
 using ItLabs.FinkInformator.Api.Requests;
 using NLog;
 using System.ComponentModel;
+using System.Web.Http.Description;
 
 namespace ItLabs.FinkInformator.Api.Controllers
 {
@@ -27,6 +28,7 @@ namespace ItLabs.FinkInformator.Api.Controllers
         /// </summary>
         /// <returns></returns>
         [Description("Get all Courses")]
+        [ResponseType(typeof(GetCoursesResponse))]
         [HttpGet]
         public IHttpActionResult Get()
         {
