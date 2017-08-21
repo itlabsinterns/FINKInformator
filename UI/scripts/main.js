@@ -1,3 +1,15 @@
+var year = 0;
+var program = 0;
+var semester = 0;
+
+function scroll_to_div(div_id) {
+    $('html,body').animate(
+    {
+        scrollTop: $("#" + div_id).offset().top
+    },
+    1000);
+}
+
 $(document).ready(function () {
     init();
     getPrograms();
@@ -7,9 +19,7 @@ $(document).ready(function () {
     function init() {
         $("#Zadolzitelni").hide();
         $("#Izborni").hide();
-        var year = 0;
-        var program = 0;
-        var semester = 0;
+        $("#panel").hide();
     }
 
     function getInfoAndFillLists(program, forRequest) {
@@ -56,17 +66,10 @@ $(document).ready(function () {
         })
     }
 
-    function scroll_to_div(div_id) {
-        $('html,body').animate(
-        {
-            scrollTop: $("#" + div_id).offset().top
-        },
-        1000);
-    }
 
     function errorDiv(message) {
         $("#error").remove();
-        $("#programsContainer").prepend('<div id="error" style="margin-top:8%;" class="alert alert-danger alert-dismissable fade in text-center"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> <strong>Предупредување! </strong>'
+        $("#programsButtonContainer").prepend('<div id="error" style="margin-bottom:4%;" class="alert alert-danger alert-dismissable fade in text-center"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> <strong>Предупредување! </strong>'
         + message + '</div>');
     }
 
@@ -118,13 +121,34 @@ $(document).ready(function () {
                 url: "http://localhost:4329/courses/" + this.id,
                 dataType: 'json',
                 success: function (data) {
-
-                    $("#modalTitle").text(data.Course.CourseName);
+                    $("#panel-body").empty();
+                    $("#panel").show();
+                    scroll_to_div('displayCourses');
+                    $("#panel-heading").text(data.Course.CourseName);
+                    $("#panel-body").text(data.Course.CourseDescription);
+                    $("#panel-body").append("<hr/> Предуслови: ");
+                    
+/*                     $("#modalTitle").text(data.Course.CourseName);
                     $("#modalBody").text(data.Course.CourseDescription);
-                    $("#myModal").modal();
+                    $("#myModal").modal(); */
                 }
             })
         })
+
+        $("#coursesContainer").on("click", "a", function () {
+            $.ajax({
+                type: 'GET',
+                url: "http://localhost:4329/courses/" + this.id + "/prerequisites",
+                dataType: 'json',
+                success: function (data) {
+                    $.each(data.Prerequisites, function (i, item) {
+                        $("#panel-body").append("<b>" + item.CourseName + "</b>  ");                    
+                    })
+                }
+            })
+        })
+
+
     }
 
 })
