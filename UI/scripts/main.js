@@ -10,7 +10,7 @@ function scroll_to_div(div_id) {
     1000);
 }
 
-$(document).ready(function () {
+jQuery(document).ready(function () {
     init();
     getPrograms();
     attachProgramEvents();
@@ -121,13 +121,14 @@ $(document).ready(function () {
                 url: "http://localhost:4329/courses/" + this.id,
                 dataType: 'json',
                 success: function (data) {
+                    reset(data.Course.CourseId,data.Course.CourseName);
                     $("#panel-body").empty();
                     $("#panel").show();
                     scroll_to_div('displayCourses');
                     $("#panel-heading").text(data.Course.CourseName);
                     $("#panel-body").text(data.Course.CourseDescription);
                     $("#panel-body").append("<hr/> Предуслови: ");
-                    
+
 /*                     $("#modalTitle").text(data.Course.CourseName);
                     $("#modalBody").text(data.Course.CourseDescription);
                     $("#myModal").modal(); */
@@ -151,4 +152,25 @@ $(document).ready(function () {
 
     }
 
+    var disqus_shortname = 'finkinformator';
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    /* * * Disqus Reset Function * * */
+    var reset = function (newIdentifier,  newTitle) {
+        DISQUS.reset({
+            reload: true,
+            config: function () {
+                this.page.identifier = newIdentifier;
+                this.page.url="C:/GIT/FINKInformator2/UI/index"+newIdentifier;
+                this.page.title = newTitle;
+            }
+        });
+    };
+
 })
+
