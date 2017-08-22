@@ -1,6 +1,6 @@
-﻿using ItLabs.FinkInformator.Api.Models;
+﻿using ItLabs.FinkInformator.Core.Models;
 
-namespace ItLabs.FinkInformator.Api.Responses
+namespace ItLabs.FinkInformator.Core.Responses
 {
     public class GetCourseResponse: ResponseBase
     {

@@ -1,7 +1,5 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-
-namespace ItLabs.FinkInformator.Api.Models
+﻿using System.ComponentModel.DataAnnotations;
+namespace ItLabs.FinkInformator.Core.Models
 {
     public class ProgramsCourses
     {

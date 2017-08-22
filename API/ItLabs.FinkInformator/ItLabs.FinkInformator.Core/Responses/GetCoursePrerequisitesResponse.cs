@@ -1,7 +1,7 @@
-﻿using ItLabs.FinkInformator.Api.Models;
+﻿using ItLabs.FinkInformator.Core.Models;
 using System.Collections.Generic;
 
-namespace ItLabs.FinkInformator.Api.Responses
+namespace ItLabs.FinkInformator.Core.Responses
 {
     public class GetCoursePrerequisitesResponse:ResponseBase
     {
@@ -9,7 +9,6 @@ namespace ItLabs.FinkInformator.Api.Responses
         {
             Prerequisites = new List<Course>();
         }
-
         public List<Course> Prerequisites { get; set; }
     }
 }

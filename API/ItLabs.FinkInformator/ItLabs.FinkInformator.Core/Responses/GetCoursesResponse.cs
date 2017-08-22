@@ -1,7 +1,7 @@
-﻿using ItLabs.FinkInformator.Api.Models;
+﻿using ItLabs.FinkInformator.Core.Models;
 using System.Collections.Generic;
 
-namespace ItLabs.FinkInformator.Api.Responses
+namespace ItLabs.FinkInformator.Core.Responses
 {
     public class GetCoursesResponse: ResponseBase
     {

@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
-using System.Text;
 
-namespace ItLabs.FinkInformator.Api.Responses
+namespace ItLabs.FinkInformator.Core.Responses
 {
     public class ResponseBase
     {

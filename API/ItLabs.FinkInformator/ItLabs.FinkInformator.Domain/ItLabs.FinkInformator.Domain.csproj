@@ -32,6 +32,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -40,7 +41,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Managers\CoursesManager.cs" />
+    <Compile Include="Managers\ProgramsManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ItLabs.FinkInformator.Core\ItLabs.FinkInformator.Core.csproj">
+      <Project>{6134d205-b655-4039-8a9d-b48c033a636b}</Project>
+      <Name>ItLabs.FinkInformator.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ItLabs.FinkInformator.Data\ItLabs.FinkInformator.Data.csproj">
+      <Project>{fecdf2cc-4f8d-4e15-9ec5-5af384f3ba7b}</Project>
+      <Name>ItLabs.FinkInformator.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

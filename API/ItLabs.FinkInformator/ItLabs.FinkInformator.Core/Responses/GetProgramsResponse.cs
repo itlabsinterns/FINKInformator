@@ -1,7 +1,6 @@
-﻿using ItLabs.FinkInformator.Api.Models;
-using System.Collections.Generic;
-
-namespace ItLabs.FinkInformator.Api.Responses
+﻿using System.Collections.Generic;
+using ItLabs.FinkInformator.Core.Models;
+namespace ItLabs.FinkInformator.Core.Responses
 {
     public class GetProgramsResponse : ResponseBase
     {

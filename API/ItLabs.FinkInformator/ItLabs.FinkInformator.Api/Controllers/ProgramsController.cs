@@ -1,25 +1,27 @@
 ﻿using System.Web.Http;
-using System.Linq;
-using ItLabs.FinkInformator.Api.Responses;
-using ItLabs.FinkInformator.Api.Models;
-using ItLabs.FinkInformator.Api.Requests;
+using ItLabs.FinkInformator.Core.Interfaces;
+using ItLabs.FinkInformator.Core.Requests;
 using System.Web.Http.Cors;
-using System;
 using NLog;
 using System.ComponentModel;
+using ItLabs.FinkInformator.Domain.Managers;
 
 namespace ItLabs.FinkInformator.Api.Controllers
 {
     [EnableCors(origins: "*", headers: "*", methods: "*")]
+
     public class ProgramsController : ApiController
     {
-        private SchoolContext _schoolContext;
+        private IProgramsManager _manager;
         private Logger _logger;
-
+        ///<summary>
+        ///Programs Controller Constructor
+        /// </summary>
+        /// <returns></returns>
         public ProgramsController()
         {
-            _schoolContext = new SchoolContext();
-            _logger = LogManager.GetLogger("fileLog");
+            _manager = new ProgramsManager();
+            _logger = LogManager.GetLogger("fileLog"); ;
         }
 
         /// <summary>
@@ -30,17 +32,9 @@ namespace ItLabs.FinkInformator.Api.Controllers
         [HttpGet]
         public IHttpActionResult Get()
         {
-            var response = new GetProgramsResponse();
-
-            try
-            {
-                response.Programs = _schoolContext.Programs.ToList();
-            }
-            catch (Exception ex)
-            {
-                _logger.Error(ex);
+            var response = _manager.GetPrograms();
+            if(!response.IsSuccessful)
                 return BadRequest("An error has occurred");
-            }
 
             return Ok(response);
         }
@@ -54,57 +48,33 @@ namespace ItLabs.FinkInformator.Api.Controllers
         [HttpGet]
         public IHttpActionResult Get(int id)
         {
-            var response = new GetProgramResponse();
             var request = new IdRequest { Id = id };
-            try
-            {
-                response.Program = _schoolContext.Programs.Where(x => x.ProgramId == request.Id).FirstOrDefault();
-            }
-            catch (Exception ex)
-            {
-                _logger.Error(ex);
-                return BadRequest("An error has occurred");
-            }
+            var response = _manager.GetProgramsById(request);
+            if (!response.IsSuccessful)
+                return BadRequest("An error has occured");
 
             return Ok(response);
         }
 
-        /// <summary>
-        /// Get all courses for a particular program and semester as well as additional information if the courses are mandatory and their prerequisites
-        /// </summary>
-        /// <param name="id">The ID of the program</param>
-        /// <param name="semester">The number of the semester</param>
-        /// <returns></returns>
+        // <summary>
+        // Get all courses for a particular program and semester as well as additional information if the courses are mandatory and their prerequisites
+        // </summary>
+        // <param name = "id" > The ID of the program</param>
+        // <param name = "semester" > The number of the semester</param>
+        // <returns></returns>
         [Description("Get Courses based on Semester and Program")]
         [HttpGet]
         [Route("programs/{id}/{semester}")]
         public IHttpActionResult GetProgramCourses(int id, int semester)
         {
-            //TODO covert this to response class
-
             var request = new GetProgramCoursesRequest { ProgramId = id, Semester = semester };
-            dynamic programCourses;
+            var response = _manager.GetProgramCourses(request);
 
-            try
-            {
-                programCourses = _schoolContext.ProgramsCourses.Where(x => x.ProgramId == request.ProgramId && x.Course.Semester == request.Semester)
-                                                                    .Select(x => new
-                                                                    {
-                                                                        Course = x.Course,
-                                                                        IsMandatory = x.IsMandatory,
-                                                                        Prerequisites = _schoolContext.CoursesPrerequisites
-                                                                                        .Where(y => y.Course.CourseId == x.Course.CourseId)
-                                                                                        .Select(z => z.Prerequisite)
-                                                                                        .ToList()
-                                                                    }).ToList();
-            }
-            catch (Exception ex)
-            {
-                _logger.Error(ex);
+            if (!response.IsSuccessful)
                 return BadRequest("An error has occurred");
-            }
 
-            return Ok(programCourses);
+            return Ok(response);
         }
+
     }
 }

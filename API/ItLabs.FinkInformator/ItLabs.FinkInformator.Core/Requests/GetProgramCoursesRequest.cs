@@ -1,5 +1,4 @@
-﻿
-namespace ItLabs.FinkInformator.Api.Requests
+﻿namespace ItLabs.FinkInformator.Core.Requests
 {
     public class GetProgramCoursesRequest
     {

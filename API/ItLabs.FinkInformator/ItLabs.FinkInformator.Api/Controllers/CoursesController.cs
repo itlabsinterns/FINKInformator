@@ -1,25 +1,24 @@
-﻿using ItLabs.FinkInformator.Api.Models;
-using ItLabs.FinkInformator.Api.Responses;
+﻿using ItLabs.FinkInformator.Core.Responses;
 using System.Web.Http;
-using System.Linq;
 using System.Web.Http.Cors;
-using System;
-using ItLabs.FinkInformator.Api.Requests;
+using ItLabs.FinkInformator.Core.Requests;
 using NLog;
 using System.ComponentModel;
 using System.Web.Http.Description;
+using ItLabs.FinkInformator.Domain.Managers;
+using ItLabs.FinkInformator.Core.Interfaces;
 
 namespace ItLabs.FinkInformator.Api.Controllers
 {
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class CoursesController : ApiController
     {
-        private SchoolContext _schoolContext;
+        private ICoursesManager _manager;
         private Logger _logger;
 
         public CoursesController()
         {
-            _schoolContext = new SchoolContext();
+            _manager = new CoursesManager();
             _logger = LogManager.GetLogger("fileLog");
         }
 
@@ -32,17 +31,9 @@ namespace ItLabs.FinkInformator.Api.Controllers
         [HttpGet]
         public IHttpActionResult Get()
         {
-            var response = new GetCoursesResponse();
-            try
-            {
-                response.Courses = _schoolContext.Courses.ToList();
-            }
-            catch (Exception ex)
-            {
-                _logger.Error(ex);
+            var response = _manager.GetCourses();
+            if (!response.IsSuccessful)
                 return BadRequest("An error has occurred");
-            }
-
             return Ok(response);
         }
 
@@ -55,29 +46,10 @@ namespace ItLabs.FinkInformator.Api.Controllers
         [HttpGet]
         public IHttpActionResult GetCourse(int id)
         {
-            var response = new GetCourseResponse();
             var request = new IdRequest { Id = id };
-
-            if (request.Id <= 0)
-            {
-                response.IsSuccessful = false;
-                response.Errors.Add("Invalid parameter: id");
-
-                _logger.Error(response);
-
-
-                return Ok(response);
-            }
-            try
-            {
-                response.Course = _schoolContext.Courses.Where(x => x.CourseId == request.Id).SingleOrDefault();
-            }
-            catch (Exception ex)
-            {
-                _logger.Error(ex);
-
+            var response = _manager.GetCourseById(request);
+            if (!response.IsSuccessful)
                 return BadRequest("An error has occurred");
-            }
 
             return Ok(response);
         }
@@ -92,19 +64,10 @@ namespace ItLabs.FinkInformator.Api.Controllers
         [Route("courses/{id}/prerequisites")]
         public IHttpActionResult GetCoursePrerequisites(int id)
         {
-            var response = new GetCoursePrerequisitesResponse();
-            try
-            {
-                response.Prerequisites = _schoolContext.CoursesPrerequisites
-                                                       .Where(x => x.Course.CourseId == id)
-                                                       .Select(x => x.Prerequisite).ToList();
-            }
-            catch (Exception ex)
-            {
-                _logger.Error(ex);
-
+            IdRequest request = new IdRequest() { Id = id };
+            GetCoursePrerequisitesResponse response = _manager.GetCoursePrerequisites(request);
+            if (!response.IsSuccessful)
                 return BadRequest("An error has occurred");
-            }
 
             return Ok(response);
         }

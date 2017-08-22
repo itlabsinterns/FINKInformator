@@ -31,6 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -40,7 +41,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Interfaces\ICoursesManager.cs" />
+    <Compile Include="Interfaces\ICoursesRepository.cs" />
+    <Compile Include="Interfaces\IProgramsManager.cs" />
+    <Compile Include="Interfaces\IProgramsRepository.cs" />
+    <Compile Include="Models\Course.cs" />
+    <Compile Include="Models\CoursesPrerequisites.cs" />
+    <Compile Include="Models\Enums.cs" />
+    <Compile Include="Models\Program.cs" />
+    <Compile Include="Models\ProgramsCourses.cs" />
+    <Compile Include="Models\ProgramsCoursesCustom.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Requests\GetProgramCoursesRequest.cs" />
+    <Compile Include="Requests\IdRequest.cs" />
+    <Compile Include="Responses\GetCoursePrerequisitesResponse.cs" />
+    <Compile Include="Responses\GetCourseResponse.cs" />
+    <Compile Include="Responses\GetCoursesResponse.cs" />
+    <Compile Include="Responses\GetProgramCoursesResponse.cs" />
+    <Compile Include="Responses\GetProgramResponse.cs" />
+    <Compile Include="Responses\GetProgramsResponse.cs" />
+    <Compile Include="Responses\ResponseBase.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

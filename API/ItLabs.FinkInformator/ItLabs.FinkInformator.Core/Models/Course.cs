@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
+
 using System.ComponentModel.DataAnnotations;
 
-namespace ItLabs.FinkInformator.Api.Models
+namespace ItLabs.FinkInformator.Core.Models
 {
     /// <summary>
     /// Course

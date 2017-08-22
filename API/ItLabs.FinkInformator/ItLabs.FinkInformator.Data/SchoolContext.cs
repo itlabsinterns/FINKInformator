@@ -1,6 +1,7 @@
 ﻿using System.Data.Entity;
+using ItLabs.FinkInformator.Core.Models;
 
-namespace ItLabs.FinkInformator.Api.Models
+namespace ItLabs.FinkInformator.Data.Models
 {
     public class SchoolContext:DbContext
     {
