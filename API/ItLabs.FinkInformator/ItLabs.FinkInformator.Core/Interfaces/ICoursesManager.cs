@@ -8,6 +8,6 @@ namespace ItLabs.FinkInformator.Core.Interfaces
         GetCoursesResponse GetCourses();
         GetCourseResponse GetCourseById(IdRequest request);
         GetCoursePrerequisitesResponse GetCoursePrerequisites(IdRequest request);
-        GetCourseProgramNamesResponse getProgramCourseNames(GetCourseProgramNamesRequest request);
+        GetCourseProgramNamesResponse GetCourseProgramNames(GetCourseProgramNamesRequest request);
     }
 }

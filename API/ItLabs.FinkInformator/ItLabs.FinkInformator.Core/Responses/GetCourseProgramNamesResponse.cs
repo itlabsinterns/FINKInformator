@@ -9,6 +9,6 @@ namespace ItLabs.FinkInformator.Core.Responses
         {
             CourseProgramNames = new List<CourseProgramName>();
         }
-        public List<CourseProgramName> CourseProgramNames { get; set; };
+        public List<CourseProgramName> CourseProgramNames { get; set; }
     }
 }

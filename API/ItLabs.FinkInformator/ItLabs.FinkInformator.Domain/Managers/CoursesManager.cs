@@ -58,7 +58,7 @@ namespace ItLabs.FinkInformator.Domain.Managers
             return response;
         }
 
-        public GetCourseProgramNamesResponse getCourseProgramNames(GetCourseProgramNamesRequest request)
+        public GetCourseProgramNamesResponse GetCourseProgramNames(GetCourseProgramNamesRequest request)
         {
             GetCourseProgramNamesResponse response = new GetCourseProgramNamesResponse();
             try

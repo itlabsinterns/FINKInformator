@@ -89,7 +89,7 @@ namespace ItLabs.FinkInformator.Api.Controllers
             GetCourseProgramNamesResponse response = new GetCourseProgramNamesResponse();
             try
             {
-                response = _manager.getProgramCourseNames(request);
+                response = _manager.GetCourseProgramNames(request);
 
             }
             catch (Exception ex)

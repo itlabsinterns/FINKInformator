@@ -62,5 +62,7 @@ namespace ItLabs.FinkInformator.Domain.Managers
             }
             return response;
         }
+
+
     }
 }
