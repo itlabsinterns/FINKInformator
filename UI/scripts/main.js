@@ -25,7 +25,7 @@ jQuery(document).ready(function () {
     function getInfoAndFillLists(program, forRequest) {
         $.ajax({
             type: 'GET',
-            url: "http://localhost:4329/programs/" + program + "/" + forRequest,
+            url: "http://finkinformator-api.devweb.office.it-labs.com/programs/" + program + "/" + forRequest,
             dataType: 'json',
             success: function (data) {
                 $("#Zadolzitelni").append('<a style="text-align:center; color: white !important; background-color: dimgray!important;" id="zad" class="list-group-item forli"><b>ЗАДОЛЖИТЕЛНИ ПРЕДМЕТИ</b></a>');
@@ -56,7 +56,7 @@ jQuery(document).ready(function () {
     function getPrograms() {
         $.ajax({
             type: 'GET',
-            url: "http://localhost:4329/programs/",
+            url: "http://finkinformator-api.devweb.office.it-labs.com/programs/",
             dataType: 'json',
             success: function (data) {
                 $.each(data.Programs, function (i, item) {
@@ -118,10 +118,10 @@ jQuery(document).ready(function () {
         $("#coursesContainer").on("click", "a", function () {
             $.ajax({
                 type: 'GET',
-                url: "http://localhost:4329/courses/" + this.id,
+                url: "http://finkinformator-api.devweb.office.it-labs.com/courses/" + this.id,
                 dataType: 'json',
                 success: function (data) {
-                    reset(data.Course.CourseId,data.Course.CourseName);
+                    reset(data.Course.CourseId, data.Course.CourseName);
                     $("#panel-body").empty();
                     $("#panel").show();
                     scroll_to_div('displayCourses');
@@ -139,7 +139,7 @@ jQuery(document).ready(function () {
         $("#coursesContainer").on("click", "a", function () {
             $.ajax({
                 type: 'GET',
-                url: "http://localhost:4329/courses/" + this.id + "/prerequisites",
+                url: "http://finkinformator-api.devweb.office.it-labs.com/courses/" + this.id + "/prerequisites",
                 dataType: 'json',
                 success: function (data) {
                     $.each(data.Prerequisites, function (i, item) {
@@ -152,21 +152,13 @@ jQuery(document).ready(function () {
 
     }
 
-    var disqus_shortname = 'finkinformator';
-    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-    /* * * DON'T EDIT BELOW THIS LINE * * */
-    (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    })();
     /* * * Disqus Reset Function * * */
     var reset = function (newIdentifier,  newTitle) {
         DISQUS.reset({
             reload: true,
             config: function () {
                 this.page.identifier = newIdentifier;
-                this.page.url="C:/GIT/FINKInformator2/UI/index"+newIdentifier;
+                this.page.url = "http://finkinformator.devweb.office.it-labs.com/" + newIdentifier;
                 this.page.title = newTitle;
             }
         });
