@@ -13,6 +13,7 @@ function scroll_to_div(div_id) {
 jQuery(document).ready(function () {
     init();
     getPrograms();
+    Autocomplete();
     attachProgramEvents();
     attachEvents();
 
@@ -128,10 +129,6 @@ jQuery(document).ready(function () {
                     $("#panel-heading").text(data.Course.CourseName);
                     $("#panel-body").text(data.Course.CourseDescription);
                     $("#panel-body").append("<hr/> Предуслови: ");
-
-/*                     $("#modalTitle").text(data.Course.CourseName);
-                    $("#modalBody").text(data.Course.CourseDescription);
-                    $("#myModal").modal(); */
                 }
             })
         })
@@ -143,17 +140,71 @@ jQuery(document).ready(function () {
                 dataType: 'json',
                 success: function (data) {
                     $.each(data.Prerequisites, function (i, item) {
-                        $("#panel-body").append("<b>" + item.CourseName + "</b>  ");                    
+                        $("#panel-body").append("<b>" + item.CourseName + "</b>  ");
                     })
                 }
             })
         })
+    }
 
 
+
+    function getCourse(course_id) {
+        $.ajax({
+            type: 'GET',
+            url: 'http://finkinformator-api.devweb.office.it-labs.com/courses/' + course_id,
+            dataType: 'json',
+            success: function (data) {
+                reset(data.Course.CourseId, data.Course.CourseName);
+                $("#panel-body").empty();
+                $("#panel").show();
+                scroll_to_div('displayCourses');
+                $("#panel-heading").text(data.Course.CourseName);
+                $("#panel-body").text(data.Course.CourseDescription);
+                $("#panel-body").append("<hr/> Предуслови: ");
+            }
+        });
+        $.ajax({
+            type: 'GET',
+            url: 'http://finkinformator-api.devweb.office.it-labs.com/courses/' + course_id + '/prerequisites',
+            dataType: 'json',
+            success: function (data) {
+                $.each(data.Prerequisites, function (i, item) {
+                    $("#panel-body").append("<b>" + item.CourseName + "</b>  ");
+                })
+            }
+        });
+    }
+
+    function Autocomplete() {
+        $("#searchCourse").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    type: 'GET',
+                    url: 'http://localhost:4329/courses/names/' + request.term,
+                    dataType: 'json',
+                    data: {
+                        term: request.term,
+                    },
+                    success: function (data) {
+                        response(data);
+                    }
+                });
+            },
+            select: function (event, ui) {
+                event.preventDefault();
+                $(this).val(ui.item['CourseName']);
+                getCourse(ui.item['Id']);
+                $(this).val("");
+            }
+        }).data("ui-autocomplete")._renderItem = function (ul, item) {
+            return $("<li style='list-style: none; background-color:white;'>" + item['CourseName'] + "(" + item['ProgramName'] + ")</li>")
+                .appendTo(ul);
+        }
     }
 
     /* * * Disqus Reset Function * * */
-    var reset = function (newIdentifier,  newTitle) {
+    var reset = function (newIdentifier, newTitle) {
         DISQUS.reset({
             reload: true,
             config: function () {

@@ -7,6 +7,8 @@ using System.Web.Http.Cors;
 using System;
 using NLog;
 using System.ComponentModel;
+using System.Web.Http.Description;
+
 
 namespace ItLabs.FinkInformator.Api.Controllers
 {
@@ -27,6 +29,7 @@ namespace ItLabs.FinkInformator.Api.Controllers
         /// </summary>
         /// <returns></returns>
         [Description("Get all programs")]
+        [ResponseType(typeof(GetProgramsResponse))]
         [HttpGet]
         public IHttpActionResult Get()
         {
@@ -51,6 +54,7 @@ namespace ItLabs.FinkInformator.Api.Controllers
         /// <param name="id">The ID of the requested program</param>
         /// <returns></returns>
         [Description("Get Program by Id")]
+        [ResponseType(typeof(GetProgramResponse))]
         [HttpGet]
         public IHttpActionResult Get(int id)
         {
