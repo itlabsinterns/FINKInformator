@@ -5,7 +5,7 @@ body, html {
   color: #777;
 }
 
-.bgimg-1, .bgimg-2, .bgimg-3 .bgimg-4{
+.bgimg-1, .bgimg-2, .bgimg-3, .bgimg-4{
   position: relative;
   background-attachment: fixed;
   background-position: center;
@@ -71,21 +71,15 @@ position:absolute;
     }
 }*/
 
-@media (max-width: 760px) {    
-  #programsContainer .btn{ font-size:90%; }
-
-}
+@media (max-width: 760px) {    #programsContainer .btn{ font-size:90%; }}
 
 
-@media (max-width: 550px) {    
-  #programsContainer .btn{ font-size:75%; }
+@media (max-width: 450px) {    #programsContainer .btn{ font-size:75%; }}
 
+@media (max-width: 384px) {    #programsContainer .btn{ font-size: 68%; }}
 
-}
+@media (max-width: 354px){     #programsContainer .btn{ font-size: 55%}}
 
-@media (max-width: 488px) {    #programsContainer .btn{ font-size: 55%; }}  
-
-@media (max-width: 384px) {    #programsContainer .btn{ font-size: 40%; }} 
 
 
 
@@ -152,7 +146,9 @@ position:absolute;
 
 #displayCoursesContainer{
   position: absolute;
-  top:20%;
+  top:5%;
+  max-height: 95%;
+  overflow: auto;
 }
 
 .btn-margin{
