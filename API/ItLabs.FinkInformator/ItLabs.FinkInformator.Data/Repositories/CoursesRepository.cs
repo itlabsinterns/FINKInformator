@@ -3,6 +3,7 @@ using ItLabs.FinkInformator.Core.Interfaces;
 using ItLabs.FinkInformator.Core.Models;
 using System.Linq;
 using System.Collections.Generic;
+using System;
 
 namespace ItLabs.FinkInformator.Data.Repositories
 {
@@ -28,6 +29,17 @@ namespace ItLabs.FinkInformator.Data.Repositories
         {
             return _schoolContext.CoursesPrerequisites.Where(x => x.Course.CourseId == id)
                                                        .Select(x => x.Prerequisite).ToList();
+        }
+
+        public List<CourseProgramName> getProgramCourseNames(string CourseName)
+        {
+            return _schoolContext.ProgramsCourses.Where(x => x.Course.CourseName.Contains(CourseName))
+                .Select(x => new CourseProgramName
+                {
+                    CourseName = x.Course.CourseName,
+                    ProgramName = x.Program.ProgramName,
+                    CourseId = x.Course.CourseId
+                }).ToList();
         }
     }
 }

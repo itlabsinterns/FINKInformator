@@ -5,8 +5,8 @@ using ItLabs.FinkInformator.Core.Requests;
 using NLog;
 using System.ComponentModel;
 using System.Web.Http.Description;
-using ItLabs.FinkInformator.Domain.Managers;
 using ItLabs.FinkInformator.Core.Interfaces;
+using System;
 
 namespace ItLabs.FinkInformator.Api.Controllers
 {
@@ -16,9 +16,9 @@ namespace ItLabs.FinkInformator.Api.Controllers
         private ICoursesManager _manager;
         private Logger _logger;
 
-        public CoursesController()
+        public CoursesController(ICoursesManager courseManager)
         {
-            _manager = new CoursesManager();
+            _manager = courseManager;
             _logger = LogManager.GetLogger("fileLog");
         }
 
@@ -84,16 +84,12 @@ namespace ItLabs.FinkInformator.Api.Controllers
         [Route("courses/names/{value}")]
         public IHttpActionResult GetCourseProgramNames(string value)
         {
-            dynamic coursesNames;
+
+            GetCourseProgramNamesRequest request = new GetCourseProgramNamesRequest { CourseName = value };
+            GetCourseProgramNamesResponse response = new GetCourseProgramNamesResponse();
             try
             {
-                coursesNames = _schoolContext.ProgramsCourses.Where(x => x.Course.CourseName.Contains(value)).Select(
-                    x => new
-                    {
-                        Id = x.CourseId,
-                        CourseName = x.Course.CourseName,
-                        ProgramName = x.Program.ProgramName
-                    }).ToList();
+                response = _manager.getProgramCourseNames(request);
 
             }
             catch (Exception ex)
@@ -102,7 +98,7 @@ namespace ItLabs.FinkInformator.Api.Controllers
                 return BadRequest("An error has occurred!");
             }
 
-            return Ok(coursesNames);
+            return Ok();
         }
     }
 }

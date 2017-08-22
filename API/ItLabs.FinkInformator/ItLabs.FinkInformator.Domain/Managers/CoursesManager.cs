@@ -4,14 +4,12 @@ using ItLabs.FinkInformator.Core.Responses;
 using ItLabs.FinkInformator.Data.Repositories;
 using System;
 using System.Linq;
-using ItLabs.FinkInformator.Core.Models;
 
 namespace ItLabs.FinkInformator.Domain.Managers
 {
     public class CoursesManager:ICoursesManager
     {
         private ICoursesRepository _coursesRepository;
-
         public CoursesManager()
         {
             _coursesRepository = new CoursesRepository();
@@ -53,6 +51,20 @@ namespace ItLabs.FinkInformator.Domain.Managers
                 response.Courses = _coursesRepository.GetAllCourses().ToList();
             }
             catch (Exception ex)
+            {
+                response.IsSuccessful = false;
+                response.Errors.Add(ex.Message);
+            }
+            return response;
+        }
+
+        public GetCourseProgramNamesResponse getCourseProgramNames(GetCourseProgramNamesRequest request)
+        {
+            GetCourseProgramNamesResponse response = new GetCourseProgramNamesResponse();
+            try
+            {
+                response.CourseProgramNames = _coursesRepository.getProgramCourseNames(request.CourseName);
+            }catch(Exception ex)
             {
                 response.IsSuccessful = false;
                 response.Errors.Add(ex.Message);
