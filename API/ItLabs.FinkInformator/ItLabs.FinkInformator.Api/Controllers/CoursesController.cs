@@ -43,6 +43,7 @@ namespace ItLabs.FinkInformator.Api.Controllers
         /// <param name="id">The ID of the requested course</param>
         /// <returns></returns>
         [Description("Get Course by Id")]
+        [ResponseType(typeof(GetCourseResponse))]
         [HttpGet]
         public IHttpActionResult GetCourse(int id)
         {
@@ -60,6 +61,7 @@ namespace ItLabs.FinkInformator.Api.Controllers
         /// <param name="id">The ID of the course whose prerequisites are about to be returned</param>
         /// <returns></returns>
         [Description("Get Courses Prerequisites")]
+        [ResponseType(typeof(GetCoursePrerequisitesResponse))]
         [HttpGet]
         [Route("courses/{id}/prerequisites")]
         public IHttpActionResult GetCoursePrerequisites(int id)
@@ -70,6 +72,37 @@ namespace ItLabs.FinkInformator.Api.Controllers
                 return BadRequest("An error has occurred");
 
             return Ok(response);
+        }
+
+        /// <summary>
+        /// Get filtered courses by course name
+        /// </summary>
+        /// <param name="value">Typed value used for filtering course names</param>
+        /// <returns></returns>
+        [Description("Get Filtered Courses By Name")]
+        [HttpGet]
+        [Route("courses/names/{value}")]
+        public IHttpActionResult GetCourseProgramNames(string value)
+        {
+            dynamic coursesNames;
+            try
+            {
+                coursesNames = _schoolContext.ProgramsCourses.Where(x => x.Course.CourseName.Contains(value)).Select(
+                    x => new
+                    {
+                        Id = x.CourseId,
+                        CourseName = x.Course.CourseName,
+                        ProgramName = x.Program.ProgramName
+                    }).ToList();
+
+            }
+            catch (Exception ex)
+            {
+                _logger.Error(ex);
+                return BadRequest("An error has occurred!");
+            }
+
+            return Ok(coursesNames);
         }
     }
 }
