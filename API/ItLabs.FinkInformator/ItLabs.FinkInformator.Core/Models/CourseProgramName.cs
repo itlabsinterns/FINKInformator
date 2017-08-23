@@ -10,7 +10,7 @@ namespace ItLabs.FinkInformator.Core.Models
     {
         public int CourseId { get; set; }
         public string CourseName { get; set; }
-        public string ProgramName { get; set; } 
+        public string ProgramName { get; set; }
 
     }
 }

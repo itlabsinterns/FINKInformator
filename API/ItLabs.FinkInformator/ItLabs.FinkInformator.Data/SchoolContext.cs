@@ -3,9 +3,9 @@ using ItLabs.FinkInformator.Core.Models;
 
 namespace ItLabs.FinkInformator.Data.Models
 {
-    public class SchoolContext:DbContext
+    public class SchoolContext : DbContext
     {
-        public SchoolContext():base("name=FinkInformatorConnectionString")
+        public SchoolContext() : base("name=FinkInformatorConnectionString")
         {
 
         }

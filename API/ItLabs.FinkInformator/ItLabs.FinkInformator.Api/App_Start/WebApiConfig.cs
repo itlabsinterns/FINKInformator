@@ -1,5 +1,6 @@
 ﻿using ItLabs.FinkInformator.Api.App_Start;
 using System.Net.Http.Headers;
+using System.Reflection;
 using System.Web.Http;
 
 namespace ItLabs.FinkInformator.Api
@@ -20,7 +21,7 @@ namespace ItLabs.FinkInformator.Api
             );
             config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/html") );
 
-            IocConfig.ConfigureIoC(config);
+            IocConfig.ConfigureIoC(config,Assembly.GetExecutingAssembly());
         }
     }
 }

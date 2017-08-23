@@ -2,7 +2,6 @@
 using System.Web.Http;
 using System.Web.Http.Cors;
 using ItLabs.FinkInformator.Core.Requests;
-using NLog;
 using System.ComponentModel;
 using System.Web.Http.Description;
 using ItLabs.FinkInformator.Core.Interfaces;
@@ -14,12 +13,10 @@ namespace ItLabs.FinkInformator.Api.Controllers
     public class CoursesController : ApiController
     {
         private ICoursesManager _manager;
-        private Logger _logger;
 
         public CoursesController(ICoursesManager courseManager)
         {
             _manager = courseManager;
-            _logger = LogManager.GetLogger("fileLog");
         }
 
         /// <summary>
@@ -66,8 +63,8 @@ namespace ItLabs.FinkInformator.Api.Controllers
         [Route("courses/{id}/prerequisites")]
         public IHttpActionResult GetCoursePrerequisites(int id)
         {
-            IdRequest request = new IdRequest() { Id = id };
-            GetCoursePrerequisitesResponse response = _manager.GetCoursePrerequisites(request);
+            var request = new IdRequest() { Id = id };
+            var response = _manager.GetCoursePrerequisites(request);
             if (!response.IsSuccessful)
                 return BadRequest("An error has occurred");
 
@@ -85,17 +82,9 @@ namespace ItLabs.FinkInformator.Api.Controllers
         public IHttpActionResult GetCourseProgramNames(string value)
         {
             var request = new GetCourseProgramNamesRequest { CourseName = value };
-            var response = new GetCourseProgramNamesResponse();
-            try
-            {
-                response = _manager.GetCourseProgramNames(request);
-
-            }
-            catch (Exception ex)
-            {
-                _logger.Error(ex);
+            var response = _manager.GetCourseProgramNames(request);
+            if (!response.IsSuccessful)
                 return BadRequest("An error has occurred!");
-            }
 
             return Ok(response);
         }

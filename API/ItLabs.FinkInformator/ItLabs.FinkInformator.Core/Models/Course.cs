@@ -31,7 +31,7 @@ namespace ItLabs.FinkInformator.Core.Models
         /// <summary>
         /// Number of semester in which the course is offered
         /// </summary>
-        [Range(1,8)]
+        [Range(1, 8)]
         [Required]
         public int Semester { get; set; }
 

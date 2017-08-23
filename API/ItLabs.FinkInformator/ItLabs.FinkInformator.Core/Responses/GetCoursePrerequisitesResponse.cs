@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace ItLabs.FinkInformator.Core.Responses
 {
-    public class GetCoursePrerequisitesResponse:ResponseBase
+    public class GetCoursePrerequisitesResponse : ResponseBase
     {
         public GetCoursePrerequisitesResponse()
         {

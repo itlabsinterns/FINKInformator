@@ -2,7 +2,6 @@
 using ItLabs.FinkInformator.Core.Interfaces;
 using ItLabs.FinkInformator.Core.Requests;
 using System.Web.Http.Cors;
-using NLog;
 using System.ComponentModel;
 using ItLabs.FinkInformator.Domain.Managers;
 
@@ -13,7 +12,6 @@ namespace ItLabs.FinkInformator.Api.Controllers
     public class ProgramsController : ApiController
     {
         private IProgramsManager _manager;
-        private Logger _logger;
         ///<summary>
         ///Programs Controller Constructor
         /// </summary>
@@ -21,7 +19,6 @@ namespace ItLabs.FinkInformator.Api.Controllers
         public ProgramsController(IProgramsManager programsManager)
         {
             _manager = programsManager;
-            _logger = LogManager.GetLogger("fileLog"); ;
         }
 
         /// <summary>
@@ -33,7 +30,7 @@ namespace ItLabs.FinkInformator.Api.Controllers
         public IHttpActionResult Get()
         {
             var response = _manager.GetPrograms();
-            if(!response.IsSuccessful)
+            if (!response.IsSuccessful)
                 return BadRequest("An error has occurred");
 
             return Ok(response);

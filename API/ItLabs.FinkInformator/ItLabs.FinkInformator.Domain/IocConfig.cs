@@ -12,10 +12,10 @@ namespace ItLabs.FinkInformator.Api.App_Start
     public class IocConfig
     {
         //TODO move to domain
-        public static void ConfigureIoC(HttpConfiguration config)
+        public static void ConfigureIoC(HttpConfiguration config, Assembly assembly)
         {
             var builder = new ContainerBuilder();
-            builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
+            builder.RegisterApiControllers(assembly);
 
             
             builder.RegisterType<CoursesManager>().As<ICoursesManager>();

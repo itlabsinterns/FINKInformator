@@ -7,7 +7,7 @@ namespace ItLabs.FinkInformator.Core.Models
     /// <summary>
     /// Program
     /// </summary>
-   public class Program
+    public class Program
     {
         /// <summary>
         /// ID of the program

@@ -11,5 +11,5 @@ namespace ItLabs.FinkInformator.Core.Models
 
         public Course Prerequisite { get; set; }
 
-    }   
+    }
 }

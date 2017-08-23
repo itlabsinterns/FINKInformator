@@ -3,9 +3,9 @@ using ItLabs.FinkInformator.Core.Models;
 
 namespace ItLabs.FinkInformator.Core.Responses
 {
-    public class GetProgramCoursesResponse:ResponseBase
+    public class GetProgramCoursesResponse : ResponseBase
     {
-        public GetProgramCoursesResponse():base()
+        public GetProgramCoursesResponse() : base()
         {
             ProgramsCoursesCustom = new List<ProgramsCoursesCustom>();
         }

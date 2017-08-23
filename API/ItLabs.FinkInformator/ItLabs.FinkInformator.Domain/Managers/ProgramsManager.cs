@@ -1,8 +1,5 @@
-﻿using ItLabs.FinkInformator.Data.Models;
-using ItLabs.FinkInformator.Core.Models;
-using ItLabs.FinkInformator.Core.Interfaces;
-using ItLabs.FinkInformator.Data;
-using System.Collections.Generic;
+﻿using ItLabs.FinkInformator.Core.Interfaces;
+using ItLabs.FinkInformator.Core;
 using System.Linq;
 using ItLabs.FinkInformator.Core.Responses;
 using ItLabs.FinkInformator.Core.Requests;
@@ -10,7 +7,7 @@ using System;
 
 namespace ItLabs.FinkInformator.Domain.Managers
 {
-    public class ProgramsManager:IProgramsManager
+    public class ProgramsManager : IProgramsManager
     {
         private IProgramsRepository _programsRepository;
         public ProgramsManager(IProgramsRepository programsRepository)
@@ -24,10 +21,12 @@ namespace ItLabs.FinkInformator.Domain.Managers
             try
             {
                 response.Programs = _programsRepository.getPrograms().ToList();
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 response.IsSuccessful = false;
                 response.Errors.Add(ex.Message);
+                CoreLog.LogError(ex);
             }
             return response;
         }
@@ -39,11 +38,12 @@ namespace ItLabs.FinkInformator.Domain.Managers
             {
                 response.Program = _programsRepository.getPrograms().Where(x => x.ProgramId == request.Id).FirstOrDefault();
 
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
-                
                 response.Errors.Add(ex.Message);
                 response.IsSuccessful = false;
+                CoreLog.LogError(ex);
             }
 
             return response;
@@ -55,10 +55,12 @@ namespace ItLabs.FinkInformator.Domain.Managers
             try
             {
                 response.ProgramsCoursesCustom = _programsRepository.GetProgramCourses(request).ToList();
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 response.Errors.Add(ex.Message);
                 response.IsSuccessful = false;
+                CoreLog.LogError(ex);
             }
             return response;
         }

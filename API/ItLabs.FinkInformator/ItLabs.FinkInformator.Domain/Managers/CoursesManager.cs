@@ -1,13 +1,13 @@
 ﻿using ItLabs.FinkInformator.Core.Interfaces;
 using ItLabs.FinkInformator.Core.Requests;
 using ItLabs.FinkInformator.Core.Responses;
-using ItLabs.FinkInformator.Data.Repositories;
+using ItLabs.FinkInformator.Core;
 using System;
 using System.Linq;
 
 namespace ItLabs.FinkInformator.Domain.Managers
 {
-    public class CoursesManager:ICoursesManager
+    public class CoursesManager : ICoursesManager
     {
         private ICoursesRepository _coursesRepository;
         public CoursesManager(ICoursesRepository coursesRepository)
@@ -21,10 +21,12 @@ namespace ItLabs.FinkInformator.Domain.Managers
             try
             {
                 response.Course = _coursesRepository.GetCourseById(request.Id);
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 response.IsSuccessful = false;
                 response.Errors.Add(ex.Message);
+                CoreLog.LogError(ex);
             }
             return response;
         }
@@ -35,10 +37,12 @@ namespace ItLabs.FinkInformator.Domain.Managers
             try
             {
                 response.Prerequisites = _coursesRepository.GetCoursePrerequisites(request.Id);
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 response.IsSuccessful = false;
                 response.Errors.Add(ex.Message);
+                CoreLog.LogError(ex);
             }
             return response;
         }
@@ -54,6 +58,7 @@ namespace ItLabs.FinkInformator.Domain.Managers
             {
                 response.IsSuccessful = false;
                 response.Errors.Add(ex.Message);
+                CoreLog.LogError(ex);
             }
             return response;
         }
@@ -65,10 +70,12 @@ namespace ItLabs.FinkInformator.Domain.Managers
             try
             {
                 response.CourseProgramNames = _coursesRepository.GetProgramCourseNames(request.CourseName);
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 response.IsSuccessful = false;
                 response.Errors.Add(ex.Message);
+                CoreLog.LogError(ex);
             }
             return response;
         }
