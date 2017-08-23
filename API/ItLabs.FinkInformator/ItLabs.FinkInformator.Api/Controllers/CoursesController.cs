@@ -84,9 +84,8 @@ namespace ItLabs.FinkInformator.Api.Controllers
         [Route("courses/names/{value}")]
         public IHttpActionResult GetCourseProgramNames(string value)
         {
-
-            GetCourseProgramNamesRequest request = new GetCourseProgramNamesRequest { CourseName = value };
-            GetCourseProgramNamesResponse response = new GetCourseProgramNamesResponse();
+            var request = new GetCourseProgramNamesRequest { CourseName = value };
+            var response = new GetCourseProgramNamesResponse();
             try
             {
                 response = _manager.GetCourseProgramNames(request);
@@ -98,7 +97,7 @@ namespace ItLabs.FinkInformator.Api.Controllers
                 return BadRequest("An error has occurred!");
             }
 
-            return Ok();
+            return Ok(response);
         }
     }
 }

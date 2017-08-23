@@ -60,10 +60,11 @@ namespace ItLabs.FinkInformator.Domain.Managers
 
         public GetCourseProgramNamesResponse GetCourseProgramNames(GetCourseProgramNamesRequest request)
         {
-            GetCourseProgramNamesResponse response = new GetCourseProgramNamesResponse();
+            var response = new GetCourseProgramNamesResponse();
+
             try
             {
-                response.CourseProgramNames = _coursesRepository.getProgramCourseNames(request.CourseName);
+                response.CourseProgramNames = _coursesRepository.GetProgramCourseNames(request.CourseName);
             }catch(Exception ex)
             {
                 response.IsSuccessful = false;

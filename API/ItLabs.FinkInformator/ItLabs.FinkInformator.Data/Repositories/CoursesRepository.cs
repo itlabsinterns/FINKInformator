@@ -10,6 +10,7 @@ namespace ItLabs.FinkInformator.Data.Repositories
     public class CoursesRepository:ICoursesRepository
     {
         private SchoolContext _schoolContext;
+
         public CoursesRepository()
         {
             _schoolContext = new SchoolContext();
@@ -31,7 +32,7 @@ namespace ItLabs.FinkInformator.Data.Repositories
                                                        .Select(x => x.Prerequisite).ToList();
         }
 
-        public List<CourseProgramName> getProgramCourseNames(string courseName)
+        public List<CourseProgramName> GetProgramCourseNames(string courseName)
         {
             return _schoolContext.ProgramsCourses.Where(x => x.Course.CourseName.Contains(courseName))
                 .Select(x => new CourseProgramName
