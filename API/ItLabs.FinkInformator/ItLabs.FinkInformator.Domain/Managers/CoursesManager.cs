@@ -10,9 +10,9 @@ namespace ItLabs.FinkInformator.Domain.Managers
     public class CoursesManager:ICoursesManager
     {
         private ICoursesRepository _coursesRepository;
-        public CoursesManager()
+        public CoursesManager(ICoursesRepository coursesRepository)
         {
-            _coursesRepository = new CoursesRepository();
+            _coursesRepository = coursesRepository;
         }
 
         public GetCourseResponse GetCourseById(IdRequest request)

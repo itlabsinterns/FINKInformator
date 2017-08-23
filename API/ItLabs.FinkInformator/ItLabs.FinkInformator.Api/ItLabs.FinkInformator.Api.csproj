@@ -308,6 +308,10 @@
       <Project>{6134d205-b655-4039-8a9d-b48c033a636b}</Project>
       <Name>ItLabs.FinkInformator.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ItLabs.FinkInformator.Data\ItLabs.FinkInformator.Data.csproj">
+      <Project>{FECDF2CC-4F8D-4E15-9EC5-5AF384F3BA7B}</Project>
+      <Name>ItLabs.FinkInformator.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ItLabs.FinkInformator.Domain\ItLabs.FinkInformator.Domain.csproj">
       <Project>{f2c5ac2f-3a43-4038-b945-599cd3411172}</Project>
       <Name>ItLabs.FinkInformator.Domain</Name>

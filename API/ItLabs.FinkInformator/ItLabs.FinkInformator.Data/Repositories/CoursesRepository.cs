@@ -31,9 +31,9 @@ namespace ItLabs.FinkInformator.Data.Repositories
                                                        .Select(x => x.Prerequisite).ToList();
         }
 
-        public List<CourseProgramName> getProgramCourseNames(string CourseName)
+        public List<CourseProgramName> getProgramCourseNames(string courseName)
         {
-            return _schoolContext.ProgramsCourses.Where(x => x.Course.CourseName.Contains(CourseName))
+            return _schoolContext.ProgramsCourses.Where(x => x.Course.CourseName.Contains(courseName))
                 .Select(x => new CourseProgramName
                 {
                     CourseName = x.Course.CourseName,

@@ -18,9 +18,9 @@ namespace ItLabs.FinkInformator.Api.Controllers
         ///Programs Controller Constructor
         /// </summary>
         /// <returns></returns>
-        public ProgramsController()
+        public ProgramsController(IProgramsManager programManager)
         {
-            _manager = new ProgramsManager();
+            _manager = programManager;
             _logger = LogManager.GetLogger("fileLog"); ;
         }
 
