@@ -1,20 +1,19 @@
 ﻿using System;
 using NLog;
+using ItLabs.FinkInformator.Core.Interfaces;
 
 namespace ItLabs.FinkInformator.Core
 {
-    public class CoreLog
+    public class CoreLog:ICoreLog
     {
-        public static void LogError(string message)
+        public Logger _logger;
+        public CoreLog()
         {
-            var logger = LogManager.GetLogger("fileLog");
-            logger.Error(message);
+            _logger = LogManager.GetLogger("fileLog");
         }
-
-        public static void LogError(Exception ex)
+        public void LogException(Exception ex)
         {
-            var logger = LogManager.GetLogger("fileLog");
-            logger.Error(ex);
+            _logger.Error(ex);
         }
     }
 }
