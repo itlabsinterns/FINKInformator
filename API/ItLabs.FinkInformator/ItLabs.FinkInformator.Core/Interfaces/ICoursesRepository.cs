@@ -9,6 +9,6 @@ namespace ItLabs.FinkInformator.Core.Interfaces
         IQueryable<Course> GetAllCourses();
         Course GetCourseById(int id);
         List<Course> GetCoursePrerequisites(int id);
-        List<CourseProgramName> getProgramCourseNames(string CourseName);
+        List<CourseProgramName> GetProgramCourseNames(string CourseName);
     }
 }

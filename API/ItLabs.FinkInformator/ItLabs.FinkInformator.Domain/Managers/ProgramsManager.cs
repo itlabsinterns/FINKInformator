@@ -13,9 +13,9 @@ namespace ItLabs.FinkInformator.Domain.Managers
     public class ProgramsManager:IProgramsManager
     {
         private IProgramsRepository _programsRepository;
-        public ProgramsManager()
+        public ProgramsManager(IProgramsRepository programsRepository)
         {
-            _programsRepository = new ProgramsRepository();
+            _programsRepository = programsRepository;
         }
 
         public GetProgramsResponse GetPrograms()
