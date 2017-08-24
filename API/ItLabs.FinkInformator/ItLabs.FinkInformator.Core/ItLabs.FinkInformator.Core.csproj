@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CoreLog.cs" />
+    <Compile Include="Interfaces\ICoreLog.cs" />
     <Compile Include="Interfaces\ICoursesManager.cs" />
     <Compile Include="Interfaces\ICoursesRepository.cs" />
     <Compile Include="Interfaces\IProgramsManager.cs" />

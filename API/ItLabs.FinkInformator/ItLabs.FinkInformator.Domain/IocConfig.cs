@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using Autofac.Integration.WebApi;
+using ItLabs.FinkInformator.Core;
 using ItLabs.FinkInformator.Core.Interfaces;
 using ItLabs.FinkInformator.Data;
 using ItLabs.FinkInformator.Data.Repositories;
@@ -22,6 +23,7 @@ namespace ItLabs.FinkInformator.Api.App_Start
             builder.RegisterType<ProgramsManager>().As<IProgramsManager>();
             builder.RegisterType<CoursesRepository>().As<ICoursesRepository>();
             builder.RegisterType<ProgramsRepository>().As<IProgramsRepository>();
+            builder.RegisterType<CoreLog>().As<ICoreLog>();
 
             var container = builder.Build();
             config.DependencyResolver = new AutofacWebApiDependencyResolver(container);

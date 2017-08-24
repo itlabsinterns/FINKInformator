@@ -10,9 +10,11 @@ namespace ItLabs.FinkInformator.Domain.Managers
     public class CoursesManager : ICoursesManager
     {
         private ICoursesRepository _coursesRepository;
-        public CoursesManager(ICoursesRepository coursesRepository)
+        private ICoreLog _logger;
+        public CoursesManager(ICoursesRepository coursesRepository, ICoreLog logger)
         {
             _coursesRepository = coursesRepository;
+            _logger = logger;
         }
 
         public GetCourseResponse GetCourseById(IdRequest request)
@@ -26,7 +28,7 @@ namespace ItLabs.FinkInformator.Domain.Managers
             {
                 response.IsSuccessful = false;
                 response.Errors.Add(ex.Message);
-                CoreLog.LogError(ex);
+                _logger.LogException(ex);
             }
             return response;
         }
@@ -42,7 +44,7 @@ namespace ItLabs.FinkInformator.Domain.Managers
             {
                 response.IsSuccessful = false;
                 response.Errors.Add(ex.Message);
-                CoreLog.LogError(ex);
+                _logger.LogException(ex);
             }
             return response;
         }
@@ -58,7 +60,7 @@ namespace ItLabs.FinkInformator.Domain.Managers
             {
                 response.IsSuccessful = false;
                 response.Errors.Add(ex.Message);
-                CoreLog.LogError(ex);
+                _logger.LogException(ex);
             }
             return response;
         }
@@ -75,7 +77,7 @@ namespace ItLabs.FinkInformator.Domain.Managers
             {
                 response.IsSuccessful = false;
                 response.Errors.Add(ex.Message);
-                CoreLog.LogError(ex);
+                _logger.LogException(ex);
             }
             return response;
         }
