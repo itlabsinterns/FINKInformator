@@ -1,0 +1,10 @@
+div.img-responsive{
+   position: relative;
+   min-height: 100%;
+}
+#programsContainer
+{
+    position: absolute;
+    margin-top:28%;
+    text-align: center;
+}

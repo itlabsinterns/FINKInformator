@@ -1,21 +1,25 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import {HttpModule} from '@angular/http';
+
 import { AppComponent } from './app.component';
-import { NavbarComp } from './navbar/navbar.component';
-import { NavbarsComponent } from './navbars/navbars.component';
-
-
+import {HeaderComponent} from './header.component';
+import {Program} from './program.component';
+import {ProgramsService} from './programs.service';
+import {ProgramContainer} from './programcontainer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComp,
-    NavbarsComponent
+    HeaderComponent,
+    Program,
+    ProgramContainer
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpModule
   ],
-  providers: [],
+  providers: [ProgramsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

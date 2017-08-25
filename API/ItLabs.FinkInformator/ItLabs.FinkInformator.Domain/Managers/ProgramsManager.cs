@@ -10,9 +10,11 @@ namespace ItLabs.FinkInformator.Domain.Managers
     public class ProgramsManager : IProgramsManager
     {
         private IProgramsRepository _programsRepository;
-        public ProgramsManager(IProgramsRepository programsRepository)
+        private ICoreLog _logger;
+        public ProgramsManager(IProgramsRepository programsRepository, ICoreLog logger)
         {
             _programsRepository = programsRepository;
+            _logger = logger;
         }
 
         public GetProgramsResponse GetPrograms()
@@ -26,7 +28,7 @@ namespace ItLabs.FinkInformator.Domain.Managers
             {
                 response.IsSuccessful = false;
                 response.Errors.Add(ex.Message);
-                CoreLog.LogError(ex);
+                _logger.LogException(ex);
             }
             return response;
         }
@@ -43,7 +45,7 @@ namespace ItLabs.FinkInformator.Domain.Managers
             {
                 response.Errors.Add(ex.Message);
                 response.IsSuccessful = false;
-                CoreLog.LogError(ex);
+                _logger.LogException(ex);
             }
 
             return response;
@@ -60,7 +62,7 @@ namespace ItLabs.FinkInformator.Domain.Managers
             {
                 response.Errors.Add(ex.Message);
                 response.IsSuccessful = false;
-                CoreLog.LogError(ex);
+                _logger.LogException(ex);
             }
             return response;
         }
