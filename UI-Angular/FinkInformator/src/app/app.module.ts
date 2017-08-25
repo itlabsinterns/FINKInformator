@@ -1,23 +1,25 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {HttpModule} from '@angular/http';
+import { NguiParallaxScrollModule }  from '@ngui/parallax-scroll';
 
 import { AppComponent } from './app.component';
-import {HeaderComponent} from './header.component';
-import {Program} from './program.component';
-import {ProgramsService} from './programs.service';
-import {ProgramContainer} from './programcontainer.component';
+import {NavbarComp} from './navbar/navbar.component';
+import {Program} from './programComponent/program.component';
+import {ProgramsService} from './services/programs.service';
+import {ProgramContainer} from './programcontainer/programcontainer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
+    NavbarComp,
     Program,
     ProgramContainer
   ],
   imports: [
     BrowserModule,
-    HttpModule
+    HttpModule,
+    NguiParallaxScrollModule
   ],
   providers: [ProgramsService],
   bootstrap: [AppComponent]

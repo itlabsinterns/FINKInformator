@@ -2,7 +2,8 @@ import {Component} from '@angular/core';
 
 @Component({
     selector:'program',
-    template:'<span>{{ProgramName}}</span>'
+    templateUrl: './program.component.html',
+    styleUrls: ['./program.component.css']
 })
 
 export class Program

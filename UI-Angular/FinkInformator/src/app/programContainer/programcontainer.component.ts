@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
-import {ProgramsService} from './programs.service';
+import {ProgramsService} from '../services/programs.service';
 import {OnInit} from '@angular/core';
-import {Program} from './program.component';
+import {Program} from '../programComponent/program.component'   ;
 
 @Component({
     selector:'programContainer',
