@@ -4,6 +4,8 @@ using System.Linq;
 using ItLabs.FinkInformator.Core.Responses;
 using ItLabs.FinkInformator.Core.Requests;
 using System;
+using ItLabs.FinkInformator.Domain.Validators;
+using FluentValidation.Results;
 
 namespace ItLabs.FinkInformator.Domain.Managers
 {
@@ -19,7 +21,7 @@ namespace ItLabs.FinkInformator.Domain.Managers
 
         public GetProgramsResponse GetPrograms()
         {
-            var response = new GetProgramsResponse();
+            GetProgramsResponse response = new GetProgramsResponse();
             try
             {
                 response.Programs = _programsRepository.getPrograms().ToList();
@@ -35,7 +37,19 @@ namespace ItLabs.FinkInformator.Domain.Managers
 
         public GetProgramResponse GetProgramsById(IdRequest request)
         {
+            IdRequestValidator validator = new IdRequestValidator();
+            ValidationResult result = validator.Validate(request);
             var response = new GetProgramResponse();
+            if (!result.IsValid)
+            {
+                response.IsSuccessful = false;
+                foreach (var error in result.Errors)
+                {
+                    response.Errors.Add(error.ErrorMessage);
+                }
+                return response;
+            }
+
             try
             {
                 response.Program = _programsRepository.getPrograms().Where(x => x.ProgramId == request.Id).FirstOrDefault();
@@ -53,7 +67,19 @@ namespace ItLabs.FinkInformator.Domain.Managers
 
         public GetProgramCoursesResponse GetProgramCourses(GetProgramCoursesRequest request)
         {
+            GetProgramCoursesRequestValidator validator = new GetProgramCoursesRequestValidator();
+            ValidationResult result = validator.Validate(request);
             GetProgramCoursesResponse response = new GetProgramCoursesResponse();
+            if (!result.IsValid)
+            {
+                response.IsSuccessful = false;
+                foreach (var error in result.Errors)
+                {
+                    response.Errors.Add(error.ErrorMessage);
+                }
+                return response;
+            }
+
             try
             {
                 response.ProgramsCoursesCustom = _programsRepository.GetProgramCourses(request).ToList();
