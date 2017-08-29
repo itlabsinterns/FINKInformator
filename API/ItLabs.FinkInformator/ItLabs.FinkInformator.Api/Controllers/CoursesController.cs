@@ -5,7 +5,6 @@ using ItLabs.FinkInformator.Core.Requests;
 using System.ComponentModel;
 using System.Web.Http.Description;
 using ItLabs.FinkInformator.Core.Interfaces;
-using System;
 
 namespace ItLabs.FinkInformator.Api.Controllers
 {

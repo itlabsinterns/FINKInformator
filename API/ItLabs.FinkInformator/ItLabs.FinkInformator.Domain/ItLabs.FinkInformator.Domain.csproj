@@ -65,6 +65,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Extensions\ResponseBaseExtension.cs" />
+    <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="IocConfig.cs" />
     <Compile Include="Managers\CoursesManager.cs" />
     <Compile Include="Managers\ProgramsManager.cs" />

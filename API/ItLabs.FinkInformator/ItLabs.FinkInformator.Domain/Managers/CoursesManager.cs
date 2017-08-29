@@ -1,11 +1,11 @@
 ﻿using ItLabs.FinkInformator.Core.Interfaces;
 using ItLabs.FinkInformator.Core.Requests;
 using ItLabs.FinkInformator.Core.Responses;
-using ItLabs.FinkInformator.Core;
 using System;
 using System.Linq;
 using ItLabs.FinkInformator.Domain.Validators;
 using FluentValidation.Results;
+using ItLabs.FinkInformator.Domain.Extensions;
 
 namespace ItLabs.FinkInformator.Domain.Managers
 {
@@ -21,18 +21,9 @@ namespace ItLabs.FinkInformator.Domain.Managers
 
         public GetCourseResponse GetCourseById(IdRequest request)
         {
-            IdRequestValidator validator = new IdRequestValidator();
-            ValidationResult result = validator.Validate(request);
-            GetCourseResponse response = new GetCourseResponse();
-            if (!result.IsValid)
-            {
-                response.IsSuccessful = false;
-                foreach (var error in result.Errors)
-                {
-                    response.Errors.Add(error.ErrorMessage);
-                }
-                    return response;
-            }
+            var response = new IdRequestValidator().Validate(request).ToResponse<GetCourseResponse>();
+            if (!response.IsSuccessful)
+                return response;
 
             try
             {
@@ -85,7 +76,7 @@ namespace ItLabs.FinkInformator.Domain.Managers
             catch (Exception ex)
             {
                 response.IsSuccessful = false;
-                response.Errors.Add(ex.Message);
+                response.Errors.Add("An error has occurred while getting all courses");
                 _logger.LogException(ex);
             }
             return response;

@@ -1,4 +1,6 @@
-﻿namespace ItLabs.FinkInformator.Core.Requests
+﻿using System;
+
+namespace ItLabs.FinkInformator.Core.Requests
 {
     public class IdRequest
     {
@@ -6,6 +8,7 @@
         {
             if (id.HasValue)
                 Id = id.Value;
+
         }
 
         public int Id { get; set; }
