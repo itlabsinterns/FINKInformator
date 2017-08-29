@@ -21,9 +21,14 @@ namespace ItLabs.FinkInformator.Domain.Managers
 
         public GetCourseResponse GetCourseById(IdRequest request)
         {
-            var response = new IdRequestValidator().Validate(request).ToResponse<GetCourseResponse>();
+            var validationResult = new IdRequestValidator().Validate(request);
+            var response = new GetCourseResponse() { IsSuccessful = validationResult.IsValid };
+
             if (!response.IsSuccessful)
+            {
+                response.Errors.AddRange(validationResult.Errors.Select(x => x.ErrorMessage));
                 return response;
+            }
 
             try
             {
@@ -32,7 +37,7 @@ namespace ItLabs.FinkInformator.Domain.Managers
             catch (Exception ex)
             {
                 response.IsSuccessful = false;
-                response.Errors.Add(ex.Message);
+                response.Errors.Add("An error has occurred while getting the specific course!");
                 _logger.LogException(ex);
             }
             return response;
@@ -40,16 +45,12 @@ namespace ItLabs.FinkInformator.Domain.Managers
 
         public GetCoursePrerequisitesResponse GetCoursePrerequisites(IdRequest request)
         {
-            IdRequestValidator validator = new IdRequestValidator();
-            ValidationResult result = validator.Validate(request);
-            GetCoursePrerequisitesResponse response = new GetCoursePrerequisitesResponse();
-            if (!result.IsValid)
+            var validationResult = new IdRequestValidator().Validate(request);
+            var response = new GetCoursePrerequisitesResponse() { IsSuccessful = validationResult.IsValid };
+
+            if (!response.IsSuccessful)
             {
-                response.IsSuccessful = false;
-                foreach (var error in result.Errors)
-                {
-                    response.Errors.Add(error.ErrorMessage);
-                }
+                response.Errors.AddRange(validationResult.Errors.Select(x => x.ErrorMessage));
                 return response;
             }
 
@@ -60,7 +61,7 @@ namespace ItLabs.FinkInformator.Domain.Managers
             catch (Exception ex)
             {
                 response.IsSuccessful = false;
-                response.Errors.Add(ex.Message);
+                response.Errors.Add("An error has occurred while getting course prerequisites!");
                 _logger.LogException(ex);
             }
             return response;
@@ -76,7 +77,7 @@ namespace ItLabs.FinkInformator.Domain.Managers
             catch (Exception ex)
             {
                 response.IsSuccessful = false;
-                response.Errors.Add("An error has occurred while getting all courses");
+                response.Errors.Add("An error has occurred while getting all courses!");
                 _logger.LogException(ex);
             }
             return response;
@@ -84,16 +85,12 @@ namespace ItLabs.FinkInformator.Domain.Managers
 
         public GetCourseProgramNamesResponse GetCourseProgramNames(GetCourseProgramNamesRequest request)
         {
-            GetCourseProgramNamesRequestValidator validator = new GetCourseProgramNamesRequestValidator();
-            ValidationResult result = validator.Validate(request);
-            GetCourseProgramNamesResponse response = new GetCourseProgramNamesResponse();
-            if (!result.IsValid)
+            var validationResult = new GetCourseProgramNamesRequestValidator().Validate(request);
+            var response = new GetCourseProgramNamesResponse() { IsSuccessful = validationResult.IsValid };
+
+            if (!response.IsSuccessful)
             {
-                response.IsSuccessful = false;
-                foreach (var error in result.Errors)
-                {
-                    response.Errors.Add(error.ErrorMessage);
-                }
+                response.Errors.AddRange(validationResult.Errors.Select(x => x.ErrorMessage));
                 return response;
             }
 
@@ -104,7 +101,7 @@ namespace ItLabs.FinkInformator.Domain.Managers
             catch (Exception ex)
             {
                 response.IsSuccessful = false;
-                response.Errors.Add(ex.Message);
+                response.Errors.Add("An error has occurred while getting filtered course names!");
                 _logger.LogException(ex);
             }
             return response;

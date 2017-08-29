@@ -6,6 +6,7 @@ using ItLabs.FinkInformator.Core.Requests;
 using System;
 using ItLabs.FinkInformator.Domain.Validators;
 using FluentValidation.Results;
+using ItLabs.FinkInformator.Domain.Extensions;
 
 namespace ItLabs.FinkInformator.Domain.Managers
 {
@@ -29,7 +30,7 @@ namespace ItLabs.FinkInformator.Domain.Managers
             catch (Exception ex)
             {
                 response.IsSuccessful = false;
-                response.Errors.Add(ex.Message);
+                response.Errors.Add("An error has occurred while getting all programs!");
                 _logger.LogException(ex);
             }
             return response;
@@ -37,16 +38,12 @@ namespace ItLabs.FinkInformator.Domain.Managers
 
         public GetProgramResponse GetProgramsById(IdRequest request)
         {
-            IdRequestValidator validator = new IdRequestValidator();
-            ValidationResult result = validator.Validate(request);
-            var response = new GetProgramResponse();
-            if (!result.IsValid)
+            var validationResult = new IdRequestValidator().Validate(request);
+            var response = new GetProgramResponse() { IsSuccessful = validationResult.IsValid };
+
+            if (!response.IsSuccessful)
             {
-                response.IsSuccessful = false;
-                foreach (var error in result.Errors)
-                {
-                    response.Errors.Add(error.ErrorMessage);
-                }
+                response.Errors.AddRange(validationResult.Errors.Select(x => x.ErrorMessage));
                 return response;
             }
 
@@ -57,8 +54,8 @@ namespace ItLabs.FinkInformator.Domain.Managers
             }
             catch (Exception ex)
             {
-                response.Errors.Add(ex.Message);
                 response.IsSuccessful = false;
+                response.Errors.Add("An error has occurred while getting the specific program!");
                 _logger.LogException(ex);
             }
 
@@ -67,16 +64,12 @@ namespace ItLabs.FinkInformator.Domain.Managers
 
         public GetProgramCoursesResponse GetProgramCourses(GetProgramCoursesRequest request)
         {
-            GetProgramCoursesRequestValidator validator = new GetProgramCoursesRequestValidator();
-            ValidationResult result = validator.Validate(request);
-            GetProgramCoursesResponse response = new GetProgramCoursesResponse();
-            if (!result.IsValid)
+            var validationResult = new GetProgramCoursesRequestValidator().Validate(request);
+            var response = new GetProgramCoursesResponse() { IsSuccessful = validationResult.IsValid };
+
+            if (!response.IsSuccessful)
             {
-                response.IsSuccessful = false;
-                foreach (var error in result.Errors)
-                {
-                    response.Errors.Add(error.ErrorMessage);
-                }
+                response.Errors.AddRange(validationResult.Errors.Select(x => x.ErrorMessage));
                 return response;
             }
 
@@ -86,8 +79,8 @@ namespace ItLabs.FinkInformator.Domain.Managers
             }
             catch (Exception ex)
             {
-                response.Errors.Add(ex.Message);
                 response.IsSuccessful = false;
+                response.Errors.Add("An error has occurred while getting program courses!");
                 _logger.LogException(ex);
             }
             return response;

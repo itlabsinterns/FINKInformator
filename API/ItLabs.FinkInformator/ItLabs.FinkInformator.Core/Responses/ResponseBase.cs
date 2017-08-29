@@ -14,5 +14,9 @@ namespace ItLabs.FinkInformator.Core.Responses
 
         public List<string> Errors { get; set; }
 
+        public override string ToString()
+        {
+            return string.Join(",", this.Errors);
+        }
     }
 }

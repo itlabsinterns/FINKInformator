@@ -34,7 +34,7 @@ namespace ItLabs.FinkInformator.Api.Controllers
         {
             var response = _manager.GetPrograms();
             if (!response.IsSuccessful)
-                return BadRequest(string.Join(",", response.Errors));
+                return BadRequest(response.ToString());
 
             return Ok(response);
         }
@@ -52,7 +52,7 @@ namespace ItLabs.FinkInformator.Api.Controllers
             var request = new IdRequest { Id = id };
             var response = _manager.GetProgramsById(request);
             if (!response.IsSuccessful)
-                return BadRequest(string.Join(",", response.Errors));
+                return BadRequest(response.ToString());
 
             return Ok(response);
         }
@@ -73,7 +73,7 @@ namespace ItLabs.FinkInformator.Api.Controllers
             var response = _manager.GetProgramCourses(request);
 
             if (!response.IsSuccessful)
-                return BadRequest(string.Join(",", response.Errors));
+                return BadRequest(response.ToString());
 
             return Ok(response);
         }
