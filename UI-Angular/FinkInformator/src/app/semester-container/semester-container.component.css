@@ -1,0 +1,15 @@
+
+.container-fluid{
+    position:absolute; 
+    height:100%; 
+    width: 100%;
+}
+
+.btn{
+    margin-bottom:10px;
+}
+
+.col-xs-8{
+    position:absolute;
+    top:35%;
+}
