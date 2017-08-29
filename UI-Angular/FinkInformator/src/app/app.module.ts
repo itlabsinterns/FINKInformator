@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import {NavbarComp} from './navbar/navbar.component';
 import {Program} from './programComponent/program.component';
 import {ProgramsService} from './services/programs.service';
+import {CoursesService} from './services/courses.service';
 import {ProgramContainer} from './programcontainer/programcontainer.component';
 
 @NgModule({
@@ -21,7 +22,7 @@ import {ProgramContainer} from './programcontainer/programcontainer.component';
     HttpModule,
     NguiParallaxScrollModule
   ],
-  providers: [ProgramsService],
+  providers: [ProgramsService,CoursesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
