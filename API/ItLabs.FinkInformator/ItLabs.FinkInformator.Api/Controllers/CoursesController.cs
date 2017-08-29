@@ -30,7 +30,7 @@ namespace ItLabs.FinkInformator.Api.Controllers
         {
             var response = _manager.GetCourses();
             if (!response.IsSuccessful)
-                return BadRequest("An error has occurred");
+                return BadRequest(string.Join(",", response.Errors));
             return Ok(response);
         }
 
@@ -47,7 +47,7 @@ namespace ItLabs.FinkInformator.Api.Controllers
             var request = new IdRequest { Id = id };
             var response = _manager.GetCourseById(request);
             if (!response.IsSuccessful)
-                return BadRequest("An error has occurred");
+                return BadRequest(string.Join(",",response.Errors));
 
             return Ok(response);
         }
@@ -66,7 +66,7 @@ namespace ItLabs.FinkInformator.Api.Controllers
             var request = new IdRequest() { Id = id };
             var response = _manager.GetCoursePrerequisites(request);
             if (!response.IsSuccessful)
-                return BadRequest("An error has occurred");
+                return BadRequest(string.Join(",", response.Errors));
 
             return Ok(response);
         }
@@ -77,6 +77,7 @@ namespace ItLabs.FinkInformator.Api.Controllers
         /// <param name="value">Typed value used for filtering course names</param>
         /// <returns></returns>
         [Description("Get Filtered Courses By Name")]
+        [ResponseType(typeof(GetCourseProgramNamesResponse))]
         [HttpGet]
         [Route("courses/names/{value}")]
         public IHttpActionResult GetCourseProgramNames(string value)
@@ -84,7 +85,7 @@ namespace ItLabs.FinkInformator.Api.Controllers
             var request = new GetCourseProgramNamesRequest { CourseName = value };
             var response = _manager.GetCourseProgramNames(request);
             if (!response.IsSuccessful)
-                return BadRequest("An error has occurred!");
+                return BadRequest(string.Join(",", response.Errors));
 
             return Ok(response);
         }

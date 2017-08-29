@@ -15,6 +15,19 @@ export class ProgramsService
     
     getPrograms(){
         return this._http.get("http://localhost:4329/programs")
-        .map(res => res.json());
+        .map(response => response.json());
     }
+
+    getProgramById(programId)
+    {
+        return this._http.get("http://localhost:4329/programs/"+programId)
+        .map(response=>response.json());
+    }
+
+    GetProgramCourses(programId,semester)
+    {
+        return this._http.get("http://localhost:4329/programs/"+programId+"/"+semester)
+        .map(response=>response.json());
+    }
+
 }

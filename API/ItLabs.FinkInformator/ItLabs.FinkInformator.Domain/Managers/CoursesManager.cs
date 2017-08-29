@@ -4,6 +4,8 @@ using ItLabs.FinkInformator.Core.Responses;
 using ItLabs.FinkInformator.Core;
 using System;
 using System.Linq;
+using ItLabs.FinkInformator.Domain.Validators;
+using FluentValidation.Results;
 
 namespace ItLabs.FinkInformator.Domain.Managers
 {
@@ -19,7 +21,19 @@ namespace ItLabs.FinkInformator.Domain.Managers
 
         public GetCourseResponse GetCourseById(IdRequest request)
         {
+            IdRequestValidator validator = new IdRequestValidator();
+            ValidationResult result = validator.Validate(request);
             GetCourseResponse response = new GetCourseResponse();
+            if (!result.IsValid)
+            {
+                response.IsSuccessful = false;
+                foreach (var error in result.Errors)
+                {
+                    response.Errors.Add(error.ErrorMessage);
+                }
+                    return response;
+            }
+
             try
             {
                 response.Course = _coursesRepository.GetCourseById(request.Id);
@@ -35,7 +49,19 @@ namespace ItLabs.FinkInformator.Domain.Managers
 
         public GetCoursePrerequisitesResponse GetCoursePrerequisites(IdRequest request)
         {
+            IdRequestValidator validator = new IdRequestValidator();
+            ValidationResult result = validator.Validate(request);
             GetCoursePrerequisitesResponse response = new GetCoursePrerequisitesResponse();
+            if (!result.IsValid)
+            {
+                response.IsSuccessful = false;
+                foreach (var error in result.Errors)
+                {
+                    response.Errors.Add(error.ErrorMessage);
+                }
+                return response;
+            }
+
             try
             {
                 response.Prerequisites = _coursesRepository.GetCoursePrerequisites(request.Id);
@@ -67,7 +93,18 @@ namespace ItLabs.FinkInformator.Domain.Managers
 
         public GetCourseProgramNamesResponse GetCourseProgramNames(GetCourseProgramNamesRequest request)
         {
-            var response = new GetCourseProgramNamesResponse();
+            GetCourseProgramNamesRequestValidator validator = new GetCourseProgramNamesRequestValidator();
+            ValidationResult result = validator.Validate(request);
+            GetCourseProgramNamesResponse response = new GetCourseProgramNamesResponse();
+            if (!result.IsValid)
+            {
+                response.IsSuccessful = false;
+                foreach (var error in result.Errors)
+                {
+                    response.Errors.Add(error.ErrorMessage);
+                }
+                return response;
+            }
 
             try
             {
