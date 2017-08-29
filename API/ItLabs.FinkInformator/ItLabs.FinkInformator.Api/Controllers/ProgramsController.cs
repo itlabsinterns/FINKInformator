@@ -6,6 +6,7 @@ using System.ComponentModel;
 using ItLabs.FinkInformator.Domain.Managers;
 using System.Web.Http.Description;
 using ItLabs.FinkInformator.Core.Responses;
+using ItLabs.FinkInformator.Core.Models;
 
 namespace ItLabs.FinkInformator.Api.Controllers
 {
@@ -46,6 +47,7 @@ namespace ItLabs.FinkInformator.Api.Controllers
         /// <returns></returns>
         [Description("Get Program by Id")]
         [ResponseType(typeof(GetProgramResponse))]
+        [Route("programs/{id}")]
         [HttpGet]
         public IHttpActionResult Get(int id)
         {
@@ -76,6 +78,20 @@ namespace ItLabs.FinkInformator.Api.Controllers
                 return BadRequest(response.ToString());
 
             return Ok(response);
+        }
+        // <summary>
+        // Add a new program
+        // </summary>
+        // <param name = "ProgramName" > Name of the program </param>
+        // <returns></returns>
+        [HttpPost]
+        [Route("programs/{ProgramName}")]
+        public IHttpActionResult AddProgram(string ProgramName)
+        {
+            var response = _manager.AddProgram(new Program() { ProgramName = ProgramName });
+            if (response.IsSuccessful)
+                return Ok(response);
+            return BadRequest(response.ToString());
         }
 
     }
