@@ -7,7 +7,7 @@
 
 <div class="bgimg-1">
 
-    <programContainer></programContainer>
+    <programContainer (setProgram)='onProgramClick($event)'></programContainer>
   
 </div>
 
@@ -16,7 +16,7 @@
 </div>
 
 <div class="bgimg-2">
-    <app-year-container></app-year-container>
+    <app-year-container (setYear)='onYearClick($event)'></app-year-container>
 </div>
 
 <div style="position:relative;">
@@ -25,7 +25,7 @@
 </div>
 
 <div class="bgimg-3">
-<app-semester-container></app-semester-container>
+<app-semester-container  (setSemester)='onSemesterClick($event)'></app-semester-container>
 </div>
 
 <div style="position:relative;">

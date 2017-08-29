@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { ProgramsService } from '../services/programs.service';
 import { OnInit } from '@angular/core';
 import { Program } from '../programComponent/program.component';
@@ -11,6 +11,7 @@ import { Program } from '../programComponent/program.component';
 
 export class ProgramContainer implements OnInit {
     programs: Program[] = [];
+    @Output() setProgram: EventEmitter<number> = new EventEmitter<number>();
 
     constructor(private _programsService: ProgramsService) {
 
@@ -25,6 +26,10 @@ export class ProgramContainer implements OnInit {
             .subscribe(response => {
                 this.programs = response.Programs;
             });
+    }
+
+    onClick(programId){
+        this.setProgram.emit(programId);
     }
 
 }
