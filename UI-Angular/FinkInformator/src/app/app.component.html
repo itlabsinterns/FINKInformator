@@ -2,12 +2,9 @@
   <header>
     <nav-bar></nav-bar>
   </header>
-
-
-
+  <notification-bar class="notifications"></notification-bar>
 <div class="bgimg-1">
-
-    <programContainer #programContainer (setProgram)='onProgramClick($event)'></programContainer>
+    <programContainer (setProgram)='onProgramClick($event)'></programContainer>
   
 </div>
 
@@ -34,5 +31,5 @@
 </div>
 
 <div class="bgimg-1">
-
+<app-courses-container [programId]="programid" [semester]="(year*2)+(semester-2)"></app-courses-container>
 </div>

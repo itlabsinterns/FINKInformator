@@ -9,8 +9,8 @@ import { Component } from '@angular/core';
 export class Program {
 
     constructor(
-        public ProgramId: number = undefined,
-        public ProgramName: string = '') {
+        public ProgramId: number,
+        public ProgramName: string) {
 
     }
 
