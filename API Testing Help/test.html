@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="css/style.css" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    </head>
+    <body>
+    <div class="content">
+        <table>
+            <tr><td><input id="name" type="text"></td></tr>
+            <tr><td><button id="button" >Insert</button></td></tr>
+            
+        </table>
+    </div>
+    <div id="toHide">
+        <tr>
+            <td>Name: <input type="text" name="" id="namePut"></td>
+        </tr>
+        <tr>
+            <td>ID : <input type="text" name="" id="idPut"><button id="check">Check</button></td>
+        </tr>
+        <tr>
+            <td><button id="change">Change</button></td>
+        </tr>
+    </div>
+    
+    <script>
+        $(document).ready(function(){
+            $("#button").click(function(){
+                var name = $("#name").val();
+
+            $.ajax({
+                type: "POST",
+                url:"http://localhost:4329/programs"+"/"+name,
+                dataType: 'JSON',
+                success: function(){
+                    alert("saved lul wtf xd");
+                }
+            });
+            });
+            $("#check").click(function(){
+                $.ajax({
+                type: "GET",
+                url:"http://localhost:4329/programs"+"/"+$("#idPut").val(),
+                dataType: 'JSON',
+                success: function(data){
+                    $("#namePut").val(data.Program.ProgramName);
+                }
+            });
+            });
+        })
+    </script>
+    </body>
+</html>

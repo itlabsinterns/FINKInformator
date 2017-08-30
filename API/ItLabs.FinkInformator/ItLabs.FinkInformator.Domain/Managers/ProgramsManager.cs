@@ -7,6 +7,7 @@ using System;
 using ItLabs.FinkInformator.Domain.Validators;
 using FluentValidation.Results;
 using ItLabs.FinkInformator.Domain.Extensions;
+using ItLabs.FinkInformator.Core.Models;
 
 namespace ItLabs.FinkInformator.Domain.Managers
 {
@@ -32,6 +33,20 @@ namespace ItLabs.FinkInformator.Domain.Managers
                 response.IsSuccessful = false;
                 response.Errors.Add("An error has occurred while getting all programs!");
                 _logger.LogException(ex);
+            }
+            return response;
+        }
+        public ResponseBase AddProgram(Program program)
+        {
+            var response = new ResponseBase();
+            try
+            {
+                _programsRepository.AddProgram(program);
+            }
+            catch(Exception ex)
+            {
+                _logger.LogException(ex);
+                response.IsSuccessful = false;
             }
             return response;
         }

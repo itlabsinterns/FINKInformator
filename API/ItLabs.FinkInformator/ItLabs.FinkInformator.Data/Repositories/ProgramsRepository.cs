@@ -3,6 +3,7 @@ using ItLabs.FinkInformator.Core.Interfaces;
 using ItLabs.FinkInformator.Data.Models;
 using System.Linq;
 using ItLabs.FinkInformator.Core.Requests;
+using System;
 
 namespace ItLabs.FinkInformator.Data
 {
@@ -29,6 +30,12 @@ namespace ItLabs.FinkInformator.Data
                                                                                     .Select(z => z.Prerequisite).ToList()
                                                                 });
 
+        }
+
+        public void AddProgram(Program program)
+        {
+            _schoolContext.Programs.Add(program);
+            _schoolContext.SaveChanges();
         }
     }
 }

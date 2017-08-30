@@ -4,9 +4,6 @@ using ItLabs.FinkInformator.Core.Responses;
 using System;
 using System.Linq;
 using ItLabs.FinkInformator.Domain.Validators;
-using FluentValidation.Results;
-using ItLabs.FinkInformator.Domain.Extensions;
-
 namespace ItLabs.FinkInformator.Domain.Managers
 {
     public class CoursesManager : ICoursesManager
