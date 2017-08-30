@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {HttpModule} from '@angular/http';
+import {Ng2PageScrollModule} from 'ng2-page-scroll';
 
 import { AppComponent } from './app.component';
 import {NavbarComp} from './navbar/navbar.component';
@@ -24,6 +25,7 @@ import { SemesterContainerComponent } from './semester-container/semester-contai
   imports: [
     BrowserModule,
     HttpModule,
+    Ng2PageScrollModule
   ],
   providers: [ProgramsService,CoursesService],
   bootstrap: [AppComponent]
