@@ -1,0 +1,16 @@
+.main{
+    margin-top:2%;
+    text-align: center;
+    font-weight: bold;
+    background-color:dimgray; 
+    color:white;
+}
+
+
+.list-group-item{
+    font-size: 18px;
+}
+
+.container-fluid{
+    height: 100%;
+}

@@ -46,14 +46,21 @@ export class AppComponent implements OnInit{
     if (this.programid == 0) {
       let pageScrollInstance: PageScrollInstance = PageScrollInstance.simpleInstance(this.document, 'programContainer');
       this.pageScrollService.start(pageScrollInstance);
-      setTimeout(()=>this.notificationBarService.create({ message: 'PROGRAM NOT SELECTED!', type: NotificationType.Error}),1300);
+      setTimeout(() => this.notificationBarService.create({ message: 'PROGRAM NOT SELECTED!', type: NotificationType.Error }), 1300);
     }
-    else if (this.year==0){
-        let pageScrollInstance: PageScrollInstance = PageScrollInstance.simpleInstance(this.document, 'app-year-container');
-        this.pageScrollService.start(pageScrollInstance);
-        setTimeout(()=>this.notificationBarService.create({ message: 'YEAR NOT SELECTED!', type: NotificationType.Error}),1300);
+    else if (this.year == 0) {
+      let pageScrollInstance: PageScrollInstance = PageScrollInstance.simpleInstance(this.document, 'app-year-container');
+      this.pageScrollService.start(pageScrollInstance);
+      setTimeout(() => this.notificationBarService.create({ message: 'YEAR NOT SELECTED!', type: NotificationType.Error }), 1300);
     }
-    else this.semester=semester;
+    else {
+    this.semester = semester;
+      let pageScrollInstance: PageScrollInstance = PageScrollInstance.simpleInstance(this.document, 'app-courses-container');
+      this.pageScrollService.start(pageScrollInstance);
+    }
+  }
+
+  onCourseClick(courseId){
     
   }
 }

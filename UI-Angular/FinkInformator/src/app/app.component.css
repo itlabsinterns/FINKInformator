@@ -1,5 +1,5 @@
  
- .bgimg-1, .bgimg-2, .bgimg-3 {
+ .bgimg-1, .bgimg-2, .bgimg-3, .bgimg-4 {
     position: relative;
     background-attachment: fixed;
     background-position: center;
@@ -18,8 +18,13 @@
   }
   
   .bgimg-3 {
-    background-image: url("./assets/images/parallax2.jpg");
+    background-image: url("./assets/images/parallax3.jpg");
     min-height: 400px;
+  }
+  
+  .bgimg-4 {
+    background-image: url("./assets/images/parallax1.jpg") ;
+    min-height: 100%;
   }
   
   .caption {

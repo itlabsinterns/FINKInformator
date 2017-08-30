@@ -1,5 +1,5 @@
 <div class="container-fluid">
     <div class="col-xs-8 col-xs-push-2">
-        <button  smoothScroll duration="800" offset="120" containerId="#test" class="btn btn-danger btn-block" *ngFor="let program of programs" (click)='onClick(program.ProgramId)'>{{program.ProgramName}}</button>
+        <button  class="btn btn-lg btn-danger btn-block" *ngFor="let program of programs" (click)='onClick(program.ProgramId)'>{{program.ProgramName}}</button>
     </div>
 </div>
