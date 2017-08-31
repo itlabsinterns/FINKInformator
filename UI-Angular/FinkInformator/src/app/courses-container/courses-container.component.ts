@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import {Course} from '../course-component/course-component.component';
 import {ProgramsService} from '../services/programs.service';
 import { ProgramCourse } from '../program-course/program-course.component';
+import { Router, Routes } from '@angular/router';
 
 @Component({
   selector: 'app-courses-container',
@@ -17,7 +18,7 @@ export class CoursesContainerComponent implements OnInit {
   _optionalCourses: ProgramCourse[];
   
 
-  constructor(private programsService:ProgramsService) { }
+  constructor(private programsService:ProgramsService, private router: Router) { }
 
   ngOnInit() {
     
@@ -44,6 +45,7 @@ export class CoursesContainerComponent implements OnInit {
 
   onClick(id)
   {
-    this.selectedId.emit(id);
+    this.router.navigate(['/course', id]);
   }
+ 
 }

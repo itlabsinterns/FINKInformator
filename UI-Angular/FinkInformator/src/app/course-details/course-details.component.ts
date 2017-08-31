@@ -1,29 +1,27 @@
 import { Component, OnInit, OnChanges, Input } from '@angular/core';
 import { Course } from '../course-component/course-component.component';
 import { CoursesService } from '../services/courses.service';
-
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import 'rxjs/add/operator/switchMap';
 
 @Component({
   selector: 'app-course-details',
   templateUrl: './course-details.component.html',
   styleUrls: ['./course-details.component.css']
 })
-export class CourseDetailsComponent implements OnInit, OnChanges{
-  @Input() courseId:number;
-
+export class CourseDetailsComponent implements OnInit{
+  courseId;
   selectedCourse:Course;
   prerequisites:Course[]=[];
 
-  constructor(private coursesService:CoursesService) { 
+  constructor(private coursesService:CoursesService,
+    private route: ActivatedRoute,
+    private router: Router) { 
     
   }
 
   ngOnInit() {
-   
-  }
-
-  ngOnChanges() {
-    console.log("changes detected");
+    this.courseId = this.route.snapshot.paramMap.get('id');
     this.setCourse(this.courseId);
     this.setCoursePrerequisites(this.courseId);
   }

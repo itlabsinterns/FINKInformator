@@ -1,0 +1,34 @@
+<div class="bgimg-1">
+    <programContainer (setProgram)='onProgramClick($event)'></programContainer>
+    </div>
+  
+  <div style="color: #777;background-color:white;text-align:center;padding:50px 80px;text-align: justify;">
+  
+  </div>
+  
+  <div class="bgimg-2">
+      <app-year-container (setYear)='onYearClick($event)'></app-year-container>
+  </div>
+  
+  <div style="position:relative;">
+    <div style="color:#ddd;background-color:#282E34;text-align:center;padding:50px 80px;text-align: justify;">
+    </div>
+  </div>
+  
+  <div class="bgimg-3">
+  <app-semester-container  (setSemester)='onSemesterClick($event)'></app-semester-container>
+  </div>
+  
+  <div style="position:relative;">
+    <div style="color:#ddd;background-color:#282E34;text-align:center;padding:50px 80px;text-align: justify;">
+    </div>
+  </div>
+  
+  <div class="bgimg-1" *ngIf="showCoursesContainer">
+  <app-courses-container [programId]="programid" [semester]="evaluatedSemester" (selectedId)='setSelected($event)'></app-courses-container>
+  </div>
+  
+  <div style="position:relative;">
+      <div style="color:#ddd;background-color:#282E34;text-align:center;padding:50px 80px;text-align: justify;">
+      </div>
+    </div>

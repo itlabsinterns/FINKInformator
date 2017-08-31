@@ -20,7 +20,17 @@ import { Course } from './course-component/course-component.component';
 import { ProgramCourse } from './program-course/program-course.component';
 import { CourseDetailsComponent } from './course-details/course-details.component';
 import { DisqusModule } from 'angular2-disqus';
+import { RouterModule, Routes } from '@angular/router';
+import { BoxComponent } from './box/box.component';
 
+const appRoutes: Routes = [
+  { path: 'course/:id', 
+    component: CourseDetailsComponent 
+  },
+  { path: '', 
+  component: BoxComponent 
+}
+];
 
 @NgModule({
   declarations: [
@@ -34,9 +44,11 @@ import { DisqusModule } from 'angular2-disqus';
     Course,
     ProgramCourse,
     CourseDetailsComponent,
+    BoxComponent,
     
   ],
   imports: [
+    RouterModule.forRoot(appRoutes,{enableTracing:true}),
     BrowserModule,
     HttpModule,
     Ng2PageScrollModule,

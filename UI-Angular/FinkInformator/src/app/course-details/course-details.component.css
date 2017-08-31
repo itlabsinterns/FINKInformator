@@ -4,5 +4,16 @@
 }
 #displayCourses
 {
-padding-top:2%;
+    position: absolute;
+    margin-top:4%;
+}
+.bgimg-4 
+{
+    position: relative;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url("../assets/images/parallax1.jpg") ;
+    min-height: 100%;
 }
