@@ -34,10 +34,11 @@
 
             $.ajax({
                 type: "POST",
-                url:"http://localhost:4329/programs"+"/"+name,
+                url:"http://localhost:4329/programs",
                 dataType: 'JSON',
+                data: JSON.stringify({"programName": name}),
                 success: function(){
-                    alert("saved lul wtf xd");
+                    alert("saved");
                 }
             });
             });

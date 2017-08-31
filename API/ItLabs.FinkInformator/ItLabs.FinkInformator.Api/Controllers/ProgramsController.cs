@@ -85,22 +85,13 @@ namespace ItLabs.FinkInformator.Api.Controllers
         // <param name = "ProgramName" > Name of the program </param>
         // <returns></returns>
         [HttpPost]
-        [Route("programs/{ProgramName}")]
-        public IHttpActionResult AddProgram(string ProgramName)
+        public IHttpActionResult AddProgram([FromUri] Program program)
         {
-            var response = _manager.AddProgram(new Program() { ProgramName = ProgramName });
+            var response = _manager.AddProgram(program);
             if (response.IsSuccessful)
                 return Ok(response);
             return BadRequest(response.ToString());
         }
-        //[HttpPost]
-        //public IHttpActionResult AddProgram([FromBody]Program program)
-        //{
-        //    var response = _manager.AddProgram(program);
-        //    if (response.IsSuccessful)
-        //        return Ok(response);
-        //    return BadRequest(response.ToString());
-        //}
 
 
     }
