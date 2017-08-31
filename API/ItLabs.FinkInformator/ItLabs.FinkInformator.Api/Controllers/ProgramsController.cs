@@ -93,6 +93,15 @@ namespace ItLabs.FinkInformator.Api.Controllers
                 return Ok(response);
             return BadRequest(response.ToString());
         }
+        //[HttpPost]
+        //public IHttpActionResult AddProgram([FromBody]Program program)
+        //{
+        //    var response = _manager.AddProgram(program);
+        //    if (response.IsSuccessful)
+        //        return Ok(response);
+        //    return BadRequest(response.ToString());
+        //}
+
 
     }
 }
