@@ -1,17 +1,17 @@
 <div class="container-fluid">
     <div class="col-xs-12 col-sm-8 col-sm-push-2">
         <div class="row">
-            <div id="Mandatory" class="list-group">
+            <div id="Mandatory" class="list-group border">
                 <a class="list-group-item main">ЗАДОЛЖИТЕЛНИ ПРЕДМЕТИ</a>
-                <a *ngFor="let course of _mandatoryCourses" class="list-group-item" id="course.Course.CourseId">{{course.Course.CourseName}}</a>
+                <a *ngFor="let course of _mandatoryCourses" class="list-group-item" id="course.Course.CourseId" (click)="onClick(course.Course.CourseId)">{{course.Course.CourseName}}</a>
             </div>
         </div>
     </div>
     <div class="row">
         <div class="col-xs-12 col-sm-8 col-sm-push-2">
-            <div id="Optional" class="list-group">
+            <div id="Optional" class="list-group border">
                 <a  class="list-group-item main">ИЗБОРНИ ПРЕДМЕТИ</a>
-                <a *ngFor="let course of _optionalCourses" class="list-group-item" id="course.Course.CourseId">{{course.Course.CourseName}}</a>
+                <a *ngFor="let course of _optionalCourses" class="list-group-item" id="course.Course.CourseId" (click)="onClick(course.Course.CourseId)">{{course.Course.CourseName}}</a>
             </div>
         </div>
     </div>

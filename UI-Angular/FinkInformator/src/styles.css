@@ -4,8 +4,6 @@ body, html {
     font: 400 15px/1.8 "Lato", sans-serif;
     color: #777;
 }
-
-
 .btn-danger {
     color: white !important;
     background-color: rgba(75, 216, 199, 0.75) !important;
@@ -31,8 +29,3 @@ body, html {
     background-color: dimgray !important;
     background-color: rgba(255,255,255, 0.9) !important ;
   }
-
-  .main:hover{
-    background-color:dimgray; 
-    color:white;
-}

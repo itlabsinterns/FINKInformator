@@ -1,0 +1,16 @@
+<div id="displayCourses"  class="container-fluid containers">
+  <div id="displayCoursesContainer" class="col-xs-8 col-xs-push-2">
+          <div id="panel" class="panel panel-primary ">
+                  <div id="panel-heading" class="panel-heading">{{selectedCourse.CourseName}}</div>
+                  <div id="panel-body" class="panel-body">{{selectedCourse.CourseDescription}}</div>
+                  <div *ngIf="prerequisites.length>0">
+                  <b>Предуслови:</b>
+                  <span *ngFor="let prerequisite of prerequisites">{{prerequisite.CourseName + ' '}}</span>
+                  </div>
+                  <div class="panel-footer">
+                      <disqus-thread [page-identifier]="selectedCourse.CourseId" [page-url]="selectedCourse.CourseName"></disqus-thread>
+                      <div id="disqus_thread"></div>
+                  </div>
+          </div>
+    </div>
+</div>

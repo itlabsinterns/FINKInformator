@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {HttpModule} from '@angular/http';
 import {Ng2PageScrollModule} from 'ng2-page-scroll';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import {NavbarComp} from './navbar/navbar.component';
@@ -17,6 +18,9 @@ import { NotificationBarService } from 'angular2-notification-bar';
 import { CoursesContainerComponent } from './courses-container/courses-container.component';
 import { Course } from './course-component/course-component.component';
 import { ProgramCourse } from './program-course/program-course.component';
+import { CourseDetailsComponent } from './course-details/course-details.component';
+import { DisqusModule } from 'angular2-disqus';
+
 
 @NgModule({
   declarations: [
@@ -29,13 +33,16 @@ import { ProgramCourse } from './program-course/program-course.component';
     CoursesContainerComponent,
     Course,
     ProgramCourse,
+    CourseDetailsComponent,
     
   ],
   imports: [
     BrowserModule,
     HttpModule,
     Ng2PageScrollModule,
-    NotificationBarModule
+    NotificationBarModule,
+    FormsModule,
+    DisqusModule
   ],
   providers: [ProgramsService,CoursesService,PageScrollService,NotificationBarService],
   bootstrap: [AppComponent]
