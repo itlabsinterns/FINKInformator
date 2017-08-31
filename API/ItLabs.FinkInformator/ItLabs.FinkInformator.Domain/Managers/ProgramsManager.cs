@@ -47,6 +47,7 @@ namespace ItLabs.FinkInformator.Domain.Managers
             {
                 _logger.LogException(ex);
                 response.IsSuccessful = false;
+                response.Errors.Add("Something went wrong");
             }
             return response;
         }
