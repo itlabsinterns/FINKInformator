@@ -93,6 +93,17 @@ namespace ItLabs.FinkInformator.Api.Controllers
             return BadRequest(response.ToString());
         }
 
+        [HttpPut]
+        public IHttpActionResult ModifyProgram([FromUri]int id, [FromUri] Program program)
+        {
+            ResponseBase response = _manager.ModifyProgram(id, program);
+            if (!response.IsSuccessful)
+            {
+                return BadRequest(response.ToString());
+            }
+            return Ok(response);
+
+        }
 
     }
 }

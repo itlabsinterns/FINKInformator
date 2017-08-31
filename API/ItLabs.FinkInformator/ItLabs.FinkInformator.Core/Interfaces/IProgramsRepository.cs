@@ -11,5 +11,6 @@ namespace ItLabs.FinkInformator.Core.Interfaces
         IQueryable<Program> getPrograms();
         IQueryable<ProgramsCoursesCustom> GetProgramCourses(GetProgramCoursesRequest request);
         void AddProgram(Program program);
+        void ChangeProgram(Program programToModify);
     }
 }

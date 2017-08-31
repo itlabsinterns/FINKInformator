@@ -88,5 +88,6 @@ namespace ItLabs.FinkInformator.Api.Controllers
 
             return Ok(response);
         }
+        
     }
 }

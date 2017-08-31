@@ -10,5 +10,6 @@ namespace ItLabs.FinkInformator.Core.Interfaces
         GetProgramsResponse GetPrograms();
         GetProgramCoursesResponse GetProgramCourses(GetProgramCoursesRequest request);
         ResponseBase AddProgram(Program program);
+        ResponseBase ModifyProgram(int id, Program program);
     }
 }
