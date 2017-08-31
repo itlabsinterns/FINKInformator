@@ -18,10 +18,10 @@ namespace ItLabs.FinkInformator.Data
         {
             return _schoolContext.Programs;
         }
-        public IQueryable<ProgramsCoursesCustom> GetProgramCourses(GetProgramCoursesRequest request)
+        public IQueryable<ProgramCoursesDto> GetProgramCourses(GetProgramCoursesRequest request)
         {
             return _schoolContext.ProgramsCourses.Where(x => x.ProgramId == request.ProgramId && x.Course.Semester == request.Semester)
-                                                                .Select(x => new ProgramsCoursesCustom
+                                                                .Select(x => new ProgramCoursesDto
                                                                 {
                                                                     Course = x.Course,
                                                                     IsMandatory = x.IsMandatory,

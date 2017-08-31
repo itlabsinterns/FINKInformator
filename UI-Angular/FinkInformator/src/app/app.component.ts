@@ -11,11 +11,16 @@ import { OnInit } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit{
-  programid:number=0;
-  year:number=0;
-  semester:number=0;
+  programid:number;
+  year:number;
+  semester:number;
+  evaluatedSemester:number;
 
-  constructor(private pageScrollService: PageScrollService, @Inject(DOCUMENT) private document: any,private notificationBarService:NotificationBarService)
+  selectedId:number;
+  showCoursesContainer:boolean=false;
+
+  constructor(private pageScrollService: PageScrollService, @Inject(DOCUMENT) private document: any,
+  private notificationBarService:NotificationBarService)
   {
 
   }
@@ -55,12 +60,17 @@ export class AppComponent implements OnInit{
     }
     else {
     this.semester = semester;
+    this.evaluatedSemester=this.year*2+(this.semester-2);
+    this.showCoursesContainer=true;
       let pageScrollInstance: PageScrollInstance = PageScrollInstance.simpleInstance(this.document, 'app-courses-container');
       this.pageScrollService.start(pageScrollInstance);
     }
   }
 
-  onCourseClick(courseId){
-    
+  setSelected(id)
+  {
+    this.selectedId=id;
+    let pageScrollInstance: PageScrollInstance = PageScrollInstance.simpleInstance(this.document, 'app-course-details');
+    this.pageScrollService.start(pageScrollInstance);
   }
 }

@@ -7,10 +7,10 @@ namespace ItLabs.FinkInformator.Core.Responses
     {
         public GetProgramCoursesResponse() : base()
         {
-            ProgramsCoursesCustom = new List<ProgramsCoursesCustom>();
+            ProgramsCoursesDto = new List<ProgramCoursesDto>();
         }
 
-        public List<ProgramsCoursesCustom> ProgramsCoursesCustom { get; set; }
+        public List<ProgramCoursesDto> ProgramsCoursesDto { get; set; }
 
     }
 }

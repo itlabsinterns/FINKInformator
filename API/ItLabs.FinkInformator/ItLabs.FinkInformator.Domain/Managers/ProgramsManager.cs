@@ -90,7 +90,7 @@ namespace ItLabs.FinkInformator.Domain.Managers
 
             try
             {
-                response.ProgramsCoursesCustom = _programsRepository.GetProgramCourses(request).ToList();
+                response.ProgramsCoursesDto = _programsRepository.GetProgramCourses(request).ToList();
             }
             catch (Exception ex)
             {

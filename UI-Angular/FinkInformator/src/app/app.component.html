@@ -1,4 +1,3 @@
-<!-- The content below is only a placeholder and can be replaced. -->
   <header>
     <nav-bar></nav-bar>
   </header>
@@ -31,7 +30,7 @@
 </div>
 
 <div class="bgimg-1">
-<app-courses-container [programId]="programid" [semester]="(year*2)+(semester-2)"></app-courses-container>
+<app-courses-container  *ngIf="showCoursesContainer" [programId]="programid" [semester]="evaluatedSemester" (selectedId)='setSelected($event)'></app-courses-container>
 </div>
 
 <div style="position:relative;">
@@ -40,5 +39,5 @@
   </div>
   
   <div class="bgimg-4">
-    
+    <app-course-details [courseId]="selectedId"></app-course-details>
   </div>

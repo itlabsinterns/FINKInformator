@@ -1,11 +1,18 @@
-.main{
+.row{
     margin-top:2%;
+}
+
+.main{
     text-align: center;
     font-weight: bold;
     background-color:dimgray; 
     color:white;
 }
 
+.main:hover{
+    background-color:dimgray !important; 
+    color:white !important;
+}
 
 .list-group-item{
     font-size: 18px;
@@ -13,4 +20,9 @@
 
 .container-fluid{
     height: 100%;
+}
+
+.border
+{
+    border: 1px solid #337ab7;
 }
