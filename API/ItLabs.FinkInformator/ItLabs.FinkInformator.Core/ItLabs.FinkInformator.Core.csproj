@@ -58,10 +58,12 @@
     <Compile Include="Models\CourseProgramName.cs" />
     <Compile Include="Models\ProgramsCourses.cs" />
     <Compile Include="Models\ProgramsCoursesCustom.cs" />
+    <Compile Include="Models\ProgramsIsMandatoryHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Requests\GetCourseProgramNamesRequest.cs" />
     <Compile Include="Requests\GetProgramCoursesRequest.cs" />
     <Compile Include="Requests\IdRequest.cs" />
+    <Compile Include="Requests\PostCourseRequest.cs" />
     <Compile Include="Responses\GetCoursePrerequisitesResponse.cs" />
     <Compile Include="Responses\GetCourseProgramNamesResponse.cs" />
     <Compile Include="Responses\GetCourseResponse.cs" />

@@ -85,7 +85,7 @@ namespace ItLabs.FinkInformator.Api.Controllers
         // <param name = "ProgramName" > Name of the program </param>
         // <returns></returns>
         [HttpPost]
-        public IHttpActionResult AddProgram([FromUri] Program program)
+        public IHttpActionResult AddProgram([FromBody] Program program)
         {
             var response = _manager.AddProgram(program);
             if (response.IsSuccessful)
@@ -94,7 +94,7 @@ namespace ItLabs.FinkInformator.Api.Controllers
         }
 
         [HttpPut]
-        public IHttpActionResult ModifyProgram([FromUri]int id, [FromUri] Program program)
+        public IHttpActionResult ModifyProgram([FromBody]int id, [FromBody] Program program)
         {
             ResponseBase response = _manager.ModifyProgram(id, program);
             if (!response.IsSuccessful)
