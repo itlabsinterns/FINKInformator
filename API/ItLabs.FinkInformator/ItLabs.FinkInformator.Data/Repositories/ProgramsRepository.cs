@@ -37,5 +37,11 @@ namespace ItLabs.FinkInformator.Data
             _schoolContext.Programs.Add(program);
             _schoolContext.SaveChanges();
         }
+
+        public void ChangeProgram(Program program)
+        { 
+            _schoolContext.Entry(program).State = System.Data.Entity.EntityState.Modified;
+            _schoolContext.SaveChanges();
+        }
     }
 }

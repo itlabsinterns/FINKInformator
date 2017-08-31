@@ -7,7 +7,7 @@ using System;
 
 namespace ItLabs.FinkInformator.Data.Repositories
 {
-    public class CoursesRepository:ICoursesRepository
+    public class CoursesRepository : ICoursesRepository
     {
         private SchoolContext _schoolContext;
 
@@ -15,6 +15,7 @@ namespace ItLabs.FinkInformator.Data.Repositories
         {
             _schoolContext = new SchoolContext();
         }
+
 
         public IQueryable<Course> GetAllCourses()
         {
@@ -41,6 +42,15 @@ namespace ItLabs.FinkInformator.Data.Repositories
                     ProgramName = x.Program.ProgramName,
                     CourseId = x.Course.CourseId
                 }).ToList();
+        }
+
+        public void AddCourse(Course course, List<CoursesPrerequisites> coursePrerequisites)
+        {
+            _schoolContext.Courses.Add(course);
+            foreach (var entity in coursePrerequisites)
+            {
+                _schoolContext.CoursesPrerequisites.Add(entity);
+            }
         }
     }
 }

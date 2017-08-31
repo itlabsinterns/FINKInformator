@@ -10,5 +10,6 @@ namespace ItLabs.FinkInformator.Core.Interfaces
         Course GetCourseById(int id);
         List<Course> GetCoursePrerequisites(int id);
         List<CourseProgramName> GetProgramCourseNames(string CourseName);
+        void AddCourse(Course course, List<CoursesPrerequisites> coursePrerequisites);
     }
 }

@@ -47,6 +47,7 @@ namespace ItLabs.FinkInformator.Domain.Managers
             {
                 _logger.LogException(ex);
                 response.IsSuccessful = false;
+                response.Errors.Add("Something went wrong");
             }
             return response;
         }
@@ -101,6 +102,25 @@ namespace ItLabs.FinkInformator.Domain.Managers
             return response;
         }
 
-
+        public ResponseBase ModifyProgram(int id, Program program)
+        {
+            var response = new ResponseBase();
+            try
+            {
+                var programToModify = _programsRepository.getPrograms().Where(x => x.ProgramId == id).FirstOrDefault();
+                if (programToModify != null)
+                {
+                    programToModify.ProgramName = program.ProgramName;
+                    _programsRepository.ChangeProgram(programToModify);
+                }              
+            }
+            catch(Exception ex)
+            {
+                response.IsSuccessful = false;
+                response.Errors.Add("An error has occurred while changing the program!");
+                _logger.LogException(ex);
+            }
+            return response;
+        }
     }
 }

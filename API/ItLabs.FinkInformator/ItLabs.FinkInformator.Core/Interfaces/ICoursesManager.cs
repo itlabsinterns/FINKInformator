@@ -9,5 +9,6 @@ namespace ItLabs.FinkInformator.Core.Interfaces
         GetCourseResponse GetCourseById(IdRequest request);
         GetCoursePrerequisitesResponse GetCoursePrerequisites(IdRequest request);
         GetCourseProgramNamesResponse GetCourseProgramNames(GetCourseProgramNamesRequest request);
+        ResponseBase AddCourse(PostCourseRequest request);
     }
 }
