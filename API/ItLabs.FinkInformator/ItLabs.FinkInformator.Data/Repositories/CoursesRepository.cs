@@ -3,7 +3,6 @@ using ItLabs.FinkInformator.Core.Interfaces;
 using ItLabs.FinkInformator.Core.Models;
 using System.Linq;
 using System.Collections.Generic;
-using System;
 
 namespace ItLabs.FinkInformator.Data.Repositories
 {
@@ -44,13 +43,21 @@ namespace ItLabs.FinkInformator.Data.Repositories
                 }).ToList();
         }
 
-        public void AddCourse(Course course, List<CoursesPrerequisites> coursePrerequisites)
+        public Course CreateCourse(Course course, List<int> coursePrerequisiteIds)
         {
-            _schoolContext.Courses.Add(course);
-            foreach (var entity in coursePrerequisites)
-            {
-                _schoolContext.CoursesPrerequisites.Add(entity);
-            }
+            var savedCourse = _schoolContext.Courses.Add(course);
+
+            var coursePrerequisites = _schoolContext.Courses.Where(x => coursePrerequisiteIds.Contains(x.CourseId))
+                .Select(x => new CoursesPrerequisites
+                {
+                    Course = savedCourse,
+                    Prerequisite = x
+                });
+
+            _schoolContext.CoursesPrerequisites.AddRange(coursePrerequisites);
+            _schoolContext.SaveChanges();
+
+            return savedCourse;
         }
     }
 }

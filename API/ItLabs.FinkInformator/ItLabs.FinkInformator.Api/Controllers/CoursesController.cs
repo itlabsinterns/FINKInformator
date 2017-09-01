@@ -39,7 +39,7 @@ namespace ItLabs.FinkInformator.Api.Controllers
         /// <param name="id">The ID of the requested course</param>
         /// <returns></returns>
         [Description("Get Course by Id")]
-        [ResponseType(typeof(GetCourseResponse))]
+        [ResponseType(typeof(CourseResponse))]
         [HttpGet]
         public IHttpActionResult GetCourse(int id)
         {
@@ -89,9 +89,9 @@ namespace ItLabs.FinkInformator.Api.Controllers
             return Ok(response);
         }
         [HttpPost]
-        public IHttpActionResult AddCourse([FromBody] PostCourseRequest request)
+        public IHttpActionResult CreateCourse([FromBody] CreateCourseRequest request)
         {
-            var response = _manager.AddCourse(request);
+            var response = _manager.CreateCourse(request);
             if (!response.IsSuccessful)
                 return BadRequest(response.ToString());
             return Ok(response.ToString());

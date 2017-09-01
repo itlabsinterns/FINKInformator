@@ -6,9 +6,9 @@ namespace ItLabs.FinkInformator.Core.Interfaces
     public interface ICoursesManager
     {
         GetCoursesResponse GetCourses();
-        GetCourseResponse GetCourseById(IdRequest request);
+        CourseResponse GetCourseById(IdRequest request);
         GetCoursePrerequisitesResponse GetCoursePrerequisites(IdRequest request);
         GetCourseProgramNamesResponse GetCourseProgramNames(GetCourseProgramNamesRequest request);
-        ResponseBase AddCourse(PostCourseRequest request);
+        CourseResponse CreateCourse(CreateCourseRequest request);
     }
 }

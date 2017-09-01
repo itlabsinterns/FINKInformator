@@ -2,7 +2,7 @@
 
 namespace ItLabs.FinkInformator.Core.Responses
 {
-    public class GetCourseResponse : ResponseBase
+    public class CourseResponse : ResponseBase
     {
         public Course Course { get; set; }
     }

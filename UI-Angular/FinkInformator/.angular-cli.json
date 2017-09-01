@@ -8,7 +8,7 @@
       "root": "src",
       "outDir": "dist",
       "assets": [
-        "assets",
+        "assets/images",
         "favicon.ico"
       ],
       "index": "index.html",
@@ -23,6 +23,7 @@
         "styles.css"
       ],
       "scripts": [
+        "../node_modules/jquery/dist/jquery.min.js",
         "../node_modules/bootstrap/dist/js/bootstrap.min.js"
       ],
       "environmentSource": "environments/environment.ts",

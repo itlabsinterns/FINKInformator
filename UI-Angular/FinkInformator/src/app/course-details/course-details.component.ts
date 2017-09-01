@@ -1,5 +1,5 @@
 import { Component, OnInit, OnChanges, Input } from '@angular/core';
-import { Course } from '../course-component/course-component.component';
+import { Course } from '../models/course';
 import { CoursesService } from '../services/courses.service';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import 'rxjs/add/operator/switchMap';
@@ -9,15 +9,14 @@ import 'rxjs/add/operator/switchMap';
   templateUrl: './course-details.component.html',
   styleUrls: ['./course-details.component.css']
 })
-export class CourseDetailsComponent implements OnInit{
+export class CourseDetailsComponent implements OnInit {
   courseId;
-  selectedCourse:Course;
-  prerequisites:Course[]=[];
+  selectedCourse: Course;
+  prerequisites: Course[] = [];
 
-  constructor(private coursesService:CoursesService,
+  constructor(private coursesService: CoursesService,
     private route: ActivatedRoute,
-    private router: Router) { 
-    
+    private router: Router) {
   }
 
   ngOnInit() {
@@ -26,16 +25,16 @@ export class CourseDetailsComponent implements OnInit{
     this.setCoursePrerequisites(this.courseId);
   }
 
-  setCourse(courseId)
-  {
+  setCourse(courseId) {
     this.coursesService.getCourseById(courseId)
-    .subscribe(response=>this.selectedCourse=response.Course);
+      .subscribe(response =>
+        this.selectedCourse = response.Course
+      );
   }
 
-  setCoursePrerequisites(courseId)
-  {
+  setCoursePrerequisites(courseId) {
     this.coursesService.GetCoursePrerequisites(courseId)
-    .subscribe(response=>this.prerequisites=response.Prerequisites);
+      .subscribe(response => this.prerequisites = response.Prerequisites);
   }
 
 }

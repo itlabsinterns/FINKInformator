@@ -19,10 +19,10 @@ namespace ItLabs.FinkInformator.Domain.Managers
             _logger = logger;
         }
 
-        public GetCourseResponse GetCourseById(IdRequest request)
+        public CourseResponse GetCourseById(IdRequest request)
         {
             var validationResult = new IdRequestValidator().Validate(request);
-            var response = new GetCourseResponse() { IsSuccessful = validationResult.IsValid };
+            var response = new CourseResponse() { IsSuccessful = validationResult.IsValid };
 
             if (!response.IsSuccessful)
             {
@@ -107,47 +107,35 @@ namespace ItLabs.FinkInformator.Domain.Managers
             return response;
         }
 
-        public ResponseBase AddCourse(PostCourseRequest request)
+        public CourseResponse CreateCourse(CreateCourseRequest request)
         {
-            var response = new ResponseBase();
+            var response = new CourseResponse();
+
+            var course = new Course()
+            {
+                CourseName = request.CourseName,
+                CourseDescription = request.CourseDescription,
+                Semester = request.Semester,
+            };
+
+            course.ProgramsCourses = request.Programs
+                                         .Select(x => new ProgramsCourses
+                                         {
+                                             Course = course,
+                                             ProgramId = x.ProgramId,
+                                             IsMandatory = x.IsMandatory,
+                                         });
             try
             {
-                var course = new Course()
-                {
-                    CourseName = request.CourseName,
-                    CourseDescription = request.CourseDescription,
-                    Semester = request.Semester
-                };
-                var programsCourses = new List<ProgramsCourses>();
-                foreach (var item in request.Programs)
-                {
-                    programsCourses.Add(new ProgramsCourses()
-                    {
-                        Course = course,
-                        ProgramId = item.ProgramId,
-                        IsMandatory = item.IsMandatory
-                    });
-                }
-
-                course.ProgramsCourses = programsCourses;
-                var coursePrerequisites = new List<CoursesPrerequisites>();
-                foreach (var prerequisite in request.Prerequisites)
-                {
-                    coursePrerequisites.Add(new CoursesPrerequisites()
-                    {
-                        Course = course,
-                        Prerequisite = _coursesRepository.GetCourseById(prerequisite)
-                    });
-                }
-
-                _coursesRepository.AddCourse(course, coursePrerequisites);
+                _coursesRepository.CreateCourse(course, request.Prerequisites);
             }
             catch (Exception ex)
             {
                 _logger.LogException(ex);
                 response.IsSuccessful = false;
-                response.Errors.Add("An error has occured while inserting course");
+                response.Errors.Add("An error has occurred while inserting course");
             }
+
             return response;
         }
     }

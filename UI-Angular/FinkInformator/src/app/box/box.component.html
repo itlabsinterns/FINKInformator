@@ -25,7 +25,7 @@
   </div>
   
   <div class="bgimg-1" *ngIf="showCoursesContainer">
-  <app-courses-container [programId]="programid" [semester]="evaluatedSemester" (selectedId)='setSelected($event)'></app-courses-container>
+  <app-courses-container [programId]="programid" [semester]="evaluatedSemester" (setCourse)='setSelected($event)'></app-courses-container>
   </div>
   
   <div style="position:relative;">

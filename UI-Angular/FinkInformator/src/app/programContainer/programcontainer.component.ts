@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { ProgramsService } from '../services/programs.service';
 import { OnInit } from '@angular/core';
-import { Program } from '../programComponent/program.component';
+import { Program } from "../models/program";
 
 @Component({
     selector: 'programContainer',
@@ -31,5 +31,4 @@ export class ProgramContainer implements OnInit {
     onClick(programId){
         this.setProgram.emit(programId);
     }
-
 }

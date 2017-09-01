@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import {Course} from '../course-component/course-component.component';
-import {ProgramsService} from '../services/programs.service';
-import { ProgramCourse } from '../program-course/program-course.component';
+import { Course } from '../models/course';
+import { ProgramsService } from '../services/programs.service';
+import { ProgramCourse } from '../models/programCourse';
 import { Router, Routes } from '@angular/router';
 
 @Component({
@@ -9,43 +9,38 @@ import { Router, Routes } from '@angular/router';
   templateUrl: './courses-container.component.html',
   styleUrls: ['./courses-container.component.css']
 })
-export class CoursesContainerComponent implements OnInit {
+export class CoursesContainerComponent {
   @Input() programId: number;
   @Input() semester: number;
-  @Output() selectedId: EventEmitter<number>=new EventEmitter<number>();
+  @Output() setCourse: EventEmitter<number> = new EventEmitter<number>();
 
-  _mandatoryCourses: ProgramCourse[];
-  _optionalCourses: ProgramCourse[];
-  
+  mandatoryCourses: ProgramCourse[];
+  optionalCourses: ProgramCourse[];
 
-  constructor(private programsService:ProgramsService, private router: Router) { }
+  constructor(private programsService: ProgramsService, private router: Router) { }
 
-  ngOnInit() {
-    
+  ngOnChanges() {
+    if (this.programId > 0 && this.semester > 0) 
+      this.fillCourses(this.programId, this.semester);
   }
 
-  ngOnChanges()
-  {
-    if(this.programId>0 && this.semester>0)this.fillCourses(this.programId,this.semester);
-  }
+  fillCourses(programId, semester) {
 
-  fillCourses(programid, semester) {
-    console.log("function called with "+programid+" "+semester);
-    this._mandatoryCourses=[];
-    this._optionalCourses=[];
-    this.programsService.GetProgramCourses(programid, semester)
-      .subscribe(response =>
-        {
-          response.ProgramsCoursesDto.forEach(element => {
-          if(element.IsMandatory)this._mandatoryCourses.push(element);
-          else this._optionalCourses.push(element);
+    this.mandatoryCourses = [];
+    this.optionalCourses = [];
+
+    this.programsService.GetProgramCourses(programId, semester)
+      .subscribe(response => {
+        response.ProgramsCoursesDto.forEach(element => {
+          if (element.IsMandatory) 
+            this.mandatoryCourses.push(element);
+          else 
+            this.optionalCourses.push(element);
         });
       });
   }
 
-  onClick(id)
-  {
+  onClick(id) {
     this.router.navigate(['/course', id]);
   }
- 
 }
