@@ -1,6 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { NotificationBarService, NotificationType } from 'angular2-notification-bar'
 import { OnInit } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-root',

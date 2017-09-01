@@ -22,14 +22,18 @@ import { CourseDetailsComponent } from './course-details/course-details.componen
 import { DisqusModule } from 'angular2-disqus';
 import { RouterModule, Routes } from '@angular/router';
 import { BoxComponent } from './box/box.component';
+import { AboutUsComponent } from './about-us/about-us.component';
 
 const appRoutes: Routes = [
   { path: 'course/:id', 
     component: CourseDetailsComponent 
   },
   { path: '', 
-  component: BoxComponent 
-}
+    component: BoxComponent 
+  },
+  { path: 'about-us', 
+    component: AboutUsComponent 
+  }
 ];
 
 @NgModule({
@@ -45,6 +49,7 @@ const appRoutes: Routes = [
     ProgramCourse,
     CourseDetailsComponent,
     BoxComponent,
+    AboutUsComponent,
     
   ],
   imports: [
