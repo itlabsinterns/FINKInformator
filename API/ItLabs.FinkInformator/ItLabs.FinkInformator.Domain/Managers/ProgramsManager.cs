@@ -1,12 +1,9 @@
 ﻿using ItLabs.FinkInformator.Core.Interfaces;
-using ItLabs.FinkInformator.Core;
 using System.Linq;
 using ItLabs.FinkInformator.Core.Responses;
 using ItLabs.FinkInformator.Core.Requests;
 using System;
 using ItLabs.FinkInformator.Domain.Validators;
-using FluentValidation.Results;
-using ItLabs.FinkInformator.Domain.Extensions;
 using ItLabs.FinkInformator.Core.Models;
 
 namespace ItLabs.FinkInformator.Domain.Managers
@@ -36,26 +33,12 @@ namespace ItLabs.FinkInformator.Domain.Managers
             }
             return response;
         }
-        public ResponseBase AddProgram(Program program)
-        {
-            var response = new ResponseBase();
-            try
-            {
-                _programsRepository.AddProgram(program);
-            }
-            catch(Exception ex)
-            {
-                _logger.LogException(ex);
-                response.IsSuccessful = false;
-                response.Errors.Add("Something went wrong");
-            }
-            return response;
-        }
 
-        public GetProgramResponse GetProgramsById(IdRequest request)
+
+        public ProgramResponse GetProgramsById(IdRequest request)
         {
             var validationResult = new IdRequestValidator().Validate(request);
-            var response = new GetProgramResponse() { IsSuccessful = validationResult.IsValid };
+            var response = new ProgramResponse() { IsSuccessful = validationResult.IsValid };
 
             if (!response.IsSuccessful)
             {
@@ -101,23 +84,78 @@ namespace ItLabs.FinkInformator.Domain.Managers
             }
             return response;
         }
-
-        public ResponseBase ModifyProgram(int id, Program program)
+        public ProgramResponse CreateProgram(CreateProgramRequest request)
         {
-            var response = new ResponseBase();
+            var validationResult = new CreateProgramRequestValidator().Validate(request);
+            var response = new ProgramResponse() { IsSuccessful = validationResult.IsValid };
+
+            if (!response.IsSuccessful)
+            {
+                response.Errors.AddRange(validationResult.Errors.Select(x => x.ErrorMessage));
+                return response;
+            }
+            var program = new Program() { ProgramName = request.ProgramName };
             try
             {
-                var programToModify = _programsRepository.getPrograms().Where(x => x.ProgramId == id).FirstOrDefault();
-                if (programToModify != null)
-                {
-                    programToModify.ProgramName = program.ProgramName;
-                    _programsRepository.ChangeProgram(programToModify);
-                }              
+                _programsRepository.AddProgram(program);
+                response.Program = program;
             }
-            catch(Exception ex)
+            catch (Exception ex)
+            {
+                _logger.LogException(ex);
+                response.IsSuccessful = false;
+                response.Errors.Add("An error has occurred while creating the program!");
+            }
+            return response;
+        }
+        public ProgramResponse UpdateProgram(UpdateProgramRequest request)
+        {
+            var validationResult = new UpdateProgramRequestValidator().Validate(request);
+            var response = new ProgramResponse() { IsSuccessful = validationResult.IsValid };
+
+            if (!response.IsSuccessful)
+            {
+                response.Errors.AddRange(validationResult.Errors.Select(x => x.ErrorMessage));
+                return response;
+            }
+            try
+            {
+                var programToUpdate = _programsRepository.getPrograms().Where(x => x.ProgramId == request.IdToUpdate).FirstOrDefault();
+                if (programToUpdate != null)
+                {
+                    programToUpdate.ProgramName = request.Program.ProgramName;
+                    _programsRepository.UpdateProgram(programToUpdate);
+                    response.Program = programToUpdate;
+                }
+            }
+            catch (Exception ex)
             {
                 response.IsSuccessful = false;
                 response.Errors.Add("An error has occurred while changing the program!");
+                _logger.LogException(ex);
+            }
+            return response;
+        }
+
+        public ResponseBase DeleteProgram(IdRequest request)
+        {
+            var validationResult = new IdRequestValidator().Validate(request);
+            var response = new ResponseBase() { IsSuccessful = validationResult.IsValid };
+
+            if (!response.IsSuccessful)
+            {
+                response.Errors.AddRange(validationResult.Errors.Select(x => x.ErrorMessage));
+                return response;
+            }
+            try
+            {
+                _programsRepository.RemoveProgram(_programsRepository.getPrograms()
+                                                 .Where(x => x.ProgramId == request.Id).FirstOrDefault());
+            }
+            catch (Exception ex)
+            {
+                response.IsSuccessful = false;
+                response.Errors.Add("An error has occurred while deleting the program!");
                 _logger.LogException(ex);
             }
             return response;

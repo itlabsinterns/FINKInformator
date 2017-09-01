@@ -15,5 +15,10 @@ namespace ItLabs.FinkInformator.Core
         {
             _logger.Error(ex);
         }
+
+        public void LogMessage(string msg)
+        {
+            _logger.Error(msg);
+        }
     }
 }

@@ -12,7 +12,10 @@ namespace ItLabs.FinkInformator.Api.Controllers
     public class CoursesController : ApiController
     {
         private ICoursesManager _manager;
-
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <returns></returns>
         public CoursesController(ICoursesManager courseManager)
         {
             _manager = courseManager;
@@ -88,14 +91,42 @@ namespace ItLabs.FinkInformator.Api.Controllers
 
             return Ok(response);
         }
+        /// <summary>
+        /// Create a new course
+        /// </summary>
+        /// <returns></returns>
         [HttpPost]
         public IHttpActionResult CreateCourse([FromBody] CreateCourseRequest request)
         {
             var response = _manager.CreateCourse(request);
             if (!response.IsSuccessful)
                 return BadRequest(response.ToString());
-            return Ok(response.ToString());
+            return Ok(response);
         }
-        
+        /// <summary>
+        /// Update a Course
+        /// </summary>
+        /// <returns></returns>
+        [HttpPut]
+        public IHttpActionResult UpdateCourse([FromBody]UpdateCourseRequest request)
+        {
+            var response = _manager.UpdateCourse(request);
+            if (!response.IsSuccessful)
+                return BadRequest(response.ToString());
+            return Ok(response);
+        }
+        /// <summary>
+        /// Delete a Course
+        /// </summary>
+        /// <returns></returns>
+        [HttpDelete]
+        public IHttpActionResult DeleteCourse([FromBody]IdRequest request)
+        {
+            ResponseBase response = _manager.DeleteCourse(request);
+            if (!response.IsSuccessful)
+                return BadRequest(response.ToString());
+            return Ok(response);
+        }
+
     }
 }

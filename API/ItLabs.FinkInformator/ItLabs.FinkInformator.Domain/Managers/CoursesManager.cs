@@ -5,7 +5,6 @@ using ItLabs.FinkInformator.Core.Models;
 using System;
 using System.Linq;
 using ItLabs.FinkInformator.Domain.Validators;
-using System.Collections.Generic;
 
 namespace ItLabs.FinkInformator.Domain.Managers
 {
@@ -109,7 +108,14 @@ namespace ItLabs.FinkInformator.Domain.Managers
 
         public CourseResponse CreateCourse(CreateCourseRequest request)
         {
-            var response = new CourseResponse();
+            var validationResult = new CreateCourseRequestValidator().Validate(request);
+            var response = new CourseResponse() { IsSuccessful = validationResult.IsValid };
+
+            if (!response.IsSuccessful)
+            {
+                response.Errors.AddRange(validationResult.Errors.Select(x => x.ErrorMessage));
+                return response;
+            }
 
             var course = new Course()
             {
@@ -118,16 +124,16 @@ namespace ItLabs.FinkInformator.Domain.Managers
                 Semester = request.Semester,
             };
 
-            course.ProgramsCourses = request.Programs
+            var programsCourses = request.Programs
                                          .Select(x => new ProgramsCourses
                                          {
                                              Course = course,
                                              ProgramId = x.ProgramId,
                                              IsMandatory = x.IsMandatory,
-                                         });
+                                         }).ToList();
             try
             {
-                _coursesRepository.CreateCourse(course, request.Prerequisites);
+                response.Course = _coursesRepository.CreateCourse(course, programsCourses, request.Prerequisites);
             }
             catch (Exception ex)
             {
@@ -136,6 +142,75 @@ namespace ItLabs.FinkInformator.Domain.Managers
                 response.Errors.Add("An error has occurred while inserting course");
             }
 
+            return response;
+        }
+
+        public CourseResponse UpdateCourse(UpdateCourseRequest request)
+        {
+            var validationResult = new UpdateCourseRequestValidator().Validate(request);
+            var response = new CourseResponse() { IsSuccessful = validationResult.IsValid };
+
+            if (!response.IsSuccessful)
+            {
+                response.Errors.AddRange(validationResult.Errors.Select(x => x.ErrorMessage));
+                return response;
+            }
+
+            try
+            {
+                var courseToUpdate = _coursesRepository.GetCourseById(request.OldCourseId);
+
+                if (courseToUpdate == null)
+                {
+                    response.IsSuccessful = false;
+                    response.Errors.Add("Course to update not found");
+                    _logger.LogMessage("Course to update is null");
+                    return response;
+                }
+                courseToUpdate.CourseName = request.CourseName;
+                courseToUpdate.CourseDescription = request.CourseDescription;
+                courseToUpdate.Semester = request.Semester;
+
+                var requestProgramsCourses = request.Programs
+                                        .Select(x => new ProgramsCourses
+                                        {
+                                            Course = courseToUpdate,
+                                            ProgramId = x.ProgramId,
+                                            IsMandatory = x.IsMandatory,
+                                        }).ToList();
+                _coursesRepository.UpdateCourse(courseToUpdate, requestProgramsCourses, request.Prerequisites);
+                response.Course = courseToUpdate;
+            }
+            catch (Exception ex)
+            {
+                response.IsSuccessful = false;
+                response.Errors.Add("Error while trying to update course");
+                _logger.LogException(ex);
+            }
+            return response;
+        }
+
+        public ResponseBase DeleteCourse(IdRequest request)
+        {
+            var validationResult = new IdRequestValidator().Validate(request);
+            var response = new ResponseBase() { IsSuccessful = validationResult.IsValid };
+
+            if (!response.IsSuccessful)
+            {
+                response.Errors.AddRange(validationResult.Errors.Select(x => x.ErrorMessage));
+                return response;
+            }
+
+            try
+            {
+                _coursesRepository.DeleteCourse(_coursesRepository.GetCourseById(request.Id));
+            }
+            catch (Exception ex)
+            {
+                response.IsSuccessful = false;
+                response.Errors.Add("Error while trying to delete course");
+                _logger.LogException(ex);
+            }
             return response;
         }
     }

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace ItLabs.FinkInformator.Core.Requests
+﻿namespace ItLabs.FinkInformator.Core.Requests
 {
     public class IdRequest
     {
