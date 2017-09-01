@@ -3,6 +3,7 @@ import { Course } from '../models/course';
 import { CoursesService } from '../services/courses.service';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import 'rxjs/add/operator/switchMap';
+import { Constants } from '../services/constants';
 
 @Component({
   selector: 'app-course-details',
@@ -13,10 +14,12 @@ export class CourseDetailsComponent implements OnInit {
   courseId;
   selectedCourse: Course;
   prerequisites: Course[] = [];
+  url:string;
 
   constructor(private coursesService: CoursesService,
     private route: ActivatedRoute,
     private router: Router) {
+      this.url=Constants.APIURL+"/";
   }
 
   ngOnInit() {
