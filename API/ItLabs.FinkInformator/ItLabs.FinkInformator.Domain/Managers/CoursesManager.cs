@@ -114,7 +114,6 @@ namespace ItLabs.FinkInformator.Domain.Managers
             {
                 var course = new Course()
                 {
-                    CourseId = request.CourseId,
                     CourseName = request.CourseName,
                     CourseDescription = request.CourseDescription,
                     Semester = request.Semester
@@ -124,7 +123,7 @@ namespace ItLabs.FinkInformator.Domain.Managers
                 {
                     programsCourses.Add(new ProgramsCourses()
                     {
-                        CourseId = course.CourseId,
+                        Course = course,
                         ProgramId = item.ProgramId,
                         IsMandatory = item.IsMandatory
                     });
