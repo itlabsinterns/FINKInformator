@@ -4,29 +4,3 @@ body, html {
     font: 400 15px/1.8 "Lato", sans-serif;
     color: #777;
 }
-
-.btn-danger {
-  color: white !important;
-  background-color: rgba(75, 216, 199, 0.75) !important;
-  border-radius: 15px !important;
-  border: 1 px solid !important;
-  border-color: white !important;
-}
-.btn-danger:focus,
-.btn-danger.focus {
-  color:white!important;
-  background-color: #107050 !important;
-  border-color:white !important;
-}
-.btn-danger:hover {
-  color: white !important;
-  background-color: #107050 !important;
-  border-color: #107050 !important;
-}
-
-.list-group-item:hover{
-  cursor: pointer !important ;
-  color: dimgray  !important;
-  background-color: dimgray !important;
-  background-color: rgba(255,255,255, 0.9) !important ;
-}

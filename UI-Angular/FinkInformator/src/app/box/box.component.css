@@ -50,6 +50,33 @@
     font: 20px "Lato", sans-serif;
     color: #111;
   }
+
+  
+.btn-danger {
+  color: white ;
+  background-color: rgba(75, 216, 199, 0.75);
+  border-radius: 15px ;
+  border: 1 px solid ;
+  border-color: white ;
+}
+.btn-danger:focus,
+.btn-danger.focus {
+  color:white;
+  background-color: #107050 !important;
+  border-color:white ;
+}
+.btn-danger:hover {
+  color: white ;
+  background-color: #107050 ;
+  border-color: #107050 ;
+}
+
+.list-group-item:hover{
+  cursor: pointer  ;
+  color: dimgray  ;
+  background-color: dimgray ;
+  background-color: rgba(255,255,255, 0.9)  ;
+}
   
   /* Turn off parallax scrolling for tablets and phones */
   /* @media only screen and (max-device-width: 1024px) {

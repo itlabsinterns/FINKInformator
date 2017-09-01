@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, ViewEncapsulation } from '@angular/core';
 import { ProgramContainer } from '../programcontainer/programcontainer.component';
 import { YearContainerComponent } from '../year-container/year-container.component';
 import { SemesterContainerComponent } from '../semester-container/semester-container.component';
@@ -10,13 +10,14 @@ import { NotificationBarService, NotificationType } from 'angular2-notification-
 @Component({
   selector: 'app-box',
   templateUrl: './box.component.html',
-  styleUrls: ['./box.component.css']
+  styleUrls: ['./box.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 
 export class BoxComponent {
-  programid: number;
-  year: number;
-  semester: number;
+  programid: number=0;
+  year: number=0;
+  semester: number=0;
   evaluatedSemester: number;
 
   showCoursesContainer: boolean = false;
@@ -34,7 +35,7 @@ export class BoxComponent {
 
   onYearClick(year) {
     if (this.programid == 0) {
-      let pageScrollInstance: PageScrollInstance = PageScrollInstance.simpleInstance(this.document, 'programContainer');
+      let pageScrollInstance: PageScrollInstance = PageScrollInstance.simpleInstance(this.document, 'app-program-container');
       this.pageScrollService.start(pageScrollInstance);
       setTimeout(() => this.notificationBarService.create({ message: 'Please select program', type: NotificationType.Error }), 1300);
     }
@@ -47,7 +48,7 @@ export class BoxComponent {
 
   onSemesterClick(semester) {
     if (this.programid == 0) {
-      let pageScrollInstance: PageScrollInstance = PageScrollInstance.simpleInstance(this.document, 'programContainer');
+      let pageScrollInstance: PageScrollInstance = PageScrollInstance.simpleInstance(this.document, 'app-program-container');
       this.pageScrollService.start(pageScrollInstance);
       setTimeout(() => this.notificationBarService.create({ message: 'Please select program', type: NotificationType.Error }), 1300);
     }
@@ -64,4 +65,5 @@ export class BoxComponent {
       this.pageScrollService.start(pageScrollInstance);
     }
   }
+
 }

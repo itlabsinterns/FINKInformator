@@ -12,7 +12,6 @@ import { Router, Routes } from '@angular/router';
 export class CoursesContainerComponent {
   @Input() programId: number;
   @Input() semester: number;
-  @Output() setCourse: EventEmitter<number> = new EventEmitter<number>();
 
   mandatoryCourses: ProgramCourse[];
   optionalCourses: ProgramCourse[];
