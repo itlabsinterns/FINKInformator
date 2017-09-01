@@ -1,7 +1,7 @@
   <div class="bgimg-4">
     <div id="displayCourses" class="container-fluid">
         <div id="displayCoursesContainer" class="col-xs-8 col-xs-push-2">
-            <div id="panel" class="panel panel-primary" *ngIf="selectedCourse!=null">
+            <div id="panel" class="panel panel-primary" *ngIf="selectedCourse">
                 <div id="panel-heading" class="panel-heading">{{selectedCourse.CourseName}}</div>
                 <div id="panel-body" class="panel-body">{{selectedCourse.CourseDescription}}</div>
                 <div *ngIf="prerequisites.length>0">
@@ -9,7 +9,7 @@
                     <span *ngFor="let prerequisite of prerequisites">{{prerequisite.CourseName + ' '}}</span>
                 </div>
                 <div class="panel-footer">
-                    <disqus-thread [page-identifier]="selectedCourse.CourseId" [page-url]="selectedCourse.CourseName"></disqus-thread>
+                    <disqus-thread [page-identifier]='selectedCourse.CourseId' [page-url]="url + selectedCourse.CourseId"></disqus-thread>
                 </div>
             </div>
         </div>
