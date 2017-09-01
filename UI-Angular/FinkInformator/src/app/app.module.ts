@@ -50,7 +50,7 @@ const appRoutes: Routes = [
     AboutUsComponent
   ],
   imports: [
-    RouterModule.forRoot(appRoutes, { enableTracing: true }),
+    RouterModule.forRoot(appRoutes),
     BrowserModule,
     HttpModule,
     Ng2PageScrollModule,

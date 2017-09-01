@@ -14,9 +14,9 @@ import { NotificationBarService, NotificationType } from 'angular2-notification-
 })
 
 export class BoxComponent {
-  programid: number;
-  year: number;
-  semester: number;
+  programid: number=0;
+  year: number=0;
+  semester: number=0;
   evaluatedSemester: number;
 
   showCoursesContainer: boolean = false;
@@ -34,7 +34,7 @@ export class BoxComponent {
 
   onYearClick(year) {
     if (this.programid == 0) {
-      let pageScrollInstance: PageScrollInstance = PageScrollInstance.simpleInstance(this.document, 'programContainer');
+      let pageScrollInstance: PageScrollInstance = PageScrollInstance.simpleInstance(this.document, 'app-program-container');
       this.pageScrollService.start(pageScrollInstance);
       setTimeout(() => this.notificationBarService.create({ message: 'Please select program', type: NotificationType.Error }), 1300);
     }
@@ -47,7 +47,7 @@ export class BoxComponent {
 
   onSemesterClick(semester) {
     if (this.programid == 0) {
-      let pageScrollInstance: PageScrollInstance = PageScrollInstance.simpleInstance(this.document, 'programContainer');
+      let pageScrollInstance: PageScrollInstance = PageScrollInstance.simpleInstance(this.document, 'app-program-container');
       this.pageScrollService.start(pageScrollInstance);
       setTimeout(() => this.notificationBarService.create({ message: 'Please select program', type: NotificationType.Error }), 1300);
     }
@@ -64,4 +64,5 @@ export class BoxComponent {
       this.pageScrollService.start(pageScrollInstance);
     }
   }
+
 }

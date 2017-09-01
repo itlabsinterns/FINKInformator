@@ -4,7 +4,7 @@ import { OnInit } from '@angular/core';
 import { Program } from "../models/program";
 
 @Component({
-    selector: 'programContainer',
+    selector: 'app-program-container',
     templateUrl: './programcontainer.component.html',
     styleUrls: ['./programcontainer.component.css']
 })
