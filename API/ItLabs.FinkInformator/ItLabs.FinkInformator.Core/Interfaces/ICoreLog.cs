@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ItLabs.FinkInformator.Core.Interfaces
 {
     public interface ICoreLog
     {
         void LogException(Exception ex);
+        void LogMessage(string msg);
     }
 }

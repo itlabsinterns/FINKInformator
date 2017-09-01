@@ -1,7 +1,6 @@
 ﻿
 using ItLabs.FinkInformator.Core.Models;
 using System.Linq;
-using ItLabs.FinkInformator.Core.Responses;
 using ItLabs.FinkInformator.Core.Requests;
 
 namespace ItLabs.FinkInformator.Core.Interfaces
@@ -11,6 +10,7 @@ namespace ItLabs.FinkInformator.Core.Interfaces
         IQueryable<Program> getPrograms();
         IQueryable<ProgramCoursesDto> GetProgramCourses(GetProgramCoursesRequest request);
         void AddProgram(Program program);
-        void ChangeProgram(Program programToModify);
+        void UpdateProgram(Program programToModify);
+        void RemoveProgram(Program program);
     }
 }

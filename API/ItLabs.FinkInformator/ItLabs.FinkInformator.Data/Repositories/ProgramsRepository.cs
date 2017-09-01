@@ -3,11 +3,10 @@ using ItLabs.FinkInformator.Core.Interfaces;
 using ItLabs.FinkInformator.Data.Models;
 using System.Linq;
 using ItLabs.FinkInformator.Core.Requests;
-using System;
 
 namespace ItLabs.FinkInformator.Data
 {
-    public class ProgramsRepository:IProgramsRepository
+    public class ProgramsRepository : IProgramsRepository
     {
         private SchoolContext _schoolContext;
         public ProgramsRepository()
@@ -38,9 +37,17 @@ namespace ItLabs.FinkInformator.Data
             _schoolContext.SaveChanges();
         }
 
-        public void ChangeProgram(Program program)
-        { 
+        public void UpdateProgram(Program program)
+        {
             _schoolContext.Entry(program).State = System.Data.Entity.EntityState.Modified;
+            _schoolContext.SaveChanges();
+        }
+
+        public void RemoveProgram(Program program)
+        {
+            _schoolContext.ProgramsCourses.RemoveRange(_schoolContext.ProgramsCourses
+                                           .Where(x => x.Program.ProgramId == program.ProgramId).ToList());
+            _schoolContext.Programs.Remove(program);
             _schoolContext.SaveChanges();
         }
     }

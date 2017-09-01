@@ -70,9 +70,13 @@
     <Compile Include="Managers\CoursesManager.cs" />
     <Compile Include="Managers\ProgramsManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Validators\AddOrUpdateCourseRequestValidator.cs" />
+    <Compile Include="Validators\CreateCourseValidator.cs" />
     <Compile Include="Validators\GetCourseProgramNamesRequestValidator.cs" />
     <Compile Include="Validators\GetProgramCoursesRequestValidator.cs" />
     <Compile Include="Validators\IdRequestValidator.cs" />
+    <Compile Include="Validators\CreateProgramRequestValidator.cs" />
+    <Compile Include="Validators\UpdateProgramRequestValidator.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ItLabs.FinkInformator.Core\ItLabs.FinkInformator.Core.csproj">
