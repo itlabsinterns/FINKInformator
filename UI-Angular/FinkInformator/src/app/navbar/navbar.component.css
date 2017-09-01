@@ -1,0 +1,36 @@
+  .search-hold{
+    float: right;
+    
+  }
+  
+  .search {
+    height: 25px;
+  }
+  
+  .autocomplete {
+   position: absolute;
+   top: 50px;
+   right: 15px;
+   width: 350px;
+    height: 200px;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+  
+  .auto-list {
+  
+    margin: 0;
+    padding: 0px;
+    background: lightblue;
+    list-style: none;
+    width: 100%;
+   
+  }
+
+  .list-group-item{
+      margin-bottom: 2px;
+  }
+  
+  
+  
+  
