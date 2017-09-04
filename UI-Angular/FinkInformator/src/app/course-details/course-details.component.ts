@@ -12,6 +12,8 @@ import { Constants } from '../services/constants';
 })
 export class CourseDetailsComponent implements OnInit {
   courseId;
+  observator:any;
+
   selectedCourse: Course;
   prerequisites: Course[] = [];
   url:string;
@@ -23,9 +25,12 @@ export class CourseDetailsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.courseId = this.route.snapshot.paramMap.get('id');
-    this.setCourse(this.courseId);
-    this.setCoursePrerequisites(this.courseId);
+    this.route.params.subscribe(params=>
+    {
+      this.courseId = this.route.snapshot.paramMap.get('id');
+      this.setCourse(this.courseId);
+      this.setCoursePrerequisites(this.courseId);      
+    });
   }
 
   setCourse(courseId) {
