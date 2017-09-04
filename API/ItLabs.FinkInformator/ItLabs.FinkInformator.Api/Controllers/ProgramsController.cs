@@ -116,6 +116,5 @@ namespace ItLabs.FinkInformator.Api.Controllers
                 return BadRequest(response.ToString());
             return Ok(response);
         }
-
     }
 }
