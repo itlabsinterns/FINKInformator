@@ -19,6 +19,9 @@ export class NavbarComp{
 
     fillList(value)
     {
+        if(value.length < 3)
+            return;
+
         this.coursesService.GetCourseProgramNames(value)
         .subscribe(response=>this.courses=response.CourseProgramNames);
     }

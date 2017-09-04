@@ -5,6 +5,7 @@ using ItLabs.FinkInformator.Core.Requests;
 using System;
 using ItLabs.FinkInformator.Domain.Validators;
 using ItLabs.FinkInformator.Core.Models;
+using ItLabs.FinkInformator.Domain.Extensions;
 
 namespace ItLabs.FinkInformator.Domain.Managers
 {
@@ -23,7 +24,7 @@ namespace ItLabs.FinkInformator.Domain.Managers
             GetProgramsResponse response = new GetProgramsResponse();
             try
             {
-                response.Programs = _programsRepository.getPrograms().ToList();
+                response.Programs = _programsRepository.GetPrograms().ToList();
             }
             catch (Exception ex)
             {
@@ -37,19 +38,13 @@ namespace ItLabs.FinkInformator.Domain.Managers
 
         public ProgramResponse GetProgramsById(IdRequest request)
         {
-            var validationResult = new IdRequestValidator().Validate(request);
-            var response = new ProgramResponse() { IsSuccessful = validationResult.IsValid };
-
+            var response = new IdRequestValidator().Validate(request).ToResponse<ProgramResponse>();
             if (!response.IsSuccessful)
-            {
-                response.Errors.AddRange(validationResult.Errors.Select(x => x.ErrorMessage));
                 return response;
-            }
 
             try
             {
-                response.Program = _programsRepository.getPrograms().Where(x => x.ProgramId == request.Id).FirstOrDefault();
-
+                response.Program = _programsRepository.GetProgramById(request.Id);
             }
             catch (Exception ex)
             {
@@ -63,14 +58,9 @@ namespace ItLabs.FinkInformator.Domain.Managers
 
         public GetProgramCoursesResponse GetProgramCourses(GetProgramCoursesRequest request)
         {
-            var validationResult = new GetProgramCoursesRequestValidator().Validate(request);
-            var response = new GetProgramCoursesResponse() { IsSuccessful = validationResult.IsValid };
-
+            var response = new GetProgramCoursesRequestValidator().Validate(request).ToResponse<GetProgramCoursesResponse>();
             if (!response.IsSuccessful)
-            {
-                response.Errors.AddRange(validationResult.Errors.Select(x => x.ErrorMessage));
                 return response;
-            }
 
             try
             {
@@ -86,19 +76,14 @@ namespace ItLabs.FinkInformator.Domain.Managers
         }
         public ProgramResponse CreateProgram(CreateProgramRequest request)
         {
-            var validationResult = new CreateProgramRequestValidator().Validate(request);
-            var response = new ProgramResponse() { IsSuccessful = validationResult.IsValid };
-
+            var response = new CreateProgramRequestValidator().Validate(request).ToResponse<ProgramResponse>();
             if (!response.IsSuccessful)
-            {
-                response.Errors.AddRange(validationResult.Errors.Select(x => x.ErrorMessage));
                 return response;
-            }
-            var program = new Program() { ProgramName = request.ProgramName };
+
+            var program = new Program { ProgramName = request.ProgramName };
             try
             {
-                _programsRepository.AddProgram(program);
-                response.Program = program;
+                response.Program = _programsRepository.CreateProgram(program);
             }
             catch (Exception ex)
             {
@@ -110,17 +95,13 @@ namespace ItLabs.FinkInformator.Domain.Managers
         }
         public ProgramResponse UpdateProgram(UpdateProgramRequest request)
         {
-            var validationResult = new UpdateProgramRequestValidator().Validate(request);
-            var response = new ProgramResponse() { IsSuccessful = validationResult.IsValid };
-
+            var response = new UpdateProgramRequestValidator().Validate(request).ToResponse<ProgramResponse>();
             if (!response.IsSuccessful)
-            {
-                response.Errors.AddRange(validationResult.Errors.Select(x => x.ErrorMessage));
                 return response;
-            }
+
             try
             {
-                var programToUpdate = _programsRepository.getPrograms().Where(x => x.ProgramId == request.IdToUpdate).FirstOrDefault();
+                var programToUpdate = _programsRepository.GetPrograms().Where(x => x.ProgramId == request.IdToUpdate).FirstOrDefault();
                 if (programToUpdate != null)
                 {
                     programToUpdate.ProgramName = request.Program.ProgramName;
@@ -139,18 +120,13 @@ namespace ItLabs.FinkInformator.Domain.Managers
 
         public ResponseBase DeleteProgram(IdRequest request)
         {
-            var validationResult = new IdRequestValidator().Validate(request);
-            var response = new ResponseBase() { IsSuccessful = validationResult.IsValid };
-
+            var response = new IdRequestValidator().Validate(request).ToResponse<ResponseBase>();
             if (!response.IsSuccessful)
-            {
-                response.Errors.AddRange(validationResult.Errors.Select(x => x.ErrorMessage));
                 return response;
-            }
+
             try
             {
-                _programsRepository.RemoveProgram(_programsRepository.getPrograms()
-                                                 .Where(x => x.ProgramId == request.Id).FirstOrDefault());
+                _programsRepository.RemoveProgram(_programsRepository.GetProgramById(request.Id));
             }
             catch (Exception ex)
             {

@@ -7,10 +7,11 @@ namespace ItLabs.FinkInformator.Core.Interfaces
 {
     public interface IProgramsRepository
     {
-        IQueryable<Program> getPrograms();
+        IQueryable<Program> GetPrograms();
+        Program GetProgramById(int id);
         IQueryable<ProgramCoursesDto> GetProgramCourses(GetProgramCoursesRequest request);
-        void AddProgram(Program program);
-        void UpdateProgram(Program programToModify);
+        Program CreateProgram(Program program);
+        Program UpdateProgram(Program programToModify);
         void RemoveProgram(Program program);
     }
 }

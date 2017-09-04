@@ -31,6 +31,10 @@
       margin-bottom: 2px;
   }
   
+  .logoimg {
+    background-image: url("../assets/images/logo.png") ;
+    min-height: 100%;
+  }
   
   
   

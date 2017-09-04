@@ -5,6 +5,7 @@ using ItLabs.FinkInformator.Core.Models;
 using System;
 using System.Linq;
 using ItLabs.FinkInformator.Domain.Validators;
+using ItLabs.FinkInformator.Domain.Extensions;
 
 namespace ItLabs.FinkInformator.Domain.Managers
 {
@@ -20,14 +21,10 @@ namespace ItLabs.FinkInformator.Domain.Managers
 
         public CourseResponse GetCourseById(IdRequest request)
         {
-            var validationResult = new IdRequestValidator().Validate(request);
-            var response = new CourseResponse() { IsSuccessful = validationResult.IsValid };
+            var response = new IdRequestValidator().Validate(request).ToResponse<CourseResponse>();
 
             if (!response.IsSuccessful)
-            {
-                response.Errors.AddRange(validationResult.Errors.Select(x => x.ErrorMessage));
                 return response;
-            }
 
             try
             {
@@ -44,14 +41,9 @@ namespace ItLabs.FinkInformator.Domain.Managers
 
         public GetCoursePrerequisitesResponse GetCoursePrerequisites(IdRequest request)
         {
-            var validationResult = new IdRequestValidator().Validate(request);
-            var response = new GetCoursePrerequisitesResponse() { IsSuccessful = validationResult.IsValid };
-
+            var response = new IdRequestValidator().Validate(request).ToResponse<GetCoursePrerequisitesResponse>();
             if (!response.IsSuccessful)
-            {
-                response.Errors.AddRange(validationResult.Errors.Select(x => x.ErrorMessage));
                 return response;
-            }
 
             try
             {
@@ -68,7 +60,7 @@ namespace ItLabs.FinkInformator.Domain.Managers
 
         public GetCoursesResponse GetCourses()
         {
-            GetCoursesResponse response = new GetCoursesResponse();
+            var response = new GetCoursesResponse();
             try
             {
                 response.Courses = _coursesRepository.GetAllCourses().ToList();
@@ -84,14 +76,9 @@ namespace ItLabs.FinkInformator.Domain.Managers
 
         public GetCourseProgramNamesResponse GetCourseProgramNames(GetCourseProgramNamesRequest request)
         {
-            var validationResult = new GetCourseProgramNamesRequestValidator().Validate(request);
-            var response = new GetCourseProgramNamesResponse() { IsSuccessful = validationResult.IsValid };
-
+            var response = new GetCourseProgramNamesRequestValidator().Validate(request).ToResponse<GetCourseProgramNamesResponse>();
             if (!response.IsSuccessful)
-            {
-                response.Errors.AddRange(validationResult.Errors.Select(x => x.ErrorMessage));
                 return response;
-            }
 
             try
             {
@@ -108,14 +95,9 @@ namespace ItLabs.FinkInformator.Domain.Managers
 
         public CourseResponse CreateCourse(CreateCourseRequest request)
         {
-            var validationResult = new CreateCourseRequestValidator().Validate(request);
-            var response = new CourseResponse() { IsSuccessful = validationResult.IsValid };
-
+            var response = new CreateCourseRequestValidator().Validate(request).ToResponse<CourseResponse>();
             if (!response.IsSuccessful)
-            {
-                response.Errors.AddRange(validationResult.Errors.Select(x => x.ErrorMessage));
                 return response;
-            }
 
             var course = new Course()
             {
@@ -147,19 +129,13 @@ namespace ItLabs.FinkInformator.Domain.Managers
 
         public CourseResponse UpdateCourse(UpdateCourseRequest request)
         {
-            var validationResult = new UpdateCourseRequestValidator().Validate(request);
-            var response = new CourseResponse() { IsSuccessful = validationResult.IsValid };
-
+            var response = new UpdateCourseRequestValidator().Validate(request).ToResponse<CourseResponse>();
             if (!response.IsSuccessful)
-            {
-                response.Errors.AddRange(validationResult.Errors.Select(x => x.ErrorMessage));
                 return response;
-            }
 
             try
             {
                 var courseToUpdate = _coursesRepository.GetCourseById(request.OldCourseId);
-
                 if (courseToUpdate == null)
                 {
                     response.IsSuccessful = false;
@@ -167,6 +143,7 @@ namespace ItLabs.FinkInformator.Domain.Managers
                     _logger.LogMessage("Course to update is null");
                     return response;
                 }
+
                 courseToUpdate.CourseName = request.CourseName;
                 courseToUpdate.CourseDescription = request.CourseDescription;
                 courseToUpdate.Semester = request.Semester;
@@ -178,8 +155,8 @@ namespace ItLabs.FinkInformator.Domain.Managers
                                             ProgramId = x.ProgramId,
                                             IsMandatory = x.IsMandatory,
                                         }).ToList();
-                _coursesRepository.UpdateCourse(courseToUpdate, requestProgramsCourses, request.Prerequisites);
-                response.Course = courseToUpdate;
+
+                response.Course = _coursesRepository.UpdateCourse(courseToUpdate, requestProgramsCourses, request.Prerequisites);
             }
             catch (Exception ex)
             {
@@ -192,14 +169,9 @@ namespace ItLabs.FinkInformator.Domain.Managers
 
         public ResponseBase DeleteCourse(IdRequest request)
         {
-            var validationResult = new IdRequestValidator().Validate(request);
-            var response = new ResponseBase() { IsSuccessful = validationResult.IsValid };
-
+            var response = new IdRequestValidator().Validate(request).ToResponse<ResponseBase>();
             if (!response.IsSuccessful)
-            {
-                response.Errors.AddRange(validationResult.Errors.Select(x => x.ErrorMessage));
                 return response;
-            }
 
             try
             {

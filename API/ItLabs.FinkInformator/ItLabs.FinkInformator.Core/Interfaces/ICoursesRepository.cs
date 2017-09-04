@@ -11,7 +11,7 @@ namespace ItLabs.FinkInformator.Core.Interfaces
         List<Course> GetCoursePrerequisites(int id);
         List<CourseProgramName> GetProgramCourseNames(string CourseName);
         Course CreateCourse(Course course, List<ProgramsCourses> programsCourses, List<int> coursePrerequisites);
-        void UpdateCourse(Course courseToUpdate, List<ProgramsCourses> programCourses, List<int> prerequisites);
+        Course UpdateCourse(Course courseToUpdate, List<ProgramsCourses> programCourses, List<int> prerequisites);
         void DeleteCourse(Course course);
     }
 }

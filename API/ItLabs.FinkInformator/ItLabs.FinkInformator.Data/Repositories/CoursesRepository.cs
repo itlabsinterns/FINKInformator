@@ -34,7 +34,7 @@ namespace ItLabs.FinkInformator.Data.Repositories
 
         public List<CourseProgramName> GetProgramCourseNames(string courseName)
         {
-            return _schoolContext.ProgramsCourses.Where(x => x.Course.CourseName.Contains(courseName))
+            return _schoolContext.ProgramsCourses.Where(x => x.Course.CourseName.StartsWith(courseName))
                 .Select(x => new CourseProgramName
                 {
                     CourseName = x.Course.CourseName,
@@ -64,31 +64,24 @@ namespace ItLabs.FinkInformator.Data.Repositories
             return savedCourse;
         }
 
-        public void UpdateCourse(Course courseToUpdate, List<ProgramsCourses> programsCourses, List<int> coursePrerequisiteIds)
+        public Course UpdateCourse(Course courseToUpdate, List<ProgramsCourses> programsCourses, List<int> coursePrerequisiteIds)
         {
-            _schoolContext.CoursesPrerequisites.RemoveRange(_schoolContext.CoursesPrerequisites
-                                               .Where(x => x.Course.CourseId == courseToUpdate.CourseId).ToList());
+            _schoolContext.CoursesPrerequisites.RemoveRange(_schoolContext.CoursesPrerequisites.Where(x => x.Course.CourseId == courseToUpdate.CourseId).ToList());
 
-            var newPrerequisites = _schoolContext.Courses
-                                    .Where(x => coursePrerequisiteIds.Contains(x.CourseId)).ToList();
-
-            var newCoursePrerequisites = new List<CoursesPrerequisites>();
-            foreach (var entity in newPrerequisites)
+            var newCoursePrerequisites = _schoolContext.Courses.Where(x => coursePrerequisiteIds.Contains(x.CourseId)).Select(x => new CoursesPrerequisites
             {
-                newCoursePrerequisites.Add(new CoursesPrerequisites()
-                {
-                    Course = courseToUpdate,
-                    Prerequisite = entity
-                });
-            }
-            _schoolContext.CoursesPrerequisites.AddRange(newCoursePrerequisites);
+                Course = courseToUpdate,
+                Prerequisite = x
+            });
 
-            _schoolContext.ProgramsCourses.RemoveRange(_schoolContext.ProgramsCourses
-                                          .Where(x => x.CourseId == courseToUpdate.CourseId).ToList());
+            _schoolContext.CoursesPrerequisites.AddRange(newCoursePrerequisites);
+            _schoolContext.ProgramsCourses.RemoveRange(_schoolContext.ProgramsCourses.Where(x => x.CourseId == courseToUpdate.CourseId).ToList());
 
             _schoolContext.ProgramsCourses.AddRange(programsCourses);
             _schoolContext.Entry(courseToUpdate).State = System.Data.Entity.EntityState.Modified;
             _schoolContext.SaveChanges();
+
+            return courseToUpdate;
         }
 
         public void DeleteCourse(Course course)

@@ -9,14 +9,21 @@ namespace ItLabs.FinkInformator.Data
     public class ProgramsRepository : IProgramsRepository
     {
         private SchoolContext _schoolContext;
+
         public ProgramsRepository()
         {
             _schoolContext = new SchoolContext();
         }
-        public IQueryable<Program> getPrograms()
+        public IQueryable<Program> GetPrograms()
         {
             return _schoolContext.Programs;
         }
+
+        public Program GetProgramById(int id)
+        {
+            return _schoolContext.Programs.Where(x => x.ProgramId == id).FirstOrDefault();
+        }
+
         public IQueryable<ProgramCoursesDto> GetProgramCourses(GetProgramCoursesRequest request)
         {
             return _schoolContext.ProgramsCourses.Where(x => x.ProgramId == request.ProgramId && x.Course.Semester == request.Semester)
@@ -31,16 +38,18 @@ namespace ItLabs.FinkInformator.Data
 
         }
 
-        public void AddProgram(Program program)
+        public Program CreateProgram(Program program)
         {
             _schoolContext.Programs.Add(program);
             _schoolContext.SaveChanges();
+            return program;
         }
 
-        public void UpdateProgram(Program program)
+        public Program UpdateProgram(Program program)
         {
             _schoolContext.Entry(program).State = System.Data.Entity.EntityState.Modified;
             _schoolContext.SaveChanges();
+            return program;
         }
 
         public void RemoveProgram(Program program)
