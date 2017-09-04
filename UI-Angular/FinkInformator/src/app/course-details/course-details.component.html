@@ -1,13 +1,14 @@
-  <div class="bgimg-4">
+<div class="bgimg-4">
     <div id="displayCourses" class="container-fluid">
-        <div id="displayCoursesContainer" class="col-xs-8 col-xs-push-2">
+        <div class="col-sm-8 col-sm-push-2 col-xs-10 col-xs-push-1">
             <div id="panel" class="panel panel-primary" *ngIf="selectedCourse">
                 <div id="panel-heading" class="panel-heading">{{selectedCourse.CourseName}}</div>
                 <div id="panel-body" class="panel-body">{{selectedCourse.CourseDescription}}</div>
                 <div *ngIf="prerequisites.length>0">
-                    <b>Предуслови:</b>
-                    <span *ngFor="let prerequisite of prerequisites">{{prerequisite.CourseName + ' '}}</span>
-                </div>
+                    <div class="list-group">
+                        <a style="text-align:center; font-size:18px; " class="list-group-item active">Предуслови<span class="badge">{{prerequisites.length}}</span></a>
+                        <a class="list-group-item" *ngFor="let prerequisite of prerequisites">{{prerequisite.CourseName + ' '}}</a>
+                    </div>                </div>
                 <div class="panel-footer">
                     <disqus-thread [page-identifier]='selectedCourse.CourseId' [page-url]="url + selectedCourse.CourseId"></disqus-thread>
                 </div>

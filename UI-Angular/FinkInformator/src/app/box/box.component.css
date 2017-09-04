@@ -54,21 +54,21 @@
   
 .btn-danger {
   color: white ;
-  background-color: rgba(75, 216, 199, 0.75);
+  background-color: rgba(88,178,224,0.75);
   border-radius: 15px ;
   border: 1 px solid ;
-  border-color: white ;
+  border-color: rgb(0, 88, 133) ;
 }
 .btn-danger:focus,
 .btn-danger.focus {
   color:white;
-  background-color: #107050 !important;
+  background-color: rgb(0, 88, 133) !important;
   border-color:white ;
 }
 .btn-danger:hover {
   color: white ;
-  background-color: #107050 ;
-  border-color: #107050 ;
+  background-color: rgb(0, 88, 133) ;
+  border-color: rgb(0, 88, 133) ;
 }
 
 .list-group-item:hover{

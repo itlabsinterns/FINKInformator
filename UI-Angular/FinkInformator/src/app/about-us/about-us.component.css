@@ -5,6 +5,20 @@
     color: black;
     font-size: 23px;
 }
+
+.container-fluid{
+    position: absolute;
+    width: 100%;
+}
+
+.jumbotron{
+    color: white ;
+    background-color: rgba(88,178,224,0.75);
+    border: 2px solid ;
+    border-color: rgb(0, 88, 133) ;
+
+}
+
 .background 
 {
     position: relative;

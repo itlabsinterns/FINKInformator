@@ -15,6 +15,7 @@ export class CoursesContainerComponent {
 
   mandatoryCourses: ProgramCourse[];
   optionalCourses: ProgramCourse[];
+  numOfOptional:Array<number>;
 
   constructor(private programsService: ProgramsService, private router: Router) { }
 
@@ -36,6 +37,7 @@ export class CoursesContainerComponent {
           else 
             this.optionalCourses.push(element);
         });
+        this.numOfOptional= new Array<number>(5-this.mandatoryCourses.length);
       });
   }
 
