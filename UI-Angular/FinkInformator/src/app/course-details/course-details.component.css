@@ -24,9 +24,9 @@
 #displayCourses
 {
     position: absolute;
-    margin-top:6%;
+    margin-top:2%;
     width:100%;
-    height: 90%;
+    height: 100%;
     overflow-y: auto;
     overflow-x: hidden;
 }
@@ -39,4 +39,15 @@
     background-size: cover;
     background-image: url("../assets/images/parallax1.jpg") ;
     min-height: 100%;
+}
+
+.cursor{
+        cursor:pointer;
+}
+
+.col-sm-10, .col-xs-12{
+    padding:0px;
+    height: 95%;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
