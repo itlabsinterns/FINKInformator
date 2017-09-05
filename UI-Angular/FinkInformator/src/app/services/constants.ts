@@ -1,4 +1,4 @@
 export class Constants
 {
-    public static APIURL = "http://localhost:4329";
+    public static APIURL = "http://finkinformator-api.devweb.office.it-labs.com";
 }
