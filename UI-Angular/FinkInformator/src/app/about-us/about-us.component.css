@@ -29,3 +29,10 @@
     background-image: url("../assets/images/parallax1.jpg") ;
     min-height: 100%;
 }
+
+.jumbotron > h2{
+    text-align: center;
+}
+.jumbotron > p{
+    text-align: center;
+}
