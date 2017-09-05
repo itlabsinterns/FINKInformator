@@ -55,3 +55,8 @@
 .panel-primary{
     margin-bottom:0px;
 }
+
+.active{
+    text-align:center;
+    font-size:18px; 
+}

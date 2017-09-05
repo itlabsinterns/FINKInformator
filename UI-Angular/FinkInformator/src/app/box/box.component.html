@@ -5,7 +5,7 @@
     <app-program-container (setProgram)='onProgramClick($event)'></app-program-container>
     </div>
   
-  <div style="color:#ddd;background-color:#282E34;text-align:center;padding:50px 80px;text-align: justify;">
+  <div class="box">
   
   </div>
   
@@ -13,8 +13,8 @@
       <app-year-container (setYear)='onYearClick($event)'></app-year-container>
   </div>
   
-  <div style="position:relative;">
-    <div style="color:#ddd;background-color:#282E34;text-align:center;padding:50px 80px;text-align: justify;">
+  <div class="rel">
+    <div class="box">
     </div>
   </div>
   
@@ -22,8 +22,8 @@
   <app-semester-container  (setSemester)='onSemesterClick($event)'></app-semester-container>
   </div>
   
-  <div style="position:relative;">
-    <div  id="scrollId" style="color:#ddd;background-color:#282E34;text-align:center;padding:50px 80px;text-align: justify;">
+  <div class="rel">
+    <div  id="scrollId" class="box">
     </div>
   </div>
   
@@ -31,7 +31,7 @@
   <app-courses-container [programId]="programid" [semester]="evaluatedSemester"></app-courses-container>
   </div>
   
-  <div style="position:relative;">
-      <div style="color:#ddd;background-color:#282E34;text-align:center;padding:50px 80px;text-align: justify;">
+  <div class="rel">
+      <div class="box">
       </div>
     </div>

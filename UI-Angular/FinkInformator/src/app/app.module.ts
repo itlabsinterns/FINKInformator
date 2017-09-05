@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { Ng2PageScrollModule } from 'ng2-page-scroll';
 import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { NavbarComp } from './navbar/navbar.component';
@@ -56,7 +57,8 @@ const appRoutes: Routes = [
     Ng2PageScrollModule,
     NotificationBarModule,
     FormsModule,
-    DisqusModule
+    DisqusModule,
+    BrowserAnimationsModule
   ],
   providers: [ProgramsService, CoursesService, PageScrollService, NotificationBarService],
   bootstrap: [AppComponent]
