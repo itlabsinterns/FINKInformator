@@ -37,7 +37,7 @@ export class BoxComponent {
     if (this.programid == 0) {
       let pageScrollInstance: PageScrollInstance = PageScrollInstance.simpleInstance(this.document, 'app-program-container');
       this.pageScrollService.start(pageScrollInstance);
-      setTimeout(() => this.notificationBarService.create({ message: 'Please select program', type: NotificationType.Error }), 1300);
+      setTimeout(() => this.notificationBarService.create({ message: 'Изберете насока', type: NotificationType.Error }), 1300);
     }
     else {
       this.year = year;
@@ -50,18 +50,18 @@ export class BoxComponent {
     if (this.programid == 0) {
       let pageScrollInstance: PageScrollInstance = PageScrollInstance.simpleInstance(this.document, 'app-program-container');
       this.pageScrollService.start(pageScrollInstance);
-      setTimeout(() => this.notificationBarService.create({ message: 'Please select program', type: NotificationType.Error }), 1300);
+      setTimeout(() => this.notificationBarService.create({ message: 'Изберете насока', type: NotificationType.Error }), 1300);
     }
     else if (this.year == 0) {
       let pageScrollInstance: PageScrollInstance = PageScrollInstance.simpleInstance(this.document, 'app-year-container');
       this.pageScrollService.start(pageScrollInstance);
-      setTimeout(() => this.notificationBarService.create({ message: 'Please select year', type: NotificationType.Error }), 1300);
+      setTimeout(() => this.notificationBarService.create({ message: 'Изберете година', type: NotificationType.Error }), 1300);
     }
     else {
       this.semester = semester;
       this.evaluatedSemester = this.year * 2 + (this.semester - 2);
       this.showCoursesContainer = true;
-      let pageScrollInstance: PageScrollInstance = PageScrollInstance.simpleInstance(this.document, 'app-courses-container');
+      let pageScrollInstance: PageScrollInstance = PageScrollInstance.simpleInstance(this.document, '#scrollId');
       this.pageScrollService.start(pageScrollInstance);
     }
   }

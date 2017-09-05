@@ -45,4 +45,8 @@ export class CourseDetailsComponent implements OnInit {
       .subscribe(response => this.prerequisites = response.Prerequisites);
   }
 
+  onClick(id)
+  {
+    this.router.navigate(['/course', id]);
+  }
 }
