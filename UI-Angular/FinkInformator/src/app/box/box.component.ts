@@ -35,9 +35,9 @@ export class BoxComponent {
 
   onYearClick(year) {
     if (this.programid == 0) {
-      let pageScrollInstance: PageScrollInstance = PageScrollInstance.simpleInstance(this.document, 'app-program-container');
-      this.pageScrollService.start(pageScrollInstance);
-      setTimeout(() => this.notificationBarService.create({ message: 'Изберете насока', type: NotificationType.Error }), 1300);
+      //let pageScrollInstance: PageScrollInstance = PageScrollInstance.simpleInstance(this.document, 'app-program-container');
+      //this.pageScrollService.start(pageScrollInstance);
+      this.notificationBarService.create({ message: 'Изберете насока', type: NotificationType.Error });
     }
     else {
       this.year = year;
@@ -50,12 +50,12 @@ export class BoxComponent {
     if (this.programid == 0) {
       let pageScrollInstance: PageScrollInstance = PageScrollInstance.simpleInstance(this.document, 'app-program-container');
       this.pageScrollService.start(pageScrollInstance);
-      setTimeout(() => this.notificationBarService.create({ message: 'Изберете насока', type: NotificationType.Error }), 1300);
+      setTimeout(() => this.notificationBarService.create({ message: 'Изберете насока', type: NotificationType.Error }), 2000);
     }
     else if (this.year == 0) {
       let pageScrollInstance: PageScrollInstance = PageScrollInstance.simpleInstance(this.document, 'app-year-container');
       this.pageScrollService.start(pageScrollInstance);
-      setTimeout(() => this.notificationBarService.create({ message: 'Изберете година', type: NotificationType.Error }), 1300);
+      setTimeout(() => this.notificationBarService.create({ message: 'Изберете година', type: NotificationType.Error }), 2000);
     }
     else {
       this.semester = semester;

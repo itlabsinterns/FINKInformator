@@ -47,7 +47,11 @@
 
 .col-sm-10, .col-xs-12{
     padding:0px;
-    height: 95%;
+    height: 94%;
     overflow-y: auto;
     overflow-x: hidden;
+}
+
+.panel-primary{
+    margin-bottom:0px;
 }
