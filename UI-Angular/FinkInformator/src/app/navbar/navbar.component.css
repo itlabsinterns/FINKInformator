@@ -67,4 +67,8 @@
        margin:auto;
      }
   }
+
+  .list-group-item{
+    cursor:pointer;
+  }
   
