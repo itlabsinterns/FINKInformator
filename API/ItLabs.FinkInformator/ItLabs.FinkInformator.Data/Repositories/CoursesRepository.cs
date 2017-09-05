@@ -68,13 +68,14 @@ namespace ItLabs.FinkInformator.Data.Repositories
         {
             _schoolContext.CoursesPrerequisites.RemoveRange(_schoolContext.CoursesPrerequisites.Where(x => x.Course.CourseId == courseToUpdate.CourseId).ToList());
 
-            List<CoursesPrerequisites> newCoursePrerequisites = (_schoolContext.Courses
-                .Where(x => coursePrerequisiteIds.Contains(x.CourseId)).ToList()
+            var newCoursePrerequisites = (_schoolContext.Courses
+                .Where(x => coursePrerequisiteIds.Contains(x.CourseId))
+                .ToList()
                 .Select(x => new CoursesPrerequisites
-            {
-                Course = courseToUpdate,
-                Prerequisite = x
-            })).ToList();
+                {
+                    Course = courseToUpdate,
+                    Prerequisite = x
+                }));
 
             _schoolContext.CoursesPrerequisites.AddRange(newCoursePrerequisites);
             _schoolContext.ProgramsCourses.RemoveRange(_schoolContext.ProgramsCourses.Where(x => x.CourseId == courseToUpdate.CourseId).ToList());
